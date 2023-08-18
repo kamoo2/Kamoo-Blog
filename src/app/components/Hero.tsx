@@ -26,15 +26,25 @@ export default function Hero() {
           >
             CONTACT ME
           </Link>
-          <CircleIcon>
-            <SiGithub />
-          </CircleIcon>
-          <CircleIcon>
-            <SiGmail />
-          </CircleIcon>
-          <CircleIcon>
-            <SiNotion />
-          </CircleIcon>
+          <Link
+            href="https://www.notion.so/kamoo2/b03b2c0edb424bd580f937d294b29f07?pvs=4"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <CircleIcon>
+              <SiNotion />
+            </CircleIcon>
+          </Link>
+          <Link href="https://github.com/kamoo2" target="_blank" rel="noopener noreferrer">
+            <CircleIcon>
+              <SiGithub />
+            </CircleIcon>
+          </Link>
+          <Link href="" target="_blank" rel="noopener noreferrer">
+            <CircleIcon>
+              <SiGmail />
+            </CircleIcon>
+          </Link>
         </div>
       </div>
     </div>
