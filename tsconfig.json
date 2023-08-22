@@ -23,9 +23,9 @@
     "paths": {
       "@/*": ["./src/app/*"],
       "@/contentlayer/generated" : ["./.contentlayer/generated"],
-      "@/contentlayer/generated/*" : ["./.contentlayer/generaged/*"]
+      "@/contentlayer/generated/*" : ["./.contentlayer/generaged/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts","./.contentlayer/generated"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts","./.contentlayer/generated","**/stories.tsx"],
   "exclude": ["node_modules"]
 }

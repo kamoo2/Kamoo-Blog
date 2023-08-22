@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { AiOutlineSearch } from 'react-icons/ai';
-import QuickSearchButton from '@/components/QuickSearchButton';
 import { RiSunLine } from 'react-icons/ri';
+import QuickSearchButton from '@/components/QuickSearchButton/QuickSearchButton';
 
 export default function Header() {
   return (
