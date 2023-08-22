@@ -9,15 +9,16 @@ export default function Hero() {
       <div>
         <div className="flex w-full flex-col items-center justify-center lg:items-start">
           <h1 className="mb-1.5 text-3xl font-light md:text-4xl">
-            Hello!
-            <span className="font-semibold">{"I'm "}</span>
+            Hi!
+            <span className="font-semibold">{" I'm "}</span>
             <span className="bg-neutral-300 font-semibold">Kamoo</span>
-            <span className="font-semibold">, </span>A
           </h1>
           <h1 className="lg mb-1.5 text-center text-3xl font-semibold md:text-4xl lg:text-start">
             JR.FRONTEND DEVELOPER,
           </h1>
-          <h1 className="text-3xl font-light md:text-4xl">LOOKING FOR A JOB.</h1>
+          <h1 className="text-3xl font-light md:text-4xl">
+            LOOKING FOR A <span className="font-semibold">JOB</span>
+          </h1>
         </div>
         <div className="mt-4 flex w-full items-center justify-center gap-3 lg:mt-8 lg:justify-start">
           <Link

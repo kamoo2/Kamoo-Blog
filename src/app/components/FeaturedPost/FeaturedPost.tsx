@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import CalendarIcon from '@/components/icons/CalendarIcon';
 
 type Props = {
   imagePath: string;
@@ -20,7 +21,10 @@ export default function FeaturedPost({ imagePath, alt, title, description, creat
       />
       <div className="flex flex-col gap-2 px-6 py-3 lg:px-4">
         <h2 className="text-xl font-bold lg:text-base">{title}</h2>
-        <span className="self-end text-sm text-gray-500">{createdAt}</span>
+        <div className="flex items-center gap-0.5 self-end text-gray-500">
+          <CalendarIcon />
+          <span className="text-base md:text-sm">{createdAt}</span>
+        </div>
       </div>
     </div>
   );
