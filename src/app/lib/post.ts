@@ -1,5 +1,7 @@
 import { allPosts } from '@/contentlayer/generated';
-import { Post } from '@/lib/types';
+import { Post, ReducedPost } from '@/lib/types';
+
+export const reducePost = ({ body: _, _raw, _id, ...post }: Post): ReducedPost => post;
 
 export const allBlogPosts: Post[] = allPosts
   .filter(
@@ -7,6 +9,8 @@ export const allBlogPosts: Post[] = allPosts
       post._raw.sourceFilePath.includes('blog') && !post._raw.sourceFilePath.includes('/index.mdx'),
   )
   .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+export const reducedAllBlogPosts = allBlogPosts.map(reducePost);
 
 export const allSnippets: Post[] = allPosts
   .filter((post) => post._raw.sourceFilePath.includes('snippets'))

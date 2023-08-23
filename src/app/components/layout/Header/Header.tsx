@@ -18,7 +18,7 @@ export default function Header() {
           <Link className="mr-4" href="/snippets">
             Snippets
           </Link>
-          <Link href="/archivecs">Archives</Link>
+          <Link href="/archives">Archives</Link>
         </nav>
         <div className="flex items-center gap-2">
           <QuickSearchButton />

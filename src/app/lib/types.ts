@@ -4,3 +4,5 @@ export type Post = TPost & {
   seriesName?: string | null;
   snippetName?: string | null;
 };
+
+export type ReducedPost = Omit<Post, 'body' | '_raw' | '_id'>;

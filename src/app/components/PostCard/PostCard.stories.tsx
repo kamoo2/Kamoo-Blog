@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import FeaturedPost from '@/components/FeaturedPost/FeaturedPost';
+import PostCard from '@/components/PostCard/PostCard';
 
-const meta: Meta<typeof FeaturedPost> = {
-  title: 'Component/FeaturedPost',
-  component: FeaturedPost,
+const meta: Meta<typeof PostCard> = {
+  title: 'Component/PostCard',
+  component: PostCard,
   parameters: {
     layout: 'centered',
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof FeaturedPost>;
+type Story = StoryObj<typeof PostCard>;
 
 export const Primary: Story = {
-  render: (args) => <FeaturedPost {...args} />,
+  render: (args) => <PostCard {...args} />,
   args: {
     title: '디자인 패턴',
     alt: '디자인 패턴',
