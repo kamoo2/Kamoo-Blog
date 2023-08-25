@@ -2,9 +2,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import IconButton from '@/components/common/IconButton';
-import { fontCabinSketch } from '@/lib/fonts';
-import Link from 'next/link';
-import Sidebar from '@/components/layout/Sidebar';
+import Sidebar from '@/components/Sidebar';
+import { usePathname } from 'next/navigation';
 
 const SidebarOverlay = ({ isOpen }: { isOpen: boolean }) => {
   return isOpen ? <div className="fixed inset-0 bg-gray-500 bg-opacity-25"></div> : null;
@@ -13,6 +12,7 @@ const SidebarOverlay = ({ isOpen }: { isOpen: boolean }) => {
 export default function MobileMenu() {
   const sidebarRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const pathname = usePathname();
 
   const toggleSidebar = (): void => {
     const body = document.querySelector('body');
@@ -53,7 +53,7 @@ export default function MobileMenu() {
     <div className="lg:hidden">
       <IconButton className="text-2xl" Icon={RxHamburgerMenu} onClick={toggleSidebar} />
       {isOpen && <SidebarOverlay isOpen={isOpen} />}
-      <Sidebar isOpen={isOpen} sidebarRef={sidebarRef} />
+      <Sidebar isOpen={isOpen} sidebarRef={sidebarRef} pathname={pathname} />
     </div>
   );
 }
