@@ -1,7 +1,8 @@
 import React from 'react';
-import Link from 'next/link';
 import { allTags, reducedAllBlogPosts } from '@/lib/post';
 import { ReducedPost } from '@/lib/types';
+import PostListItem from '@/components/PostListItem';
+import CategoryBox from '@/components/CategoryBox';
 
 type Props = {
   params: {};
@@ -56,22 +57,13 @@ export default function BlogPage(props: Props) {
       })[0];
 
   return (
-    <>
-      <div>
-        {allTagList.map((tag) => {
-          return (
-            <div key={tag}>
-              <Link href={`?key=${tag}`}>{tag}</Link>
-            </div>
-          );
-        })}
-      </div>
-      <h1 className="text-4xl">{selectedKey}</h1>
-      <ul key={key}>
+    <div className="flex gap-4 py-3">
+      <CategoryBox className="hidden lg:block" tags={allTagList} />
+      <div className="grow">
         {postList.map((post) => (
-          <li key={post.slug}>{post.title}</li>
+          <PostListItem key={post.slug} post={post} />
         ))}
-      </ul>
-    </>
+      </div>
+    </div>
   );
 }

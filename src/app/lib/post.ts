@@ -18,8 +18,11 @@ export const allSnippets: Post[] = allPosts
   .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
 export const allTags = Array.from(
-  [...allBlogPosts, ...allSnippets].reduce((ac, v) => {
-    v.tags.forEach((tag) => ac.add(tag));
-    return ac;
-  }, new Set<string>([])),
+  [...allBlogPosts, ...allSnippets].reduce(
+    (ac, v) => {
+      v.tags.forEach((tag) => ac.add(tag));
+      return ac;
+    },
+    new Set<string>(['all']),
+  ),
 ).filter(Boolean);
