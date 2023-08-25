@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Hero from '@/components/Hero/Hero';
-import PostCard from '@/components/PostCard/PostCard';
+import Hero from '@/components/Hero';
+import PostCard from '@/components/PostCard';
 import Profile from '../../public/images/profile.png';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import Link from 'next/link';
