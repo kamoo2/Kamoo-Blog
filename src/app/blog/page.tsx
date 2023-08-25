@@ -1,5 +1,5 @@
 import React from 'react';
-import { allTags, reducedAllBlogPosts } from '@/lib/post';
+import { allBlogTagsWithCount, allTagsWithCount, reducedAllBlogPosts } from '@/lib/post';
 import { ReducedPost } from '@/lib/types';
 import PostListItem from '@/components/PostListItem';
 import CategoryBox from '@/components/CategoryBox';
@@ -15,7 +15,7 @@ type Post = {
 };
 
 export default function BlogPage(props: Props) {
-  const allTagList = allTags;
+  const allBlogTagList = allBlogTagsWithCount;
 
   const searchParams = props.searchParams;
   const selectedKey = searchParams.key ? searchParams.key : 'all';
@@ -58,7 +58,7 @@ export default function BlogPage(props: Props) {
 
   return (
     <div className="flex gap-4 py-3">
-      <CategoryBox className="hidden lg:block" tags={allTagList} />
+      <CategoryBox className="hidden lg:block" tags={allBlogTagList} />
       <div className="grow">
         {postList.map((post) => (
           <PostListItem key={post.slug} post={post} />
