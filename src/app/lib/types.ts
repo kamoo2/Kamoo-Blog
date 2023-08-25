@@ -6,3 +6,8 @@ export type Post = TPost & {
 };
 
 export type ReducedPost = Omit<Post, 'body' | '_raw' | '_id'>;
+
+export type TagWithCount = {
+  name: string;
+  count: number;
+};

@@ -1,5 +1,5 @@
 import { allPosts } from '@/contentlayer/generated';
-import { Post, ReducedPost } from '@/lib/types';
+import { Post, ReducedPost, TagWithCount } from '@/lib/types';
 
 export const reducePost = ({ body: _, _raw, _id, ...post }: Post): ReducedPost => post;
 
@@ -17,12 +17,66 @@ export const allSnippets: Post[] = allPosts
   .map((snippet) => ({ ...snippet, snippetName: snippet.slug.split('/').at(2) ?? null }))
   .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-export const allTags = Array.from(
-  [...allBlogPosts, ...allSnippets].reduce(
-    (ac, v) => {
-      v.tags.forEach((tag) => ac.add(tag));
-      return ac;
-    },
-    new Set<string>(['all']),
-  ),
-).filter(Boolean);
+export const reducedAllSnippets = allSnippets.map(reducePost);
+
+const getTagsWithCount = (kind: 'all' | 'blog' | 'snippets'): TagWithCount[] => {
+  const tagCounts: Record<string, number> = {};
+  let allTags: TagWithCount[] = [];
+
+  if (kind === 'blog') {
+    allBlogPosts.forEach((post) => {
+      post.tags.forEach((tag) => {
+        if (!tagCounts[tag]) {
+          tagCounts[tag] = 0;
+        }
+        tagCounts[tag]++;
+      });
+    });
+
+    allTags = Object.keys(tagCounts).map((tag) => ({
+      name: tag,
+      count: tagCounts[tag],
+    }));
+
+    allTags.unshift({ name: 'all', count: allBlogPosts.length });
+  } else if (kind === 'snippets') {
+    allSnippets.forEach((post) => {
+      post.tags.forEach((tag) => {
+        if (!tagCounts[tag]) {
+          tagCounts[tag] = 0;
+        }
+        tagCounts[tag]++;
+      });
+    });
+
+    allTags = Object.keys(tagCounts).map((tag) => ({
+      name: tag,
+      count: tagCounts[tag],
+    }));
+
+    allTags.unshift({ name: 'all', count: allSnippets.length });
+  } else {
+    Array.from([...allSnippets, ...allBlogPosts]).forEach((post) => {
+      post.tags.forEach((tag) => {
+        if (!tagCounts[tag]) {
+          tagCounts[tag] = 0;
+        }
+        tagCounts[tag]++;
+      });
+    });
+
+    allTags = Object.keys(tagCounts).map((tag) => ({
+      name: tag,
+      count: tagCounts[tag],
+    }));
+
+    allTags.unshift({ name: 'all', count: allSnippets.length + allBlogPosts.length });
+  }
+  return allTags;
+};
+
+export const allBlogTagsWithCount = getTagsWithCount('blog');
+
+export const allSnippetTagsWithCount = getTagsWithCount('snippets');
+
+export const allTagsWithCount = getTagsWithCount('all');
