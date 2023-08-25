@@ -26,6 +26,6 @@
       "@/contentlayer/generated/*" : ["./.contentlayer/generaged/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts","./.contentlayer/generated","**/stories.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts","./.contentlayer/generated"],
   "exclude": ["node_modules"]
 }
