@@ -1,7 +1,7 @@
 import {
+  Cabin_Sketch as FontCabinSketch,
   Inter as FontSans,
   JetBrains_Mono as FontMono,
-  Cabin_Sketch as FontCabinSketch,
 } from 'next/font/google';
 
 export const fontSans = FontSans({

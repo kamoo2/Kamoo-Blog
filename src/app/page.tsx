@@ -1,9 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
+
 import Hero from '@/components/Hero';
 import PostCard from '@/components/PostCard';
+
 import Profile from '../../public/images/profile.png';
-import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
-import Link from 'next/link';
 export default function HomePage() {
   return (
     <>
@@ -22,7 +24,6 @@ export default function HomePage() {
             title="CSS-in-JS 라이브러리들에 대한 고찰"
             alt="CSS-in-JS 라이브러리들에 대한 고찰"
             linkPath="blog"
-            description="ss"
             createdAt="2023.08.21"
             imagePath="https://images.unsplash.com/photo-1602300991431-27a957a5bcf7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fGdyZWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
           />
@@ -30,7 +31,6 @@ export default function HomePage() {
             title="CSS-in-JS 라이브러리들에 대한 고찰"
             alt="CSS-in-JS 라이브러리들에 대한 고찰"
             linkPath="blog"
-            description="ss"
             createdAt="2023.08.21"
             imagePath="https://images.unsplash.com/photo-1543362906-acfc16c67564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTB8fGdyZWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
           />
@@ -38,7 +38,6 @@ export default function HomePage() {
             title="CSS-in-JS 라이브러리들에 대한 고찰"
             alt="CSS-in-JS 라이브러리들에 대한 고찰"
             linkPath="blog"
-            description="ss"
             createdAt="2023.08.21"
             imagePath="https://images.unsplash.com/photo-1564352969906-8b7f46ba4b8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z3JlZW58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
           />
@@ -46,7 +45,6 @@ export default function HomePage() {
             title="CSS-in-JS 라이브러리들에 대한 고찰"
             alt="CSS-in-JS 라이브러리들에 대한 고찰"
             linkPath="blog"
-            description="ss"
             createdAt="2023.08.21"
             imagePath="https://images.unsplash.com/photo-1543675185-08d5b223274e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjI1fHxncmVlbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
           />

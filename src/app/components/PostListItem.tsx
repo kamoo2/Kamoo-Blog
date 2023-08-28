@@ -1,11 +1,12 @@
-import React from 'react';
-import { ReducedPost } from '@/lib/types';
-import Image from 'next/image';
-import DefaultThumbnail from '../../../public/images/profile.png';
 import dayjs from 'dayjs';
-import IconText from '@/components/common/IconText';
-import { AiOutlineCalendar } from 'react-icons/ai';
+import Image from 'next/image';
 import Link from 'next/link';
+import { AiOutlineCalendar } from 'react-icons/ai';
+
+import IconText from '@/components/common/IconText';
+import { ReducedPost } from '@/lib/types';
+
+import DefaultThumbnail from '../../../public/images/profile.png';
 export default function PostListItem({
   post: { title, description, createdAt, tags, readingMinutes, slug, wordCount },
 }: {

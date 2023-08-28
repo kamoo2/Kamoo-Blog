@@ -1,4 +1,3 @@
-import React from 'react';
 import { SiGithub, SiGmail } from 'react-icons/si';
 
 export default function Footer() {

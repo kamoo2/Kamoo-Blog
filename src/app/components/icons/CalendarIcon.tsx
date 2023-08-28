@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function CalendarIcon({
   className,
   width = 16,

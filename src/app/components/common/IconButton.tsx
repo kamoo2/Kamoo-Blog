@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type IconButtonProps = {
   Icon: (props: React.ComponentProps<'svg'>) => JSX.Element;
   className?: string;

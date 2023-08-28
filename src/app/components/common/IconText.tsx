@@ -1,6 +1,5 @@
-import React from 'react';
-
 export type IconTextProps = {
+  // eslint-disable-next-line unused-imports/no-unused-vars
   Icon: (props: React.ComponentProps<'svg'>) => JSX.Element;
   text?: React.ReactNode;
   className?: string;

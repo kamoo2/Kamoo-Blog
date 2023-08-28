@@ -1,7 +1,6 @@
-import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { CiSearch } from 'react-icons/ci';
 import { LuSearch } from 'react-icons/lu';
+
 import IconButton from '@/components/common/IconButton';
 
 export default function QuickSearchButton() {

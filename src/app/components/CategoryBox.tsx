@@ -1,8 +1,9 @@
-import React from 'react';
-import IconText from '@/components/common/IconText';
-import { MdKeyboardArrowRight } from 'react-icons/md';
-import { TagWithCount } from '@/lib/types';
 import Link from 'next/link';
+import React from 'react';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+
+import IconText from '@/components/common/IconText';
+import { TagWithCount } from '@/lib/types';
 
 export default function CategoryBox({
   tags,

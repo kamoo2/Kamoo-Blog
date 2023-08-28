@@ -1,27 +1,23 @@
-import React from 'react';
-import { allBlogTagsWithCount, allTagsWithCount, reducedAllBlogPosts } from '@/lib/post';
-import { ReducedPost } from '@/lib/types';
-import PostListItem from '@/components/PostListItem';
 import CategoryBox from '@/components/CategoryBox';
+import PostListItem from '@/components/PostListItem';
+import { allBlogTagsWithCount, reducedAllBlogPosts } from '@/lib/post';
+import { ReducedPost } from '@/lib/types';
 
-type Props = {
-  params: {};
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+// type Props = {
+//   params: {};
+//   searchParams: { [key: string]: string | string[] | undefined };
+// };
 
 type Post = {
   key: string;
   postList: ReducedPost[];
 };
 
-export default function BlogPage(props: Props) {
+export default function BlogPage() {
   const allBlogTagList = allBlogTagsWithCount;
 
-  const searchParams = props.searchParams;
-  const selectedKey = searchParams.key ? searchParams.key : 'all';
+  const selectedKey = 'all';
   const isAll = !selectedKey || selectedKey === 'all';
-  // 맨처음 default key = all
-  // selectedKey
 
   const tagPostList = reducedAllBlogPosts.reduce<{ [key: string]: ReducedPost[] }>((ac, post) => {
     post.tags.forEach((tag) => {
@@ -37,8 +33,6 @@ export default function BlogPage(props: Props) {
       postList: tagPostList[key],
     }))
     .sort((a, b) => b.postList.length - a.postList.length);
-
-  // const allPostCnt = combinedPostWithKeys.reduce((ac, post) => ac + post.postList.length, 0);
 
   const { key, postList } = isAll
     ? {

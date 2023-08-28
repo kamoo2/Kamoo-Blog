@@ -1,7 +1,7 @@
-import React from 'react';
 import Link from 'next/link';
-import CircleIcon from '@/components/common/CircleIcon';
 import { SiGithub, SiGmail, SiNotion } from 'react-icons/si';
+
+import CircleIcon from '@/components/common/CircleIcon';
 
 export default function Hero() {
   return (
