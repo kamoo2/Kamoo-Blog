@@ -1,13 +1,13 @@
 import { defineDocumentType, FieldDefs, makeSource } from 'contentlayer/source-files';
-import highlight from 'rehype-highlight';
-import rehypePrettyCode from 'rehype-pretty-code';
 import readingTime from 'reading-time';
-import remarkGfm from 'remark-gfm';
-import remarkBreaks from 'remark-breaks';
-import rehypeSlug from 'rehype-slug';
-import rehypePrism from 'rehype-prism';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeExternalLinks from 'rehype-external-links';
+import highlight from 'rehype-highlight';
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypePrism from 'rehype-prism';
+import rehypeSlug from 'rehype-slug';
+import remarkBreaks from 'remark-breaks';
+import remarkGfm from 'remark-gfm';
 
 const fields: FieldDefs = {
   title: { type: 'string', required: true },

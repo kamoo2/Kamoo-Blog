@@ -1,0 +1,24 @@
+{
+  "title": "프론트엔드 개발자 도구함",
+  "description": "직접 개발말고, 좋은 라이브러리를 씁시다!",
+  "tags": [
+    "라이브러리"
+  ],
+  "createdAt": "2023-01-30T05:08:18.000Z",
+  "body": {
+    "raw": "\n# HI",
+    "code": "var Component=(()=>{var m=Object.create;var c=Object.defineProperty;var x=Object.getOwnPropertyDescriptor;var d=Object.getOwnPropertyNames;var j=Object.getPrototypeOf,p=Object.prototype.hasOwnProperty;var u=(n,t)=>()=>(t||n((t={exports:{}}).exports,t),t.exports),f=(n,t)=>{for(var e in t)c(n,e,{get:t[e],enumerable:!0})},r=(n,t,e,o)=>{if(t&&typeof t==\"object\"||typeof t==\"function\")for(let s of d(t))!p.call(n,s)&&s!==e&&c(n,s,{get:()=>t[s],enumerable:!(o=x(t,s))||o.enumerable});return n};var _=(n,t,e)=>(e=n!=null?m(j(n)):{},r(t||!n||!n.__esModule?c(e,\"default\",{value:n,enumerable:!0}):e,n)),b=n=>r(c({},\"__esModule\",{value:!0}),n);var h=u((N,i)=>{i.exports=_jsx_runtime});var w={};f(w,{default:()=>M,frontmatter:()=>g});var a=_(h()),g={title:\"\\uD504\\uB860\\uD2B8\\uC5D4\\uB4DC \\uAC1C\\uBC1C\\uC790 \\uB3C4\\uAD6C\\uD568\",description:\"\\uC9C1\\uC811 \\uAC1C\\uBC1C\\uB9D0\\uACE0, \\uC88B\\uC740 \\uB77C\\uC774\\uBE0C\\uB7EC\\uB9AC\\uB97C \\uC501\\uC2DC\\uB2E4!\",tags:[\"\\uB77C\\uC774\\uBE0C\\uB7EC\\uB9AC\"],createdAt:new Date(1675087698e3)};function l(n){let t=Object.assign({h1:\"h1\",a:\"a\",span:\"span\"},n.components);return(0,a.jsxs)(t.h1,{id:\"hi\",children:[(0,a.jsx)(t.a,{className:\"anchor\",\"aria-label\":\"anchor\",href:\"#hi\",children:(0,a.jsx)(t.span,{className:\"icon icon-link\"})}),\"HI\"]})}function D(n={}){let{wrapper:t}=n.components||{};return t?(0,a.jsx)(t,Object.assign({},n,{children:(0,a.jsx)(l,n)})):l(n)}var M=D;return b(w);})();\n;return Component;"
+  },
+  "_id": "blog/2023/study/frontend-library.mdx",
+  "_raw": {
+    "sourceFilePath": "blog/2023/study/frontend-library.mdx",
+    "sourceFileName": "frontend-library.mdx",
+    "sourceFileDir": "blog/2023/study",
+    "contentType": "mdx",
+    "flattenedPath": "blog/2023/study/frontend-library"
+  },
+  "type": "Post",
+  "slug": "/blog/2023/study/frontend-library",
+  "readingMinutes": 1,
+  "wordCount": 3
+}
