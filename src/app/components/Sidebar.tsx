@@ -1,14 +1,26 @@
-import React from 'react';
-import { fontMono } from '@/lib/fonts';
 import Link from 'next/link';
+
+import { fontMono } from '@/lib/fonts';
+import { Menu, TagWithCount } from '@/lib/types';
 
 type SidebarProps = {
   isOpen: boolean;
   sidebarRef: React.ForwardedRef<HTMLDivElement>;
+  tagList: TagWithCount[];
   pathname: string;
+  menus: Menu[];
+  keyName: string | null;
 };
 
-export default function Sidebar({ isOpen, sidebarRef, pathname }: SidebarProps) {
+export default function Sidebar({
+  isOpen,
+  sidebarRef,
+  tagList,
+  pathname,
+  menus,
+  keyName,
+}: SidebarProps) {
+  const selectedTag = keyName === 'all' || keyName === null ? 'all' : keyName;
   return (
     <div
       ref={sidebarRef}
@@ -21,18 +33,32 @@ export default function Sidebar({ isOpen, sidebarRef, pathname }: SidebarProps) 
       <Link href="/" className={`mb-12 text-center text-3xl`}>
         Kamoo
       </Link>
-      <h2 className="mb-2 text-2xl font-semibold">Menu</h2>
+      <h2 className="mb-3 text-2xl font-semibold">Menu</h2>
       <nav className="mb-12 flex w-full flex-col gap-2 px-8 text-xl font-medium">
-        <Link href="/blog">Blog</Link>
-        <Link href="/snippets">Snippets</Link>
-        <Link href="/archives">Archives</Link>
-        <Link href="/contact">Contact</Link>
+        {menus.map((menu) => (
+          <Link
+            className={`${pathname === menu.path && 'text-amber-300'}`}
+            key={menu.path}
+            href={menu.path}
+          >
+            {menu.name}
+          </Link>
+        ))}
       </nav>
-
       {(pathname === '/blog' || pathname === '/snippets') && (
         <>
-          <h2 className="text-2xl font-semibold">Tags</h2>
-          <nav className="mb-12 flex w-full flex-col gap-2 px-8 text-xl font-medium"></nav>
+          <h2 className="mb-3 text-2xl font-semibold">Tags</h2>
+          <nav className="flex w-full flex-col gap-2 px-8 text-xl font-medium">
+            {tagList.map((tag) => (
+              <Link
+                className={`${selectedTag === tag.name && 'text-amber-300'}`}
+                key={tag.name}
+                href={`?key=${tag.name}`}
+              >
+                {tag.name} ({tag.count})
+              </Link>
+            ))}
+          </nav>
         </>
       )}
     </div>

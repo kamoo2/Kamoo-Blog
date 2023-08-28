@@ -5,6 +5,11 @@ export type Post = TPost & {
   snippetName?: string | null;
 };
 
+export type Menu = {
+  name: string;
+  path: string;
+};
+
 export type ReducedPost = Omit<Post, 'body' | '_raw' | '_id'>;
 
 export type TagWithCount = {
