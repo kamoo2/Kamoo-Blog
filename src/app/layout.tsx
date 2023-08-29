@@ -1,12 +1,10 @@
 import './globals.css';
 
 import type { Metadata } from 'next';
-import { Open_Sans } from 'next/font/google';
 
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
-
-const sans = Open_Sans({ subsets: ['latin'] });
+import { fontSans } from '@/lib/fonts';
 
 export const metadata: Metadata = {
   title: {
@@ -21,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={sans.className}>
+    <html lang="en" className={fontSans.className}>
       <body className="bg-primary">
         <div className="mx-auto flex h-full w-full max-w-3xl flex-col px-6 md:max-w-7xl">
           <Header />
