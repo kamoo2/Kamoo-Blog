@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { MdKeyboardArrowRight } from 'react-icons/md';
+import { BiSolidFoodMenu } from 'react-icons/bi';
 
 import IconText from '@/components/common/IconText';
 import { TagWithCount } from '@/lib/types';
@@ -13,19 +13,17 @@ export default function CategoryBox({
   className?: string;
 }) {
   return (
-    <div className={`flex h-screen w-80 flex-col border-4 border-gray-400 p-4 ${className}`}>
-      <h2 className="mb-2 text-xl font-semibold text-neutral-470">Tags</h2>
-      <div className="flex flex-col gap-1 px-6">
+    <div
+      className={`flex w-[540px] flex-col rounded-lg bg-green-800 p-4 text-neutral-50 ${className}`}
+    >
+      <IconText className="gap-2 text-xl font-semibold" Icon={BiSolidFoodMenu} text="Tags" />
+      <ul className="mt-2 flex flex-col gap-1.5 px-8">
         {tags.map((tag) => (
-          <Link href={`?key=${tag.name}`} key={tag.name}>
-            <IconText
-              className="gap-1 text-xl"
-              Icon={MdKeyboardArrowRight}
-              text={`${tag.name} (${tag.count})`}
-            />
-          </Link>
+          <li className="text-base" key={tag.name}>
+            <Link href={`?${tag.name}`}>{tag.name}</Link>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
