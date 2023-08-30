@@ -15,7 +15,7 @@ export default function PostCard({ imagePath, alt, title, linkPath, createdAt }:
     <div className="flex flex-col overflow-hidden rounded-xl shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
       <Link href={`/${linkPath}`}>
         <Image
-          className="h-72 w-full object-cover"
+          className="h-56 w-full object-cover"
           src={imagePath}
           alt={alt}
           width={300}
