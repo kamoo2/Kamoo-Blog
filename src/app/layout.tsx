@@ -20,10 +20,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={fontSans.className}>
-      <body className="bg-primary">
-        <div className="mx-auto flex h-full w-full max-w-3xl flex-col px-6 md:max-w-7xl">
+      <body className="bg-primary no-scrollbar">
+        <div className="mx-auto flex h-full flex-col">
           <Header />
-          <main className="grow">{children}</main>
+          <main className="mx-auto w-full max-w-3xl grow px-7 pb-9 md:max-w-6xl lg:px-0">
+            {children}
+          </main>
           <Footer />
         </div>
       </body>

@@ -15,8 +15,8 @@ function MobileMenuFallback() {
 export default async function Header() {
   const menus = await getAllMenus();
   return (
-    <header className="sticky left-0 top-0 border-b-2 border-b-gray-400 bg-white py-2 text-gray-800">
-      <div className="flex items-center justify-between">
+    <header className="sticky left-0 top-0 z-10 border-b border-[rgba(2,23,51,0.1)] bg-white py-2 text-gray-800">
+      <div className="mx-auto flex w-full max-w-3xl items-center justify-between px-6 md:max-w-6xl lg:px-0">
         <Link className="hidden font-semibold lg:block" href="/">
           KAMOO
         </Link>
