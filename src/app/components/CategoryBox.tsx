@@ -1,29 +1,48 @@
 import Link from 'next/link';
 import React from 'react';
-import { BiSolidFoodMenu } from 'react-icons/bi';
+import { FaRegFolder } from 'react-icons/fa';
+import { FaRegFolderOpen } from 'react-icons/fa6';
 
 import IconText from '@/components/common/IconText';
+import CategoryIcon from '@/components/icons/CategoryIcon';
 import { TagWithCount } from '@/lib/types';
 
 export default function CategoryBox({
   tags,
   className,
+  selectedKey,
 }: {
   tags: TagWithCount[];
   className?: string;
+  selectedKey: string | undefined | string[];
 }) {
+  const selectedTag = selectedKey === undefined ? 'all' : selectedKey;
   return (
-    <div
-      className={`flex w-[540px] flex-col rounded-lg bg-green-800 p-4 text-neutral-50 ${className}`}
-    >
-      <IconText className="gap-2 text-xl font-semibold" Icon={BiSolidFoodMenu} text="Tags" />
-      <ul className="mt-2 flex flex-col gap-1.5 px-8">
-        {tags.map((tag) => (
-          <li className="text-base" key={tag.name}>
-            <Link href={`?${tag.name}`}>{tag.name}</Link>
-          </li>
-        ))}
-      </ul>
+    <div>
+      <div className={`flex max-h-fit w-72 flex-col rounded-lg ${className}`}>
+        <IconText className="gap-2 text-2xl font-bold" Icon={CategoryIcon} text="카테고리" />
+        <ul className="mt-5 flex flex-col gap-4">
+          {tags.map((tag) => (
+            <li
+              className={`${
+                selectedTag === tag.name.toLowerCase() ? 'text-base text-amber-500' : 'text-base'
+              }`}
+              key={tag.name}
+            >
+              <Link href={`?key=${tag.name.toLowerCase()}`}>
+                <IconText
+                  Icon={selectedTag === tag.name.toLowerCase() ? FaRegFolderOpen : FaRegFolder}
+                  text={tag.name}
+                  subText={`(${tag.count})`}
+                  className="gap-2 text-lg"
+                  textStyle=""
+                  subTextStyle="text-sm"
+                />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
