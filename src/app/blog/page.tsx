@@ -1,19 +1,20 @@
+import CategoryBox from '@/components/CategoryBox';
 import PostListItem from '@/components/PostListItem';
-import { reducedAllBlogPosts } from '@/lib/post';
+import { allTagsWithCount, reducedAllBlogPosts } from '@/lib/post';
 import { ReducedPost } from '@/lib/types';
 
-// type Props = {
-//   params: {};
-//   searchParams: { [key: string]: string | string[] | undefined };
-// };
+type Props = {
+  params: {};
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 type Post = {
   key: string;
   postList: ReducedPost[];
 };
 
-export default function BlogPage() {
-  const selectedKey = 'all';
+export default function BlogPage(props: Props) {
+  const selectedKey = props.searchParams['key'];
   const isAll = !selectedKey || selectedKey === 'all';
 
   const tagPostList = reducedAllBlogPosts.reduce<{ [key: string]: ReducedPost[] }>((ac, post) => {
@@ -31,7 +32,7 @@ export default function BlogPage() {
     }))
     .sort((a, b) => b.postList.length - a.postList.length);
 
-  const { key, postList } = isAll
+  const post = isAll
     ? {
         key: 'all',
         postList: combinedPostWithKeys.reduce<ReducedPost[]>((ac, post) => {
@@ -44,14 +45,21 @@ export default function BlogPage() {
         }, []),
       }
     : combinedPostWithKeys.filter((post) => {
-        return selectedKey === post.key;
+        return selectedKey === post.key.toLowerCase();
       })[0];
 
   return (
-    <div className="grow">
-      {postList.map((post) => (
-        <PostListItem key={post.slug} post={post} />
-      ))}
+    <div className="flex pb-3 pr-7 pt-8">
+      <CategoryBox
+        selectedKey={selectedKey}
+        tags={allTagsWithCount}
+        className="hidden min-w-fit text-[#28442E] lg:block"
+      />
+      <div className="grid grow grid-cols-1 gap-x-10 md:grid-cols-2">
+        {post.postList.map((post) => (
+          <PostListItem key={post.slug} post={post} />
+        ))}
+      </div>
     </div>
   );
 }

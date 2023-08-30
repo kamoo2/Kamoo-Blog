@@ -38,7 +38,7 @@ const getTagsWithCount = (kind: 'all' | 'blog' | 'snippets'): TagWithCount[] => 
       count: tagCounts[tag],
     }));
 
-    allTags.unshift({ name: 'all', count: allBlogPosts.length });
+    allTags.unshift({ name: 'All', count: allBlogPosts.length });
   } else if (kind === 'snippets') {
     allSnippets.forEach((post) => {
       post.tags.forEach((tag) => {
@@ -54,7 +54,7 @@ const getTagsWithCount = (kind: 'all' | 'blog' | 'snippets'): TagWithCount[] => 
       count: tagCounts[tag],
     }));
 
-    allTags.unshift({ name: 'all', count: allSnippets.length });
+    allTags.unshift({ name: 'All', count: allSnippets.length });
   } else {
     Array.from([...allSnippets, ...allBlogPosts]).forEach((post) => {
       post.tags.forEach((tag) => {
@@ -70,7 +70,7 @@ const getTagsWithCount = (kind: 'all' | 'blog' | 'snippets'): TagWithCount[] => 
       count: tagCounts[tag],
     }));
 
-    allTags.unshift({ name: 'all', count: allSnippets.length + allBlogPosts.length });
+    allTags.unshift({ name: 'All', count: allSnippets.length + allBlogPosts.length });
   }
   return allTags;
 };
