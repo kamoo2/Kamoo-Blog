@@ -2,20 +2,21 @@
 title: JS - ASYNC AWAIT
 description: 이전의 Promise 객체들에 대해서 성공적으로 resolve 됬을때 이에 대한 처리는 then으로 향하게 됩니다. 이로써 then을 체이닝 해줌으로써 콜백지옥에 빠진 코드를 밑으로 흐르도록 구현을 할 수 있었습니다. 그러나 async await를 이용하게 된다면 더 직관적이고 가독성이 뛰어난 코드를 구현할 수 있습니다.
 tags:
-  - javascript
+  - Javascript
 createdAt: 2023-07-24 22:00:00
 ---
 
-# 왜 async await ?
+## 왜 async await ?
 
 이전의 Promise 객체들에 대해서 성공적으로 resolve 됬을때 이에 대한 처리는 then으로 향하게 됩니다. 이로써 then을 체이닝 해줌으로써 콜백지옥에 빠진 코드를 밑으로 흐르도록 구현을 할 수 있었습니다.
 그러나 async await를 이용하게 된다면 더 직관적이고 가독성이 뛰어난 코드를 구현할 수 있습니다.
 
-## async await를 사용해보자
+### async await를 사용해보자
 
 기본적으로 다음과 같은 프로미스를 리턴하는 함수가 있다고 합시다.
 
 ```js
+// Test Comment
 function p(ms){
    return new Promise((resolve,reject)=>{
       setTimeout(()=>{

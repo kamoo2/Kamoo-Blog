@@ -53,7 +53,6 @@ export default makeSource({
     remarkPlugins: [remarkGfm, remarkBreaks],
     rehypePlugins: [
       rehypeSlug,
-      highlight,
       rehypePrism,
       [
         rehypeAutolinkHeadings,

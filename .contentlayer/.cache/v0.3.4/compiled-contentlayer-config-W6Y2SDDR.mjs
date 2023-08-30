@@ -3,7 +3,6 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import readingTime from "reading-time";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
-import highlight from "rehype-highlight";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypePrism from "rehype-prism";
 import rehypeSlug from "rehype-slug";
@@ -51,7 +50,6 @@ var contentlayer_config_default = makeSource({
     remarkPlugins: [remarkGfm, remarkBreaks],
     rehypePlugins: [
       rehypeSlug,
-      highlight,
       rehypePrism,
       [
         rehypeAutolinkHeadings,
@@ -82,4 +80,4 @@ export {
   Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-G4MBDRXS.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-W6Y2SDDR.mjs.map
