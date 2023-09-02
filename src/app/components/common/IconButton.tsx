@@ -1,4 +1,7 @@
+import React from 'react';
+
 export type IconButtonProps = {
+  // eslint-disable-next-line unused-imports/no-unused-vars
   Icon: (props: React.ComponentProps<'svg'>) => JSX.Element;
   className?: string;
   onClick?: () => void;

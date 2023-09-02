@@ -31,13 +31,12 @@ export default function MobileMenu({ menus, blogTagList, snippetTagList }: Mobil
     setIsOpen(false);
   };
 
-  const handleResize = () => {
-    if (window.innerWidth >= 1280) {
-      closeSidebar();
-    }
-  };
-
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1280) {
+        closeSidebar();
+      }
+    };
     const handleClickOutside = (event: MouseEvent): void => {
       if (sidebarRef.current && !sidebarRef.current?.contains(event.target as Node)) {
         closeSidebar();

@@ -6,12 +6,13 @@ export default function CategoryIcon({
 }: React.ComponentProps<'svg'>) {
   return (
     <svg
-      className="bi bi-text-left"
+      className={`bi bi-text-left ${className}`}
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
+      width={width}
+      height={height}
       fill="currentColor"
       viewBox="0 0 16 16"
+      {...props}
     >
       <path
         fillRule="evenodd"
