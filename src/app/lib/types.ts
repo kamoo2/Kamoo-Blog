@@ -16,3 +16,11 @@ export type TagWithCount = {
   name: string;
   count: number;
 };
+
+export type ListOfHeading = Section[];
+
+export type Section = {
+  flag: string;
+  text: string;
+  isSub: boolean;
+};
