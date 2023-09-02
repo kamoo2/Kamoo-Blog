@@ -17,10 +17,10 @@ export default function IconText({
   subTextStyle,
 }: IconTextProps) {
   return (
-    <div className={`flex items-center ${className ?? 'gap-1 text-xs'}`}>
-      {Icon && <Icon />}
+    <div className={`flex items-center gap-1 ${className ?? ''}`}>
+      {Icon && <Icon className="overflow-visible" />}
       <span className={textStyle}>{text}</span>
-      <span className={subTextStyle}>{subText}</span>
+      {subText && <span className={subTextStyle}>{subText}</span>}
     </div>
   );
 }

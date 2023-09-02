@@ -9,7 +9,7 @@ import { ReducedPost } from '@/lib/types';
 import DefaultImage from '../../../public/images/default-thumbnail.png';
 
 export default function PostListItem({
-  post: { title, description, createdAt, tags, readingMinutes, slug, wordCount },
+  post: { title, description, createdAt, tags, slug },
 }: {
   post: ReducedPost;
 }) {

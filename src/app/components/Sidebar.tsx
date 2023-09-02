@@ -31,7 +31,7 @@ export default function Sidebar({
       <Link href="/" className={`mb-12 text-center text-3xl`}>
         Kamoo
       </Link>
-      {pathname === '/blog' || pathname === '/snippets' ? (
+      {pathname.includes('/blog') || pathname.includes('/snippets') ? (
         <div className={`flex max-h-fit w-72 grow flex-col rounded-lg`}>
           <ul className="mt-5 flex flex-col gap-4">
             {tagList.map((tag) => (
