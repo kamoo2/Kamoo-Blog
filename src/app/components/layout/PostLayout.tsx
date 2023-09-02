@@ -1,12 +1,11 @@
 import dayjs from 'dayjs';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { AiOutlineCalendar, AiOutlineClockCircle } from 'react-icons/ai';
-import { PiArrowElbowDownRightDuotone } from 'react-icons/pi';
 
 import IconText from '@/components/common/IconText';
 import Title from '@/components/common/Title';
+import HeadingToc from '@/components/HeadingToc';
 import { PostFooterProps } from '@/components/layout/PostFooter';
 import { ListOfHeading, Post } from '@/lib/types';
 
@@ -50,26 +49,7 @@ export default function PostLayout({ post, nextPost, prevPost, headingList }: Po
             <MDXContent />
           </div>
         </article>
-        <div className="ml-auto mt-12">
-          <div className="sticky top-[120px] hidden self-start lg:block">
-            <div className="flex h-[360px] w-[240px] flex-col overflow-hidden rounded-lg text-neutral-470">
-              {headingList.map((item) => {
-                return (
-                  <Link
-                    key={item.flag}
-                    href={item.flag}
-                    className={`flex items-center ${item.isSub && 'ml-8'}`}
-                  >
-                    {item.isSub && (
-                      <PiArrowElbowDownRightDuotone className="mr-2 basis-4 overflow-visible text-lg" />
-                    )}
-                    <span className="line-clamp-1 text-base">{item.text}</span>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+        <HeadingToc headingList={headingList} />
       </div>
       {/*  Post Footer */}
     </section>

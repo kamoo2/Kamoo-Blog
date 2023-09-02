@@ -22,5 +22,6 @@ export type ListOfHeading = Section[];
 export type Section = {
   flag: string;
   text: string;
+  parent?: string;
   isSub: boolean;
 };
