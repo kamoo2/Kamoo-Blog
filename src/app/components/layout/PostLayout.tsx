@@ -6,8 +6,10 @@ import { AiOutlineCalendar, AiOutlineClockCircle } from 'react-icons/ai';
 import IconText from '@/components/common/IconText';
 import Title from '@/components/common/Title';
 import HeadingToc from '@/components/HeadingToc';
-import { PostFooterProps } from '@/components/layout/PostFooter';
+import PostFooter, { PostFooterProps } from '@/components/layout/PostFooter';
 import { ListOfHeading, Post } from '@/lib/types';
+import Link from 'next/link';
+import { fontCabinSketch } from '@/lib/fonts';
 
 export type PostLayoutProps = PostFooterProps & {
   post: Post;
@@ -28,6 +30,7 @@ export default function PostLayout({ post, nextPost, prevPost, headingList }: Po
             alt={slug}
             width={300}
             height={300}
+            priority
           />
           <Title>{`${title}`}</Title>
           <div className="mb-6 flex justify-between text-sm font-light text-neutral-500">
@@ -42,16 +45,33 @@ export default function PostLayout({ post, nextPost, prevPost, headingList }: Po
               text={dayjs(createdAt).format('YYYY.MM.DD')}
             />
           </div>
-          <div className="mb-12 rounded-xl bg-neutral-200 px-8 py-4 font-semibold leading-8 text-neutral-950">
+          <div className="mb-20 rounded-xl bg-neutral-200 px-8 py-4 font-semibold leading-8 text-neutral-950">
             {description}
           </div>
           <div className="dark:prose-dark prose max-w-none lg:w-full lg:max-w-4xl">
             <MDXContent />
           </div>
+
+          <div className="mt-16 flex gap-5">
+            {tags.map((tag) => {
+              return (
+                <Link
+                  className="overflow-hidden rounded-md text-base font-bold text-green-600"
+                  key={tag}
+                  href={`/archives?key=${tag}`}
+                >
+                  <div className="bg-slash-pattern py-1.5"></div>
+                  <div className="bg-neutral-100 px-1.5 py-1">{tag}</div>
+                  <div className="bg-slash-pattern-reverse py-1.5"></div>
+                </Link>
+              );
+            })}
+          </div>
         </article>
         <HeadingToc headingList={headingList} />
       </div>
       {/*  Post Footer */}
+      <PostFooter prevPost={prevPost} nextPost={nextPost} />
     </section>
   );
 }
