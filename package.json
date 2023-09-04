@@ -42,7 +42,6 @@
     "eslint-plugin-unused-imports": "^3.0.0",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.4.1",
-    "rehype-autolink-headings": "^6.1.1",
     "rehype-external-links": "^2.1.0",
     "rehype-prism": "^2.2.2",
     "rehype-slug": "^5.1.0",

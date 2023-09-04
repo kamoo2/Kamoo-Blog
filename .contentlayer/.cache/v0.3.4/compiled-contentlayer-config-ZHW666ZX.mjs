@@ -1,7 +1,6 @@
 // contentlayer.config.ts
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import readingTime from "reading-time";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypePrism from "rehype-prism";
@@ -52,15 +51,6 @@ var contentlayer_config_default = makeSource({
       rehypeSlug,
       rehypePrism,
       [
-        rehypeAutolinkHeadings,
-        {
-          properties: {
-            className: ["anchor"],
-            ariaLabel: "anchor"
-          }
-        }
-      ],
-      [
         rehypeExternalLinks,
         {
           target: "_blank",
@@ -80,4 +70,4 @@ export {
   Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-DZPYC6CJ.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-ZHW666ZX.mjs.map

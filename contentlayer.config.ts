@@ -54,15 +54,6 @@ export default makeSource({
       rehypeSlug,
       rehypePrism,
       [
-        rehypeAutolinkHeadings,
-        {
-          properties: {
-            className: ['anchor'],
-            ariaLabel: 'anchor',
-          },
-        },
-      ],
-      [
         rehypeExternalLinks,
         {
           target: '_blank',
