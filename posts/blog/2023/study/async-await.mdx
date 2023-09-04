@@ -5,11 +5,14 @@ tags:
   - Javascript
 createdAt: 2023-07-24 22:00:00
 ---
+<hr/>
 
 ## 왜 async await ?
 
 이전의 Promise 객체들에 대해서 성공적으로 resolve 됬을때 이에 대한 처리는 then으로 향하게 됩니다. 이로써 then을 체이닝 해줌으로써 콜백지옥에 빠진 코드를 밑으로 흐르도록 구현을 할 수 있었습니다.
 그러나 async await를 이용하게 된다면 더 직관적이고 가독성이 뛰어난 코드를 구현할 수 있습니다.
+
+<hr/>
 
 ### async await를 사용해보자
 
@@ -25,6 +28,8 @@ function p(ms){
    });
 }
 ```
+
+<hr/>
 
 ### Promise 객체를 리턴하는 함수를 await로 호출하기
 
@@ -45,6 +50,8 @@ function p(ms){
 2. main 함수 내부에서는 p함수가 정상적으로 resolve 될때 까지 다음 코드를 진행하지 않고 기다립니다.
 3. ms에 1000이라는 데이터가 담기고 다음 코드인 console.log가 실행됩니다.
 
+<hr/>
+
 #### reject된 경우에는 ???
 
 then을 사용했을 때는 catch를 이용해 reject 됬을 때 에러를 리턴해줬다.
@@ -63,6 +70,8 @@ async await에는 catch와 같은 것이 없기 때문에 try-catch문을 사용
 })();
 ```
 
+<hr/>
+
 ### await를 이용한 Promise.all() & Promise.race()
 
 기존의 then을 사용하는 것과 다른 것이라고는 then 대신에 앞에 await를 붙여 줬다는 점 밖에 없습니다.
@@ -74,3 +83,4 @@ async await에는 catch와 같은 것이 없기 때문에 try-catch문을 사용
 ```
 
 race도 그냥 같은 방법이기 때문에 사용 예제는 생략 하겠습니다!
+

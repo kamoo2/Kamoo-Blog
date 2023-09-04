@@ -14,6 +14,14 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'slash-pattern':
+          'repeating-linear-gradient(45deg, #747d8c,#747d8c 10px, #f5f5f5 0, #f5f5f5 20px)',
+        'slash-pattern-reverse':
+          'repeating-linear-gradient(-45deg, #747d8c,#747d8c 10px, #f5f5f5 0, #f5f5f5 20px)',
+        'col-pattern':
+          'linear-gradient(0deg,#218c74, #218c74 25%, transparent 25%, transparent 50%, #218c74 50%,#218c74 75%, transparent 75%, transparent)',
+        'raw-pattern':
+          'linear-gradient(90deg,#218c74, #218c74 25%, transparent 25%, transparent 50%, #218c74 50%,#218c74 75%, transparent 75%, transparent)',
       },
       colors: {
         neutral: {
@@ -33,6 +41,7 @@ const config: Config = {
           750: '#363636',
           800: '#262626',
           900: '#171717',
+          hr: '#e5e7eb',
         },
       },
     },

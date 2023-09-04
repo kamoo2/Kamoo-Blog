@@ -18,9 +18,11 @@ export default function PostPage({ params: { slug: slugs } }: { params: { slug: 
     notFound();
   }
 
+  // nextPost가 at으로 하면 null인 경우가 없다. 1개의 포스트만 존재할 경우 계속 자기 자신이 나온다. 문제가 될듯
+  // allBlogPosts.at 이 아닌 다른 방법으로 찾아야 할 거 같다.
   const postFooterProps: PostFooterProps = {
     prevPost: allBlogPosts.at(postIndex + 1) ?? null,
-    nextPost: allBlogPosts.at(postIndex - 1) ?? null,
+    nextPost: postIndex === 0 ? null : allBlogPosts.at(postIndex - 1) ?? null,
   };
 
   const props = { post, ...postFooterProps, headingList: parseToc(post.body.raw) };

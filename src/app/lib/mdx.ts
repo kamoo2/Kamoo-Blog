@@ -6,7 +6,11 @@ export const parseToc = (content: string) => {
     .filter((line) => line.match(/(^#{2,3})\s/))
     .reduce<ListOfHeading>((ac, heading) => {
       const nac = [...ac];
-      const removeMDX = heading.replace(/^#*\s/, '');
+      const removeMDX = heading
+        .replace(/^#*\s/, '')
+        .replace(/[\*,\~]{2,}/g, '')
+        .replace(/(?<=\])\((.*?)\)/g, '')
+        .replace(/(?<!\S)((http)(s?):\/\/|www\.).+?(?=\s)/g, '');
 
       const section = {
         flag: removeMDX

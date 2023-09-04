@@ -8,7 +8,16 @@
 .prose h3,
 .prose h4,
 .prose thead th {
-    @apply text-primary -mt-[60px] pt-[60px];
+    @apply text-primary;
+}
+
+.prose h2,.prose h3,.prose h4 {
+    @apply pt-[60px] -mt-[60px] !important;
+}
+
+
+.prose h4{
+    @apply mb-2;
 }
 
 .prose del {
@@ -41,8 +50,8 @@
 }
 
 .prose code:not(:where(pre *)) {
-    @apply text-neutral-800 rounded-lg px-2 py-0.5 content-none;
-    @apply bg-amber-500 dark:bg-[var(--prism-background)];
+    @apply text-green-800 dark:text-green-300 font-semibold rounded-md px-2 py-0.5 content-none;
+    @apply bg-green-300 dark:bg-green-800;
 }
 
 .prose :where(code):not(:where([class~="not-prose"] *))::before {
@@ -51,6 +60,10 @@
 
 .prose :where(code):not(:where([class~="not-prose"] *))::after {
     content:none !important;
+}
+
+.prose :where(blockquote):not(:where([class~="not-prose"] *)){
+    @apply border-l-green-600 !important;
 }
 
 
