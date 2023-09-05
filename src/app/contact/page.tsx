@@ -1,4 +1,4 @@
-import PrepareNotice from '@/components/common/prepareNotice';
+import PrepareNotice from '@/components/common/PrepareNotice';
 
 export default function ContactPage() {
   return (
