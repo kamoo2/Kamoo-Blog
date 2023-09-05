@@ -1,13 +1,9 @@
 import { Post as TPost } from '@/contentlayer/generated';
 
+// Post
 export type Post = TPost & {
   seriesName?: string | null;
   snippetName?: string | null;
-};
-
-export type Menu = {
-  name: string;
-  path: string;
 };
 
 export type ReducedPost = Omit<Post, 'body' | '_raw' | '_id'>;
@@ -24,4 +20,10 @@ export type Section = {
   text: string;
   parent?: string;
   isSub: boolean;
+};
+
+// Menu
+export type Menu = {
+  name: string;
+  path: string;
 };
