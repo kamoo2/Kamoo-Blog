@@ -53,7 +53,7 @@ export default function BlogPage(props: Props) {
       <CategoryBox
         selectedKey={selectedKey}
         tags={allTagsWithCount}
-        className="hidden min-w-fit text-[#28442E] lg:block"
+        className="hidden min-w-fit text-[#28442E] dark:text-neutral-50 lg:block"
       />
       <div className="grid grow grid-cols-1 gap-x-10 md:grid-cols-2">
         {post.postList.map((post) => (

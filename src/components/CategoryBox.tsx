@@ -25,7 +25,9 @@ export default function CategoryBox({
           {tags.map((tag) => (
             <li
               className={`${
-                selectedTag === tag.name.toLowerCase() ? 'text-base text-amber-500' : 'text-base'
+                selectedTag === tag.name.toLowerCase()
+                  ? 'text-base text-amber-500 dark:text-amber-200'
+                  : 'text-base'
               }`}
               key={tag.name}
             >

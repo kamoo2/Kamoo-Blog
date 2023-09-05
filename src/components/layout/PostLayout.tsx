@@ -21,11 +21,11 @@ export default function PostLayout({ post, nextPost, prevPost, headingList }: Po
   const MDXContent = useMDXComponent(post.body.code);
 
   return (
-    <section className="">
+    <section>
       <div className="relative mt-9 border-b border-neutral-hr pb-8 lg:flex lg:gap-x-24">
         <article className="max-w-none lg:w-full lg:max-w-4xl">
           <Image
-            className="h-[440px] w-full rounded-2xl border-2 object-cover"
+            className="h-[280px] w-full rounded-2xl border-2 object-cover md:h-[440px]"
             src={thumbnail ?? '/images/default-thumbnail.png'}
             alt={slug}
             width={300}
@@ -33,7 +33,7 @@ export default function PostLayout({ post, nextPost, prevPost, headingList }: Po
             priority
           />
           <Title>{`${title}`}</Title>
-          <div className="mb-6 flex justify-between text-sm font-light text-neutral-500">
+          <div className="mb-6 flex justify-between text-sm font-light text-neutral-450 dark:text-neutral-250">
             <IconText
               className="gap-1 text-xs"
               Icon={AiOutlineClockCircle}
@@ -45,7 +45,7 @@ export default function PostLayout({ post, nextPost, prevPost, headingList }: Po
               text={dayjs(createdAt).format('YYYY.MM.DD')}
             />
           </div>
-          <div className="mb-20 rounded-xl bg-neutral-200 px-8 py-4 font-semibold leading-8 text-neutral-950">
+          <div className="text-primary mb-20 rounded-xl bg-neutral-200 px-8 py-4 font-semibold leading-8 dark:bg-neutral-800">
             {description}
           </div>
           <div className="dark:prose-dark prose max-w-none lg:w-full lg:max-w-4xl">
@@ -56,12 +56,14 @@ export default function PostLayout({ post, nextPost, prevPost, headingList }: Po
             {tags.map((tag) => {
               return (
                 <Link
-                  className="overflow-hidden rounded-md font-semibold text-green-600"
+                  className="overflow-hidden rounded-md font-semibold text-green-600 dark:text-green-200"
                   key={tag}
                   href={`/archives?key=${tag}`}
                 >
-                  <div className="bg-slash-pattern py-1.5"></div>
-                  <div className="bg-neutral-100 px-1.5 py-1 text-sm">{tag}</div>
+                  <div className="bg-slash-pattern py-1.5 dark:bg-slash-pattern-dark"></div>
+                  <div className="bg-neutral-100 px-1.5 py-1 text-sm dark:bg-neutral-800">
+                    {tag}
+                  </div>
                 </Link>
               );
             })}

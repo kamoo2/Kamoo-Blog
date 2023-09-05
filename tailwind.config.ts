@@ -16,6 +16,8 @@ const config: Config = {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'slash-pattern':
           'repeating-linear-gradient(45deg, #747d8c,#747d8c 10px, #f5f5f5 0, #f5f5f5 20px)',
+        'slash-pattern-dark':
+          'repeating-linear-gradient(45deg, #747d8c,#747d8c 10px, #262626 0, #262626 20px)',
         'slash-pattern-reverse':
           'repeating-linear-gradient(-45deg, #747d8c,#747d8c 10px, #f5f5f5 0, #f5f5f5 20px)',
         'col-pattern':
@@ -42,6 +44,11 @@ const config: Config = {
           800: '#262626',
           900: '#171717',
           hr: '#e5e7eb',
+        },
+        green: {
+          trend: '#2F4F4F',
+          hunter: '#0B2427',
+          deep: '#1E4927',
         },
       },
     },
@@ -74,17 +81,26 @@ const config: Config = {
         '.text-mute': {
           '@apply text-neutral-500 dark:text-neutral-470': '',
         },
+        '.text-sub': {
+          '@apply text-neutral-450 dark:text-neutral-250': '',
+        },
         '.bg-primary': {
           '@apply bg-neutral-50 dark:bg-neutral-900': '',
         },
         '.bg-secondary': {
-          '@apply bg-neutral-150 dark:bg-neutral-800': '',
+          '@apply bg-neutral-100 dark:bg-neutral-800': '',
         },
         '.bg-tertiary': {
           '@apply bg-neutral-200 dark:bg-neutral-750': '',
         },
         '.bg-mute': {
           '@apply bg-neutral-250 dark:bg-neutral-800': '',
+        },
+        '.bg-button': {
+          '@apply bg-neutral-900 dark:bg-neutral-700': '',
+        },
+        '.border-primary': {
+          '@apply border-[rgba(2,23,51,0.1)] dark:border-neutral-500': '',
         },
       });
     }),

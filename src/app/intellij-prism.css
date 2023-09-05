@@ -1,5 +1,5 @@
 :root {
-    --prism-background: #2f3640;
+    --prism-background: #0B2427;
     --prism-comment: #808080;
     --prism-foreground: #a9b7c6;
     --prism-selection: #484848;
@@ -63,7 +63,7 @@ pre[class*='language-'] {
 .token.comment,
 .token.prolog,
 .token.cdata {
-    color: #8ffcac;
+    color: #88B04B;
 }
 
 .token.delimiter,

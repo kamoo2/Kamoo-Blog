@@ -23,11 +23,11 @@ export default function HeadingToc({ headingList }: { headingList: ListOfHeading
 
   return (
     <div className="ml-auto mt-12">
-      <div className="sticky top-[120px] hidden w-72 overflow-hidden rounded-lg bg-neutral-100 py-6 shadow-[5px_5px_0px_0px_rgba(40,68,46,0.2)] lg:block">
+      <div className="bg-secondary sticky top-[120px] hidden w-72 overflow-hidden rounded-lg py-6 shadow-[5px_5px_0px_0px_rgba(40,68,46,0.2)] lg:block">
         <h3 id="heading-list" className="pb-6 text-center font-bold">
-          #Heading List
+          Heading List
         </h3>
-        <div className="flex flex-col text-neutral-700">
+        <div className="flex flex-col">
           {headingList.map((item) => {
             const { flag, text, isSub } = item;
             return (
@@ -41,15 +41,15 @@ export default function HeadingToc({ headingList }: { headingList: ListOfHeading
                   <IconText
                     Icon={FaAngleRight}
                     text={text}
-                    className={`mb-2.5 px-6 text-sm font-light transition-colors duration-300 hover:text-green-600 ${
-                      isSubActive(flag) && 'font-medium text-green-600'
+                    className={`text text-secondary mb-2.5 px-6 text-sm font-light transition-colors duration-300 hover:text-green-600 dark:hover:text-green-400 ${
+                      isSubActive(flag) && 'font-medium text-green-600 dark:text-green-400'
                     }`}
                   />
                 ) : (
                   <span
-                    className={`my-1 line-clamp-2 w-full px-6 font-medium transition-colors duration-300 hover:text-green-600 ${
+                    className={`text-primary my-1 line-clamp-2 w-full px-6 font-medium transition-colors duration-300 hover:text-green-600 dark:hover:text-green-400 ${
                       isMainActive(flag) &&
-                      'border-l-4 border-green-600 bg-neutral-150 py-3 text-neutral-900'
+                      'border-l-4 border-green-600 bg-neutral-150 py-3 text-neutral-900 dark:bg-neutral-700'
                     }`}
                   >
                     {text}

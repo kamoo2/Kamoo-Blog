@@ -3,12 +3,12 @@ import { Action } from 'kbar';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { AiOutlineSnippets } from 'react-icons/ai';
-import { GrContact } from 'react-icons/gr';
+import { LuContact } from 'react-icons/lu';
 import { SlHome } from 'react-icons/sl';
 import { TbBrandBlogger } from 'react-icons/tb';
 import { TfiArchive } from 'react-icons/tfi';
 
-export default function UseKbarAction(): Action[] {
+export default function useKbarAction(): Action[] {
   const router = useRouter();
 
   return [
@@ -54,7 +54,7 @@ export default function UseKbarAction(): Action[] {
       shortcut: ['C'],
       section: 'Pages',
       keywords: 'Navigation To Contact',
-      icon: <GrContact />,
+      icon: <LuContact />,
       perform: () => router.push('/contact'),
     },
   ];

@@ -11,8 +11,8 @@ export default function QuickSearchButton() {
     <div>
       <button
         onClick={() => query.toggle()}
-        className="hidden cursor-pointer items-center rounded-lg border border-neutral-400
-           p-2 text-xs text-neutral-400 transition-all duration-300 hover:border-neutral-600 md:flex"
+        className="hidden cursor-pointer items-center rounded-lg border border-neutral-400 p-2 text-xs
+           text-neutral-400 transition-all duration-300 hover:border-neutral-600 dark:border-neutral-800 dark:bg-neutral-800 dark:text-neutral-300 md:flex"
       >
         <AiOutlineSearch className="mr-2 text-lg md:mr-0" />
         <span className="mr-12 pl-2 md:inline">Quick Search...</span>

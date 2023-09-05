@@ -21,10 +21,10 @@ export default function KbarContainer({ children }: { children: ReactNode }) {
       {children}
       <KBarPortal>
         <KBarPositioner className="z-50">
-          <div className="pointer-events-none fixed inset-0 h-full w-full bg-white/50 backdrop-blur" />
-          <KBarAnimator className="w-full max-w-[600px] overflow-hidden rounded-lg bg-neutral-50 p-2 shadow-xl">
+          <div className="pointer-events-none fixed inset-0 h-full w-full bg-neutral-200/20 backdrop-blur dark:bg-neutral-800/20" />
+          <KBarAnimator className="bg-secondary w-full max-w-[600px] overflow-hidden rounded-lg p-2 shadow-xl">
             <KBarSearch
-              className={`box-border ${fontMono.className} w-full rounded-md border-none bg-neutral-50 px-3 py-4 outline-none placeholder:text-neutral-500`}
+              className={`box-border ${fontMono.className} bg-secondary w-full rounded-md border-none px-3 py-4 outline-none placeholder:text-neutral-500 dark:placeholder:text-neutral-300`}
             />
             <div className="pb-4">
               <RenderResults />
@@ -46,8 +46,8 @@ function RenderResults() {
           <div className="mx-3 py-2 text-xs">{item}</div>
         ) : (
           <div
-            className={`mx-3 flex cursor-pointer items-center gap-4 rounded-lg p-3 text-sm text-neutral-900 hover:bg-green-100 ${
-              active && 'bg-green-100'
+            className={`text-primary mx-3 flex cursor-pointer items-center gap-4 rounded-lg p-3 text-sm hover:bg-green-100 dark:hover:bg-neutral-700 ${
+              active && 'bg-green-100 dark:bg-neutral-700'
             } ${fontMono.className}`}
           >
             {item.icon && item.icon}
@@ -60,6 +60,7 @@ function RenderResults() {
             <div className="ml-auto flex gap-2">
               {item.shortcut?.map((keyword) => (
                 <span
+                  key={item.id}
                   className={`rounded-md bg-green-300 px-2 py-1 text-xs font-bold text-neutral-900`}
                 >
                   {keyword}

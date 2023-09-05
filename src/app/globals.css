@@ -5,8 +5,7 @@
 @import 'prose.css';
 @import 'intellij-prism.css';
 
-html,body,#__next{
-    min-width:100%;
-    min-height:100%;
-    height:100vh;
+body{
+    min-height:100vh;
+    min-width: 100vw;
 }

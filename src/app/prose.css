@@ -50,7 +50,7 @@
 }
 
 .prose code:not(:where(pre *)) {
-    @apply text-green-800 dark:text-green-300 font-semibold rounded-md px-2 py-0.5 content-none;
+    @apply text-green-hunter dark:text-green-50 font-semibold rounded-md px-2 py-0.5 content-none;
     @apply bg-green-300 dark:bg-green-800;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .prose :where(blockquote):not(:where([class~="not-prose"] *)){
-    @apply border-l-green-600 !important;
+    @apply border-l-green-600 dark:border-l-green-800 dark:bg-neutral-800 text-primary !important;
 }
 
 

@@ -24,7 +24,7 @@ export default function Sidebar({
   return (
     <div
       ref={sidebarRef}
-      className={`absolute -left-[328px] top-0 z-0 flex h-screen w-[300px] flex-col bg-[#1E4927] px-6 py-4 text-neutral-50 transition-transform duration-500 ${
+      className={`absolute -left-[328px] top-0 z-0 flex h-screen w-[300px] flex-col bg-green-deep px-6 py-4 text-neutral-50 transition-transform duration-500 ${
         isOpen ? 'translate-x-[328px]' : 'translate-x-0'
       }`}
     >

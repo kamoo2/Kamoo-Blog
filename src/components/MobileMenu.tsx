@@ -66,7 +66,7 @@ export default function MobileMenu({ menus, blogTagList, snippetTagList }: Mobil
         sidebarRef={sidebarRef}
         pathname={pathname}
         keyName={keyName}
-        tagList={pathname === '/blog' ? blogTagList : snippetTagList}
+        tagList={pathname.includes('/blog') ? blogTagList : snippetTagList}
       />
     </div>
   );
