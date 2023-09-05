@@ -1,12 +1,16 @@
+'use client';
+import { useKBar } from 'kbar';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { LuSearch } from 'react-icons/lu';
 
 import IconButton from '@/components/common/IconButton';
 
 export default function QuickSearchButton() {
+  const { query } = useKBar();
   return (
     <div>
       <button
+        onClick={() => query.toggle()}
         className="hidden cursor-pointer items-center rounded-lg border border-neutral-400
            p-2 text-xs text-neutral-400 transition-all duration-300 hover:border-neutral-600 md:flex"
       >
