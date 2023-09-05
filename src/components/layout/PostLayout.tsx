@@ -1,15 +1,15 @@
 import dayjs from 'dayjs';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { AiOutlineCalendar, AiOutlineClockCircle } from 'react-icons/ai';
 
+import { ListOfHeading, Post } from '@/app/lib/types';
 import IconText from '@/components/common/IconText';
 import Title from '@/components/common/Title';
+import Giscus from '@/components/Giscus';
 import HeadingToc from '@/components/HeadingToc';
 import PostFooter, { PostFooterProps } from '@/components/layout/PostFooter';
-import { ListOfHeading, Post } from '@/lib/types';
-import Link from 'next/link';
-import { fontCabinSketch } from '@/lib/fonts';
 
 export type PostLayoutProps = PostFooterProps & {
   post: Post;
@@ -22,7 +22,7 @@ export default function PostLayout({ post, nextPost, prevPost, headingList }: Po
 
   return (
     <section className="">
-      <div className="relative mt-9 lg:flex lg:gap-x-24">
+      <div className="relative mt-9 border-b border-neutral-hr pb-8 lg:flex lg:gap-x-24">
         <article className="max-w-none lg:w-full lg:max-w-4xl">
           <Image
             className="h-[440px] w-full rounded-2xl border-2 object-cover"
@@ -56,13 +56,12 @@ export default function PostLayout({ post, nextPost, prevPost, headingList }: Po
             {tags.map((tag) => {
               return (
                 <Link
-                  className="overflow-hidden rounded-md text-base font-bold text-green-600"
+                  className="overflow-hidden rounded-md font-semibold text-green-600"
                   key={tag}
                   href={`/archives?key=${tag}`}
                 >
                   <div className="bg-slash-pattern py-1.5"></div>
-                  <div className="bg-neutral-100 px-1.5 py-1">{tag}</div>
-                  <div className="bg-slash-pattern-reverse py-1.5"></div>
+                  <div className="bg-neutral-100 px-1.5 py-1 text-sm">{tag}</div>
                 </Link>
               );
             })}
@@ -72,6 +71,7 @@ export default function PostLayout({ post, nextPost, prevPost, headingList }: Po
       </div>
       {/*  Post Footer */}
       <PostFooter prevPost={prevPost} nextPost={nextPost} />
+      <Giscus />
     </section>
   );
 }

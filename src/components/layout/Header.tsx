@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import { RiSunLine } from 'react-icons/ri';
 
+import { allBlogTagsWithCount, allSnippetTagsWithCount } from '@/app/lib/post';
+import { getAllMenus } from '@/app/service/posts';
 import IconButton from '@/components/common/IconButton';
 import MobileMenu from '@/components/MobileMenu';
 import QuickSearchButton from '@/components/QuickSearchButton';
-import { allBlogTagsWithCount, allSnippetTagsWithCount } from '@/lib/post';
-import { getAllMenus } from '@/service/posts';
 
 function MobileMenuFallback() {
   return <>placeholder</>;

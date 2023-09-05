@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 
+import { parseToc } from '@/app/lib/mdx';
+import { allBlogPosts } from '@/app/lib/post';
 import { PostFooterProps } from '@/components/layout/PostFooter';
 import PostLayout from '@/components/layout/PostLayout';
-import { parseToc } from '@/lib/mdx';
-import { allBlogPosts } from '@/lib/post';
 
 export default function PostPage({ params: { slug: slugs } }: { params: { slug: string[] } }) {
   // 1. slug를 이용해서 해당 post data 찾기

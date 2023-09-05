@@ -3,9 +3,9 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
+import { Menu, TagWithCount } from '@/app/lib/types';
 import IconButton from '@/components/common/IconButton';
 import Sidebar from '@/components/Sidebar';
-import { Menu, TagWithCount } from '@/lib/types';
 
 type MobileMenuProps = {
   menus: Menu[];

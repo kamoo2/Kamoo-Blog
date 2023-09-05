@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { ListOfHeading } from '@/lib/types';
+import { ListOfHeading } from '@/app/lib/types';
 
 type Heading = {
   id: string;

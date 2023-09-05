@@ -21,7 +21,11 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/app/*"],
+      "@/*": ["./src/*"],
+      "@/images/*":["./public/images/*"],
+      "@/app/*" : ["./src/app/*"],
+      "@/components/*" : ["./src/components/*"],
+      "@/context/*" : ["./src/context/*"],
       "@/contentlayer/generated" : ["./.contentlayer/generated"],
       "@/contentlayer/generated/*" : ["./.contentlayer/generaged/*"],
     }

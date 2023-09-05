@@ -4,8 +4,7 @@ import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 
 import Hero from '@/components/Hero';
 import PostCard from '@/components/PostCard';
-
-import Profile from '../../public/images/profile.png';
+import Profile from '@/images/profile.png';
 export default function HomePage() {
   return (
     <>

@@ -1,3 +1,9 @@
-export default function Page() {
-  return <div>Contact Page</div>;
+import PrepareNotice from '@/components/common/prepareNotice';
+
+export default function ContactPage() {
+  return (
+    <div className="mt-48 flex justify-center">
+      <PrepareNotice />
+    </div>
+  );
 }

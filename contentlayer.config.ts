@@ -1,6 +1,5 @@
 import { defineDocumentType, FieldDefs, makeSource } from 'contentlayer/source-files';
 import readingTime from 'reading-time';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypePrism from 'rehype-prism';

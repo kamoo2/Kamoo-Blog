@@ -1,7 +1,7 @@
+import { allTagsWithCount, reducedAllBlogPosts } from '@/app/lib/post';
+import { ReducedPost } from '@/app/lib/types';
 import CategoryBox from '@/components/CategoryBox';
 import PostListItem from '@/components/PostListItem';
-import { allTagsWithCount, reducedAllBlogPosts } from '@/lib/post';
-import { ReducedPost } from '@/lib/types';
 
 type Props = {
   params: {};

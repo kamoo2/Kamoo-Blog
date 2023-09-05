@@ -1,5 +1,5 @@
+import { Post, ReducedPost, TagWithCount } from '@/app/lib/types';
 import { allPosts } from '@/contentlayer/generated';
-import { Post, ReducedPost, TagWithCount } from '@/lib/types';
 
 export const reducePost = ({ body: _, _raw, _id, ...post }: Post): ReducedPost => post;
 
