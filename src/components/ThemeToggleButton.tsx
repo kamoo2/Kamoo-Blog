@@ -7,6 +7,7 @@ import useSwitchTheme from '@/components/useSwitchTheme';
 
 export default function ThemeToggleButton() {
   const { theme, toggleTheme } = useSwitchTheme();
+
   return (
     <IconButton
       onClick={toggleTheme}

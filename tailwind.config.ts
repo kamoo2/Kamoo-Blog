@@ -14,6 +14,7 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-green': 'linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)',
         'slash-pattern':
           'repeating-linear-gradient(45deg, #747d8c,#747d8c 10px, #f5f5f5 0, #f5f5f5 20px)',
         'slash-pattern-dark':

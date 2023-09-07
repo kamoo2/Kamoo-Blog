@@ -31,10 +31,11 @@ export default function Giscus() {
     scriptElem.setAttribute('data-input-position', 'bottom');
     scriptElem.setAttribute('data-theme', theme);
     scriptElem.setAttribute('data-lang', 'en');
+    scriptElem.setAttribute('data-loading', 'lazy');
 
     ref.current.appendChild(scriptElem);
     setMounted(true);
-  }, []);
+  }, [theme]);
 
   // https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md#isetconfigmessage
   useEffect(() => {
