@@ -25,8 +25,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={fontSans.className}>
-      <ThemeContainer>
-        <body className="no-scrollbar">
+      <body className="no-scrollbar">
+        <ThemeContainer>
           <KbarContainer>
             <div className="bg-primary mx-auto flex min-h-screen flex-col">
               <Header />
@@ -36,8 +36,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Footer />
             </div>
           </KbarContainer>
-        </body>
-      </ThemeContainer>
+        </ThemeContainer>
+      </body>
     </html>
   );
 }
