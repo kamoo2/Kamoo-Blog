@@ -85,6 +85,9 @@ const config: Config = {
         '.text-sub': {
           '@apply text-neutral-450 dark:text-neutral-250 transition-colors duration-100': '',
         },
+        '.text-disabled': {
+          '@apply text-neutral-300 dark:text-neutral-700 transition-colors duration-100': '',
+        },
         '.bg-primary': {
           '@apply bg-neutral-50 dark:bg-neutral-900 transition-colors duration-100': '',
         },

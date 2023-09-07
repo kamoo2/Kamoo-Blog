@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 
 import Hero from '@/components/Hero';
-import PostCard from '@/components/PostCard';
+import FeaturedPost from '@/components/FeaturedPost';
 import Profile from '@/images/profile.png';
 export default function HomePage() {
   return (
@@ -19,28 +19,28 @@ export default function HomePage() {
       <section>
         <h1 className="mb-4 text-2xl font-bold md:text-3xl lg:mb-6 lg:text-4xl">Featured Posts</h1>
         <div className="grid grid-rows-4 gap-4 md:grid-cols-2 md:grid-rows-2 lg:grid-cols-4 lg:grid-rows-1">
-          <PostCard
+          <FeaturedPost
             title="CSS-in-JS 라이브러리들에 대한 고찰"
             alt="CSS-in-JS 라이브러리들에 대한 고찰"
             linkPath="blog"
             createdAt="2023.08.21"
             imagePath="https://images.unsplash.com/photo-1602300991431-27a957a5bcf7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fGdyZWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
           />
-          <PostCard
+          <FeaturedPost
             title="CSS-in-JS 라이브러리들에 대한 고찰"
             alt="CSS-in-JS 라이브러리들에 대한 고찰"
             linkPath="blog"
             createdAt="2023.08.21"
             imagePath="https://images.unsplash.com/photo-1543362906-acfc16c67564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTB8fGdyZWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
           />
-          <PostCard
+          <FeaturedPost
             title="CSS-in-JS 라이브러리들에 대한 고찰"
             alt="CSS-in-JS 라이브러리들에 대한 고찰"
             linkPath="blog"
             createdAt="2023.08.21"
             imagePath="https://images.unsplash.com/photo-1564352969906-8b7f46ba4b8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z3JlZW58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
           />
-          <PostCard
+          <FeaturedPost
             title="CSS-in-JS 라이브러리들에 대한 고찰"
             alt="CSS-in-JS 라이브러리들에 대한 고찰"
             linkPath="blog"

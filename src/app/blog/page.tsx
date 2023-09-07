@@ -1,14 +1,14 @@
 import { allTagsWithCount, reducedAllBlogPosts } from '@/app/lib/post';
 import { ReducedPost } from '@/app/lib/types';
 import CategoryBox from '@/components/CategoryBox';
-import PostListItem from '@/components/PostListItem';
+import PostList from '@/components/PostList';
 
 type Props = {
   params: {};
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-type Post = {
+type PostCombinedKey = {
   key: string;
   postList: ReducedPost[];
 };
@@ -26,7 +26,7 @@ export default function BlogPage(props: Props) {
   }, {});
 
   const combinedPostWithKeys = Object.keys(tagPostList)
-    .map<Post>((key) => ({
+    .map<PostCombinedKey>((key) => ({
       key,
       postList: tagPostList[key],
     }))
@@ -49,17 +49,13 @@ export default function BlogPage(props: Props) {
       })[0];
 
   return (
-    <div className="flex pb-3 pr-7 pt-8">
+    <div className="flex pb-3 pt-8">
       <CategoryBox
         selectedKey={selectedKey}
         tags={allTagsWithCount}
         className="hidden min-w-fit text-[#28442E] dark:text-neutral-50 lg:block"
       />
-      <div className="grid grow grid-cols-1 gap-x-10 md:grid-cols-2">
-        {post.postList.map((post) => (
-          <PostListItem key={post.slug} post={post} />
-        ))}
-      </div>
+      <PostList posts={post.postList} />
     </div>
   );
 }
