@@ -70,37 +70,38 @@ const config: Config = {
       });
       addComponents({
         '.text-primary': {
-          '@apply text-neutral-900 dark:text-neutral-200': '',
+          '@apply text-neutral-900 dark:text-neutral-200 transition-colors duration-100': '',
         },
         '.text-secondary': {
-          '@apply text-neutral-700 dark:text-neutral-350': '',
+          '@apply text-neutral-700 dark:text-neutral-350 transition-colors duration-100': '',
         },
         '.text-tertiary': {
-          '@apply text-neutral-600 dark:text-neutral-400': '',
+          '@apply text-neutral-600 dark:text-neutral-400 transition-colors duration-100': '',
         },
         '.text-mute': {
-          '@apply text-neutral-500 dark:text-neutral-470': '',
+          '@apply text-neutral-500 dark:text-neutral-470 transition-colors duration-100': '',
         },
         '.text-sub': {
-          '@apply text-neutral-450 dark:text-neutral-250': '',
+          '@apply text-neutral-450 dark:text-neutral-250 transition-colors duration-100': '',
         },
         '.bg-primary': {
-          '@apply bg-neutral-50 dark:bg-neutral-900': '',
+          '@apply bg-neutral-50 dark:bg-neutral-900 transition-colors duration-100': '',
         },
         '.bg-secondary': {
-          '@apply bg-neutral-100 dark:bg-neutral-800': '',
+          '@apply bg-neutral-100 dark:bg-neutral-800 transition-colors duration-100': '',
         },
         '.bg-tertiary': {
-          '@apply bg-neutral-200 dark:bg-neutral-750': '',
+          '@apply bg-neutral-200 dark:bg-neutral-750 transition-colors duration-100': '',
         },
         '.bg-mute': {
-          '@apply bg-neutral-250 dark:bg-neutral-800': '',
+          '@apply bg-neutral-250 dark:bg-neutral-800 transition-colors duration-100': '',
         },
         '.bg-button': {
-          '@apply bg-neutral-900 dark:bg-neutral-700': '',
+          '@apply bg-neutral-900 dark:bg-neutral-700 transition-colors duration-100': '',
         },
         '.border-primary': {
-          '@apply border-[rgba(2,23,51,0.1)] dark:border-neutral-500': '',
+          '@apply border-[rgba(2,23,51,0.1)] dark:border-neutral-500 transition-colors duration-100':
+            '',
         },
       });
     }),

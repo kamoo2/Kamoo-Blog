@@ -22,7 +22,7 @@ export default function HeadingToc({ headingList }: { headingList: ListOfHeading
   };
 
   return (
-    <div className="ml-auto mt-12">
+    <div className="ml-auto lg:mt-12 ">
       <div className="bg-secondary sticky top-[120px] hidden w-72 overflow-hidden rounded-lg py-6 shadow-[5px_5px_0px_0px_rgba(40,68,46,0.2)] lg:block">
         <h3 id="heading-list" className="pb-6 text-center font-bold">
           Heading List
