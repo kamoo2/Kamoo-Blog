@@ -20,6 +20,7 @@ export default function PostCard({ imagePath, alt, title, linkPath, createdAt }:
           alt={alt}
           width={300}
           height={300}
+          priority
         />
         <div className="flex flex-col gap-2 px-6 py-3 lg:px-4">
           <h2 className="line-clamp-2 text-xl font-bold lg:text-base">{title}</h2>

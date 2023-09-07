@@ -26,9 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={fontSans.className}>
       <ThemeContainer>
-        <body className="bg-primary no-scrollbar">
+        <body className="no-scrollbar">
           <KbarContainer>
-            <div className="mx-auto flex min-h-screen flex-col">
+            <div className="bg-primary mx-auto flex min-h-screen flex-col">
               <Header />
               <main className="mx-auto w-full max-w-3xl grow px-7 pb-9 md:max-w-6xl lg:px-0">
                 {children}

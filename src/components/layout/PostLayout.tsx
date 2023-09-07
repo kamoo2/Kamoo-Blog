@@ -18,7 +18,7 @@ export type PostLayoutProps = PostFooterProps & {
 
 export default function PostLayout({ post, nextPost, prevPost, headingList }: PostLayoutProps) {
   const { title, description, createdAt, thumbnail, readingMinutes, slug, tags, body } = post;
-  const MDXContent = useMDXComponent(post.body.code);
+  const MDXContent = useMDXComponent(body.code);
 
   return (
     <section>
