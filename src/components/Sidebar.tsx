@@ -41,7 +41,7 @@ export default function Sidebar({
                 }`}
                 key={tag.name}
               >
-                <Link href={`?key=${tag.name.toLowerCase()}`}>
+                <Link href={`/blog?key=${tag.name.toLowerCase()}`}>
                   <IconText
                     text={tag.name}
                     subText={`(${tag.count})`}
@@ -60,7 +60,7 @@ export default function Sidebar({
       <nav className="flex w-full flex-col gap-3 text-2xl font-medium">
         {menus.map((menu) => (
           <Link
-            className={`${pathname === menu.path && 'text-amber-300'}`}
+            className={`${pathname.includes(menu.path) && 'text-amber-300'}`}
             key={menu.path}
             href={menu.path}
           >
