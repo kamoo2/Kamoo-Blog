@@ -28,11 +28,11 @@ export default function Sidebar({
         isOpen ? 'translate-x-[328px]' : 'translate-x-0'
       }`}
     >
-      <Link href="/" className={`mb-12 text-center text-3xl`}>
+      <Link href="/" className="mb-4 text-center text-3xl">
         Kamoo
       </Link>
       {pathname.includes('/blog') || pathname.includes('/snippets') ? (
-        <div className={`flex max-h-fit w-72 grow flex-col rounded-lg`}>
+        <div className={`flex w-72 grow flex-col rounded-lg`}>
           <ul className="mt-5 flex flex-col gap-4">
             {tagList.map((tag) => (
               <li
