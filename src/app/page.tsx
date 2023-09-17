@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 
-import Hero from '@/components/Hero';
 import FeaturedPost from '@/components/FeaturedPost';
+import Hero from '@/components/Hero';
 import Profile from '@/images/profile.png';
 export default function HomePage() {
   return (

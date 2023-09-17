@@ -7,7 +7,7 @@ import IconButton from '@/components/common/IconButton';
 import PostListItem from '@/components/PostListItem';
 
 export default function PostList({ posts }: { posts: ReducedPost[] }) {
-  const PAGE_LIMIT = 1;
+  const PAGE_LIMIT = 8;
   const LAST_PAGE = Math.ceil(posts.length / PAGE_LIMIT); // 전체 페이지
   const FIRST_PAGE = 1;
 
@@ -44,18 +44,9 @@ export default function PostList({ posts }: { posts: ReducedPost[] }) {
     setPage((prevPage) => (prevPage - 1 < FIRST_PAGE ? FIRST_PAGE : prevPage - FIRST_PAGE));
   };
 
-  // totalPage가 6이상 인경우
-  // 현재 페이지의 -2 +2 를 보여준다.
-  // 즉 최대 5개의 페이지 버튼만 보여주도록 하기
-  // page = 1 -> 1 2 3 4 5
-  // page = 2 -> 1 2 3 4 5
-  // page = 3 -> 1 2 3 4 5
-  // page = 4 -> 2 3 4 5 6
-  // page = 5 -> 3 4 5 6 7
-  // page = 5 인데 전체 페이지가 6인 경우 -> 2 3 4 5 6
   return (
-    <section>
-      <div className="grid grow grid-cols-1 gap-x-10 md:grid-cols-2">
+    <section className="grow">
+      <div className="grid grid-cols-1 gap-x-10 md:grid-cols-2">
         {posts.slice((page - 1) * PAGE_LIMIT, (page - 1) * PAGE_LIMIT + PAGE_LIMIT).map((post) => (
           <PostListItem key={post.slug} post={post} />
         ))}
@@ -67,13 +58,15 @@ export default function PostList({ posts }: { posts: ReducedPost[] }) {
           Icon={FaAngleLeft}
           disabled={page === FIRST_PAGE}
         />
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           {convertPageArr().map((item) => {
             return (
               <button
                 className={`${
-                  item === page && 'rounded-md bg-neutral-300 font-bold  dark:bg-neutral-700'
-                } px-2.5 py-0.5 text-lg`}
+                  item === page
+                    ? 'rounded-md bg-neutral-300 font-semibold dark:bg-neutral-700'
+                    : 'rounded-md transition-all duration-300 hover:-translate-y-[1px] hover:bg-neutral-300 dark:hover:bg-neutral-700'
+                } px-2.5 py-0.5 text-base`}
                 onClick={() => setPage(item)}
                 key={item}
               >
