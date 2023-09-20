@@ -1,0 +1,18 @@
+[
+  {
+  "name": "Blog",
+  "path": "/blog"
+  },
+  {
+    "name": "Snippets",
+    "path": "/snippets"
+  },
+  {
+    "name": "Archives",
+    "path": "/archives"
+  },
+  {
+    "name": "Contact",
+    "path": "/contact"
+  }
+]

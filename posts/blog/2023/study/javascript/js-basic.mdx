@@ -1,0 +1,316 @@
+---
+title: 자바스크립트 기본 문법
+description: 벨로퍼트 선생님의 자바스크립트 블로그를 보면서 공부하여 정리 후 포스팅 했습니다. 개인적으로 JS는 벨로퍼트 선생님 블로그가 정리가 정말 잘 되있는거 같습니다. 자바스크립트에 대해서 더 공부하고 싶으신 분들은 아래 링크로 접속해 보시는 것도 좋은 선택인 것 같습니다 👍
+tags:
+  - Javascript
+createdAt: 2023-01-12 21:00:00
+---
+
+> 본 글은 [벨로퍼트JS블로그](https://learnjavascript.vlpt.us/basics/02-variables.html)를 참고한 포스팅입니다.
+
+## 🔆 변수와 상수
+
+변수 : let,var
+상수 : const
+
+<hr/>
+
+## ❌️ var의 사용은 권장하지 않는다.
+
+var는 ES6이전에 사용했던 키워드로써 변수임을 명시하는 키워드 입니다.
+그러나 현재는 개발에 있어서 큰 단점을 가지고 있기때문에 사용하지 않는 추세입니다.
+
+
+### var는 같은이름으로 여러번 선언이 가능하다.
+
+var는 let이랑 비슷하긴 하지만 차이점으로는 var는 똑같은 이름으로 여러번 선언이 가능합니다.
+var를 사용하다 보면 예상치 못한 에러가 발생할 가능성이 있습니다.
+let은 아래 코드와 같이 작성한다면 에러가 발생합니다.
+큰 프로젝트 진행시에 이와 같은 반복적인 선언에도 에러가 발생하지 않기때문에 문제가되고 이 에러를 찾기란 더 쉽지 않을 것입니다.
+
+```javascript
+var a = 1;
+console.log(a); // 1
+var a = 2;
+console.log(a); // 2
+```
+
+<br/>
+
+### var를 사용시 변수 hoisting이 발생한다.
+
+이를 이해하기 위해서는 호이스팅의 개념에 대해서 알아야합니다.
+변수 선언시 변수 선언부를 최상단의 스코프로 올려버리는 것을 호이스팅이라고 한다.
+`scope란 범위를 뜻하며 변수에 접근 할 수 있는 범위를 뜻합니다.`
+이는 JS가 변수 선언과 초기화의 작업을 분리되어 진행되기 때문입니다.
+var는 함수스코프이기 때문에 코드 전체가 아닌 함수 내부의 최상단으로 호이스팅 됩니다.
+함수 스코프는 함수 내부의 영역을 범위로 가지는 것을 의미합니다.
+
+```javascript
+var a = 111;
+function Fn(){
+   console.log(a); //undefined
+   var a = 222;
+   console.log(a); // 222
+}
+
+Fn();
+```
+
+<br/>
+
+#### 위 코드가 인식하는 호이스팅된 코드
+
+```javascript
+var a =111;
+function Fn(){
+   var a;
+   console.log(a);
+   a=222;
+   console.log(a);
+}
+
+Fn();
+```
+
+### 결론
+
+var를 사용하게 되면 변수 hoisting과 scope를 고려해가며 코딩해야하고
+전반적으로 코드가 어떻게 작동하는지 예상하기 어려워지기 때문에 var를 사용하지말고 let을 사용합시다.
+
+<hr/>
+
+## 🔎 JS에서의 Type
+
+```javascript
+const name = "moon";
+console.log(typeof name); //  string
+
+const age = 15;
+console.log(typeof age); // number
+
+const avg = 26.5;
+console.log(typeof avg); // number
+
+const isLoggedIn = true;
+console.log(typeof isLoggedIn); // boolean
+
+const thing = null; // 없다. 존재하지 않는다.
+const thing2 = undefined; // 존재하지만 값이 설정되지 않았다.
+```
+
+### null vs undefined
+
+null은 선언조차 하지 않은 상태이고 undefined는 선언은 되었지만 값이 지정되지 않은 상태를 뜻합니다.
+예를 들어 설명하면 null은 친구가 없다. `const friend = null;`와 같이 코딩할 수 있겠고
+undefined는 범인은 존재하지만 누구인지 모른다. `const criminal = undefined;`와 같이 코딩 할 수 있습니다.
+
+<hr/>
+
+## 연산자
+
+연산자 : 대입연산자, 산술연산자, 논리연산자, 비교연산자
+
+### 산술연산자
+
+사칙연산을 하는 연산자를 의미하며 +,-,/,*,%,++ 등이 있습니다.
+
+```javascript
+let a = 1+2-(3*4)/4;
+console.log(a); // 0
+
+let b =1;
+console.log(b++); // 1
+console.log(b); // 2
+console.log(++b); // 3
+console.log(b); // 3
+
+```
+
+++b와 b++의 차이는 b++은 출력하고 계산하고 ++b는 계산하고 출력합니다.
+위 코드의 결과를 보면 알 수 있듯이 `console.log(b++)`에서는 본래의 값인 1이 출력되고
+다음 코드인 `console.log(b)` 에서 2가 출력되는 것을 볼 수 있습니다.
+`console.log(++b)`는 즉각적으로 ++되기 때문에 3이 출력되고 `console.log(b)`에서 마찬가지로 3이 출력됩니다.
+
+### 논리연산자
+
+Boolean을 처리하기 위한 연산자 입니다.
+
+1. NOT !
+
+```javascript
+const a = !true;
+console.log(a); // false
+```
+
+2. AND &&
+
+```javascript
+const a = false && true;
+console.log(a); // false
+```
+
+3. OR ||
+
+```javascript
+const a = false || true;
+console.log(a); // true
+```
+
+#### 계산순서
+
+NOT -> AND -> OR
+
+```javascript
+const value = !(true && false || true && false || !false);
+// !(true && false || true && false || true) -> NOT 계산한 결과
+// !(false || false || true) -> && 계산한 결과
+// !(true) -> OR 계산한 결과
+// false -> NOT 계산한 결과
+```
+
+<hr/>
+
+## 비교연산자
+
+비교연산자 :  `===`,`!==`,`==`,`!=`,`<`,`>` ...
+
+### === VS ==
+
+```javascript
+// ===의 경우
+const a = true;
+const b = 1;
+const equals = a === b;
+console.log(equals); // false
+
+// ==의 경우
+const euqals = a == b;
+console.log(equals); // true
+```
+
+상식적으로 a와 true이고 b는 1이기 때문에 false가 나와야 하지만 ==을 사용한 결과값은 true가 나오는 것을 볼 수 있습니다.
+그 이유는 ===는 타입을 고려한 비교를 하고 ==은 타입을 고려하지 않고 비교를 하기 때문에 위와 같은 결과가 나옵니다.
+따라서 에러없이 정확한 비교를 하기 위해서는 반드시 ===을 사용해 줘야 합니다.
+추가적으로 `null == undefined`도 true를 리턴 합니다. 만약 이와 같이 코드를 작성한다면 반드시 문제가 발생할 것입니다.
+
+### 연산자를 이용한 문자열 붙이기
+
+```javascript
+const a = "안녕";
+const b = "하세요";
+console.log(a+b); // 안녕하세요
+```
+
+number 타입의 덧셈과는 다르게 string의 덧셈은 두 문자열을 이어주는 역할을 합니다.
+
+<hr/>
+
+## 조건문
+
+### if 문
+
+가장 기본적인 조건문은 if입니다.
+
+```javascript
+if(조건){
+   코드;
+}
+```
+
+조건이 만족됐을 때 실행시킬 코드가 `{}` 로 감싸져 있는데 이를 코드 블록이라고 합니다.
+만약 조건이 true이면 코드블럭 내부가 실행되는 것이고, false이면 실행되지 않습니다.
+
+```javascript
+const a = 1;
+if(true){
+   const a =2;
+   console.log("if문 내부의 a : "+ a);
+}
+console.log("if문 밖의 a : "+a);
+```
+
+`if문 내부의 a : 2`
+`if문 밖의 a : 1`
+
+const , let은 서로 다른 블럭 범위에서는 같은 이름으로 선언 할 수도 있습니다.
+따라서 내부에서 a는 2가 출력되고 외부에서의 a는 1이 출력되는 것을 볼 수 있습니다.
+
+### if-else문
+
+```javascript
+if(조건 A){
+	코드 A;
+}else if(조건 B){
+	코드 B;
+}else{
+	코드 C;
+}
+```
+
+조건A가 true인 경우 코드 A가 실행되고 조건 A가 false이면서 조건 B가 true인 경우 코드 B가 실행되고 그 외의 경우에는 코드C가 실행됩니다.
+
+### switch/case 문
+
+스위치케이스는 특정값에 따라 다른 작업을 하고 싶을때 사용됩니다.
+
+```javascript
+const sport = "축구";
+
+switch (sport) {
+  case "축구":
+    console.log("축구!");
+    break;
+  case "농구":
+    console.log("농구");
+    break;
+  case "배구":
+    console.log("배구");
+    break;
+  defult:
+    console.log("케이스에 해당하는게 없습니다.");
+}
+
+```
+
+case가 매칭되면 매칭된 케이스의 코드가 실행되고 코드블럭에서 빠져나옵니다.
+만약 매칭되는 케이스가 없다면 default의 코드가 실행되고 코드블럭에서 빠져나옵니다.
+
+<hr/>
+
+## 함수
+
+함수는 특정 코드를 하나의 명령으로 실행 할 수 있게 해주는 기능입니다.
+예를 들어 name이라는 파라미터를 넣었을때 Hello name을 출력하는 함수를 생성한다고 하면
+
+```javascript
+function hello(name){
+   // 연산자 +를 이용한 문자열 조합
+   console.log("안녕하세요" + name +"님!");
+  // 템플릿 리터럴
+   console.log(`안녕하세요 ${name}님!`
+}
+hello("Kamoo"); // "안녕하세요 Kamoo님!"
+```
+
+문자열을 조합하기 위해서는 + 연산자를 사용해 왔지만 ES6의 템플릿 리터럴이라는 문법을 사용함으로써
+더 쉽게 문자열을 조합할 수 있습니다.
+
+> ES6 ?
+ES6는 ECMAScript6를 의미하고 자바스크립트 버전을 의미합니다. 2015년도에 도입됬으며 때문에 ES2015라고도 불립니다.
+브라우저 버전에 따라 지원되는 자바스크립트 버전이 다르기때문에 여기서는 작동했던 문법이 구식 브라우저에서는 작동하지 않는 불상사가 생깁니다.
+이를 해결하기 위해 웹 개발시에는 Babel이라는 도구를 사용해 최신 버전의 자바스크립트 문법을 사용하더라도 구식 브라우저에서 작동되도록 할 수 있습니다.
+왜냐하면 Babel을 통해 최신 자바스크립트 문법이 구버전 자바스크립트 문법으로 변환시켜 주기 때문에 가능합니다.
+
+
+
+### Arrow Function
+
+arrow function은 함수를 선언하는 방식 중 하나입니다.
+`function` 키워드 대신 `=>` 문자를 사용해 함수를 구현합니다.
+화살표의 좌측에는 함수의 파라미터, 화살표의 우측에는 코드 블록
+
+```javascript
+const add =(a,b) => a+b;
+console.log(1,2); // 3
+```
