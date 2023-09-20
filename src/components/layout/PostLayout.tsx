@@ -25,8 +25,8 @@ export default function PostLayout({ post, nextPost, prevPost, headingList }: Po
       <div className="relative mt-9 border-b border-neutral-hr pb-8 lg:flex lg:gap-x-24">
         <article className="max-w-none lg:w-full lg:max-w-4xl">
           <Image
-            className="h-[280px] w-full rounded-2xl border-2 object-cover md:h-[440px]"
-            src={thumbnail ?? '/images/default-thumbnail.png'}
+            className="h-[280px] w-full rounded-2xl border-2 md:h-[440px]"
+            src={thumbnail ? thumbnail : '/images/default-thumbnail.png'}
             alt={slug}
             width={300}
             height={300}

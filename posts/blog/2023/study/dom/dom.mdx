@@ -1,0 +1,416 @@
+---
+title: DOM을 깨우치다 - 노드 개요
+description: DOM을 깨우치다는 TandemSeven의 수석 프론트엔드 개발자인 코디 린들리가 쓴 책입니다. 코디 린들리는 웹 개발자는 항상 배움의 자세를 가져야 하고 배움에는 끝이 없다고 했으며, HTML,CSS,DOM 사이의 상당한 지식 격차를 가지는 개발자가 많다고 합니다. 이러한 개발자들은 Jquery와 같은 라이브러리를 사용하기 때문에 DOM 내부의 동작 원리를 이해할 필요가 없다고 생각합니다. 그러나 프론트엔드 개발자라면 DOM 내부 동작 원리를 이해하는 것은 중요하다고 합니다. 저와 함께 DOM을 완전정복 해봅시다 👍
+tags:
+  - Dom
+createdAt: 2022-12-20 21:00:00
+---
+
+#### DOM은 자바스크립트 Node 개체의 계층화된 트리다.
+
+브라우저는 HTML코드를 해석해 트리 형태로 구조화된 노드들을 가지고 있는 DOM을 생성한다.
+
+<hr/>
+
+## Node 개체로 부터 상속받은 하위 노드 개체
+
+기본적으로 상속구조는 다음과 같다.
+
+Object < Node < Element < HTMLElement < HTML*Element
+
+따라서 모든 노드들은 노드 개체의 속성과 메소드를 상속받고 Object.prototype으로부터도 상속 받는다.
+
+이러한 상속 체인 덕에 모든 노드 유형에서 수많은 공유 메소드와 속성들이 제공된다.
+
+### 속성과 메서드
+
+모든 노드 개체(Element,Attr,Text ...)는 속성과 메서드를 먼저 Node 개체로부터 상속받는다.
+
+모든 노드 개체에서 상속되는 것 중 가장 흔히 사용되는 Node 속성과 메서드에 대해 알아보자.
+
+Node 개체 속성
+- childNodes
+- firstChild
+- lastChild
+- nextSibling
+- nodeName
+- nodeType
+- nodeValue
+- parentNode
+- previousSibling
+
+Node 메서드
+- appendChild()
+- cloneNode()
+- compareDocumentPosition()
+- contains()
+- hasChildNodes()
+- insertBefore()
+- isEqualNode()
+- removeChild()
+- replaceChild()
+
+Document 메서드
+- document.querySelector()
+- document.createElement()
+- document.createTextNode()
+
+HTML *Element 속성
+- innerHTML
+- outerHTML
+- textContent
+- innerText
+- outerText
+- firstElementChild
+- lastElementChild
+- nextElementChild
+- previousElementChild
+- children
+
+HTML element 메서드
+- insertAdjacentHTML()
+
+<hr/>
+
+## nodeType
+
+HTML 문서에서 가장 많이 보게 되는 nodeType 입니다.
+
+1. DOCUMENT_NODE(ex:window.document) : 9
+2. ELEMENT_NODE(ex:body,a,p,script,style ...) : 1
+3. ATTRIBUTE_NODE(ex:class="header") : 2
+4. TEXT_NODE(ex:줄바꿈,공백을 포함한 HTML 문서내의 텍스트 문자) : 3
+5. DOCUMENT_FRAGMENT_NODE(ex:document.createDocumentFragment()) : 11
+6. DOCUMENT_TYPE_NODE(ex:!DOCTYPE html) : 10
+
+nodeType을 console에 찍어보면 다음과 같은 숫자들이 찍히는 것을 볼 수 있다.
+`console.log(Node.ELEMENT_NODE); // 1`
+이 숫자를 이용해 노드를 식별하게 된다.
+
+
+### 노드의 유형과 이름 식별하기
+
+모든 노드는 Node로부터 상속받는 nodeType , nodeName 속성을 가지고 있다.
+
+ex) Text 노드의 nodeType = 3 , nodeName = #text
+
+여기서 nodeType의 3은 Node.TEXT_NODE를 가리키며 흔히 사용되는 노드들의 숫자 값은 외워두는 것이 좋다.
+
+`console.log(document.doctype.nodeName); // html 출력`
+
+`console.log(document.doctype.nodeType); // DOCUMENT_TYPE_NODE에 매핑되는 10 출력`
+
+```javascript
+<body>
+  <a href="#">Hi</a>
+</body>
+
+const a = document.querySelector("a");
+const aText = document.querySelector("a").firstChild; // Hi라는 Text Node
+console.log(a.nodeName); // "A" 출력
+console.log(a.nodeType); // ELEMENT_NODE에 매핑되는 1이 출력
+
+console.log(aText.nodeName); // "#text" 출력
+console.log(aText.nodeType); // TEXT_NODE에 매핑되는 3 출력
+```
+
+노드 유형을 판별하는 가장 빠른 방법이 바로 nodeType 속성을 확인하는 것이다.
+
+노드 유형을 판별하는 것은 노드에서 사용 가능한 속성과 메서드를 알 수 있게 해주므로, 스크립트 사용시 매우 유용하다.
+
+### 노드 값 가져오기
+
+노드 값을 가져오기 위해서는 nodeValue라는 속성을 이용하는데 이 값은 Text와 Comment를 제외한 대부분의 노드 유형에서는 null을 리턴한다.
+
+즉 __DOCUMENT_TYPE_NODE__,__DOCUMENT_NODE__,__DOCUMENT_FRAGMENT_NODE__,__ELEMENT_NODE__의 nodeValue를 출력해보면 모두 null이 출력된다.
+
+따라서 Text나 Comment에서는 nodeValue를 활용해 해당 값을 가져올 수도 있고 nodeValue를 이용해 값을 넣어 줄 수도 있다.
+
+<hr/>
+
+## JS 메서드를 이용해 Element , Text 노드 생성하기
+
+앞에서 말했지만 브라우저는 HTML 문서를 해석할 때 HTML 파일 내용을 기반으로 해 노드와 트리를 구성한다.
+
+즉 브라우저가 HTML 문서를 초기 로딩할 때 노드 생성이 이루어진다.
+
+그러나 JavaScript를 사용해 직접 Node를 동적으로 생성하는 것도 가능하다.
+
+`createElement()`와`createTextNode()` 를 이용해 Node를 만들어 보자.
+
+```javascript
+const elementNode = document.createElement("div");
+console.log(elementNode,elementNode.nodeType); // <div> 1 을 출력
+
+const textNode = document.createTextNode("Text");
+console.log(textNode,textNode.nodeType); // Text {} 3을 출력
+```
+
+### createElement()
+
+createElement() 메서드는 생성될 element를 지정하는 문자열을 인자로 전달해줘야 한다.
+
+단 createAttribute() 메서드는 사용하는 대신에 getAttribute(),setAttribute(),removeAttribute()를 사용한다.
+
+<hr/>
+
+## JS 문자열 사용해 DOM에 Element 및 Text노드 생성하기
+
+- innerHTML
+- outerHTML
+- textContent
+- insertAdjacentHTML()
+- insertAdjacentText()
+- insertAdjacentElement()
+
+이 Element 속성과 메서드는 DOM에 노드를 생성하고 추가하는 기능을 제공한다.
+
+### Element.innerHTML
+
+문자열로 HTML 요소를 전달해주면 실제 DOM 노드 변환하고 이를 Element안에 넣어준다.
+
+```javascript
+// <body><div>innerHTML</div></body> 와 같은 구조를 가지게 된다.
+document.body.innerHTML = "<div>innerHTML</div>"
+
+```
+
+### Element.outerHTML
+
+```javascript
+<body><div id="B"></div></body>
+
+document.querySelector("#B").outerHTML = "<h1>와우</h1>"
+
+// <body><h1>와우</h1></body>
+```
+
+### Element.textContent
+
+textNode를 생성하고 이를 Element에 넣어준다.
+
+따라서 innerHTML과는 다르게 문자열에 HTML 요소가 있더라도 textContent는 단순히 문자열로 출력한다.
+
+예를들어 위의 innerHTML과 똑같은 코드를 textContent로 변경했다고 하면
+
+document.body.innerHTML은 `<body>"<div>innerHTML</div>"</body>`가 출력된다.
+
+만약 단순히 Element에 Text Node를 넣어줄 것이라면 innerHTML보다는 textContent를 사용하는게 효율적이다.
+
+왜냐하면 innerHTML은 무겁고 비용이 비싼 HTML 파서를 호출하는데 비해 textContent는 단순히 텍스트 노드를 생성하기 때문이다.
+
+### Element.innerText
+
+textContent와 기본적으로 비슷하다 결정적으로 다른점이 존재한다.
+
+textContent는 `<script> 및 <style>` 요소를 비롯한 모든 요소의 내용을 가져올 수 있지만 innerText는 그렇지 않다.
+
+innerText는 `<style>`에 대해서 알고는 있지만 만약 style에 display:none이 걸려있는 텍스트는 반환하지 않는다.
+
+즉 innerText는 브라우저에서 눈에 보이는 Text만 반환하고 textContent는 모든 텍스트를 반환한다.
+
+### Element.insertAdjacentHTML,TEXT,Element
+
+이 세개의 메서드는 비슷한 기능을 하지만 전달되는 인자의 타입이 다르다.
+
+`Element.insertAdjacentHTML(where:InsertPosition,html:string)`
+`Element.insertAdjacentTEXT(where:InsertPosition,text:string)`
+`Element.insertAdjacentElement(where:InsertPosition,insertedElement:Element)`
+일단 세 메서드의 공통점은 첫번째 인자에 따라서 해당 위치에 insert 해준다.
+HTML과 TEXT는 string 타입을 동일하게 전달 받지만 이 둘의 차이는 innerHTML과 textContext와 동일하다.
+
+Element는 해당 객체 안에 넣어줄 Element를 전달해줘야하며 전달된 Element를 리턴한다.
+
+#### 🚫 insertAdjacentHTML의 주의할 점
+
+insertAdjacentHTML의 beforebegin 및 afterend 옵션은 노드가 DOM 트리 내에 존재하고
+
+부모 요소를 가진 경우에만 동작한다.
+
+<hr/>
+
+## removeChild() 및 replaceChild()를 사용해 노드 제거하거나 바꾸기
+
+삭제하고자 하는 Element의 부모 Element를 찾아야 하므로 Element.parentNode 속성을 이용한다.
+
+Element.parentNode.removeChild(Element);
+
+Element의 부모에 접근해 자식요소 중 Element를 찾아서 삭제 해준다.
+
+만약 노드를 제거하는게 아니라 업데이트 하고자 한다면 replaceChild(newElem,oldElem)를 이용한다.
+
+```javascript
+<body>
+  <div id="A">Hi</div>
+  <div id="B">Moon</div>
+</body>
+```
+
+> Element Node 변경하기 div -> span
+```javascript
+const divA = document.querySelector("#A");
+const newSpan = document.createElement("span");
+newSpan.textContent = "변경할 노드";
+// divA를 newSpan으로 변경
+divA.parentNode.replaceChild(newSpan,divA);
+```
+
+> Text Node 변경하기 Moon -> Kamoo
+```javascript
+const divB = document.querySelector("B");
+const text = document.createTextNode("Kamoo");
+divB.replaceChild(text,divB.firstChild);
+```
+
+<hr/>
+
+## cloneNode() 사용해 복제하기
+
+cloneNode() 메서드를 사용해 단일 노드 혹은 모든 자식 노드를 복제할 수 있다.
+
+```javascript
+<body>
+  <ul>
+  	<li>1</li>
+	<li>2</li>
+  </ul>
+</body>
+```
+
+> 단일 노드 복제
+```javascript
+// ul 노드 하나만 복제 됨
+const cloneUL = document.querySelector("ul").cloneNode();
+console.log(cloneUL.innerHTML); //ul노드 하나만 복제 되었으므로 텅빈 문자열이 출력
+```
+> 해당 노드 + 모든 자식 노드 복제
+```javascript
+const cloneUL = document.querySelector("ul").cloneNode(true);
+console.log(cloneUL.innerHTML); // <li>1</li><li>2</li> 출력
+```
+
+🚫 단! Element를 복제할 때 모든 특성 및 값(인라인 이벤트 포함)도 복제된다.
+그러나 addEventListener()나 node.onclick으로 추가된 것은 복제되지 않는다.
+
+<hr/>
+
+## 노드 컬렉션(NodeList,HTMLCollection)
+
+NodeList와 HTMLCollection은 배열이 아니고 배열과 비슷한 유사 배열 객체이다.
+
+이들은 다음과 같은 특징을 가진다.
+
+- 기본적으로 노드는 트리 순서에 따라 컬렉션 내에서 정렬된다.
+- 컬렉션은 리스트 내의 요소 개수를 나타내는 length 속성을 가진다.
+
+```javascript
+const yousaArray = {
+   0:"A",
+   1:"B",
+   2:"C",
+   length:3
+}
+```
+
+만약 해당 노드의 자식 노드들을 배열 형태의 리스트(NodeList)로 얻고 싶다면 childNodes 속성을 이용한다.
+
+```javascript
+<ul>
+  <li>1</li>
+  <li>2</li>
+</ul>
+
+const ulElementChildNodes = document.querySelector("ul").childNodes;
+console.log(ulElementChildNodes);
+// NodeList(5) : [text,li,text,li,text];
+// 줄바꿈도 하나의 textNode이기 때문에 총 5개의 노드들이 출력된다.
+console.log(ulElementChildNodes.length); // 5
+```
+
+### NodeList나 HTMLCollection의 차이
+
+NodeList는 querySelectorAll() 또는 childNodes 속성을 이용했을 때 리턴된다.
+
+HTMLCollection은 대표적으로 childeren 속성을  이용했을 때 리턴된다.
+
+두 컬렉션 다 유사 배열이므로 JS의 배열이 아니라 기본적으로 Array APIs를 사용할 수 없다.
+
+최신 브라우저에서는 NodeList에서 forEach() 단하나 만을 사용할 수 있도록 한다.
+
+### NodeList의 querySelectorAll() 과 childNodes의 차이
+
+Node.childNodes는 라이브 컬렉션이므로 DOM의 변경 사항을 실시간으로 반영하는 반면에
+
+document.querySelectorAll()은 정적 컬렉션으로 DOM이 변경되어도 collection 내용에는 영향을 주지 않는다.
+
+참고로 HTMLCollection인 children도 라이브 컬렉션이다.
+
+라이브 컬렉션과 정적 컬렉션을 잘 구분하여 사용 해야지만 내가 원하는 기능을 정확히 구현 할 수 있다.
+
+예를 들면 getElementsByClassName을 이용해 HTMLCollection을 가져온다고 했을 때
+
+3개의 아이템이 들어왔고 length가 3이라고 가정해보자
+
+이때 for 루프를 돌면서 ClassName을 변경하는 작업을 했을 때 제대로 구현이 되지 않는다.
+
+그 이유는 라이브 컬렉션이기 때문에 첫번째 루프를 돌고서는 HTMLCollection의 length는 2로 변경되므로 3번째 루프를 돌때는 HTMLCollection의 length가 1이라 에러가 발생한다.
+
+따라서 이를 해결하기 위해서는 정적 콜렉션으로 변경해주는게 제일 좋은 방법인 것 같다.
+
+<hr/>
+
+## 유사배열을 배열로 변환하는 방법
+
+유사배열을 Array의 isArray 메서드를 이용해 출력해보면 당연히 false를 리턴한다.
+
+유사배열을 배열로 변경해서 모든 Array 메서드를 사용하기 위해서는 총 3가지의 방법이 존재한다.
+
+### call 또는 apply 사용하기
+
+```javascript
+Array.prototype.forEach.call(ulElementChildNodes,function(item){
+   console.log(item);
+})
+```
+
+### [].forEach 사용하기
+별다른 것을 없고 Array.prototype을 [].을 이용해 사용 할 수 있다.
+
+### Array.from 이용하기
+Array.from(유사배열)는 유사배열을 배열로 변환해 리턴해준다.
+
+## 노드 탐색 속성 알아보기
+
+- parentNode : 부모 노드를 리턴
+- firstChild : 자식 중 첫번째 자식 노드 리턴
+- firstElementChild : 자식 중 첫번째 자식 노드 리턴 단, Element만 리턴 TextNode는 무시
+- lastChild : 자식 중 마지막 노드를 리턴
+- lastElementChild : 자식 중 마지막 Element Node 자식 리턴
+- nextSibling : 이전 형제 노드를 리턴
+- previousSibling : 다음 형제 노드를 리턴
+- nextElementSibling : 이전 형제 Element 노드 리턴
+- previousElementSibling : 다음 형제 Element 노드 리턴
+- children : 텍스트 노드를 제외한 자식 노드들을 리턴 (HTMLCollection)
+- childElementCount : 노드가 가지고 있는 자식 Element의 개수를 계산
+
+## contains()
+
+contains() 메서드는 특정 노드가 다른 노드 내에 포함되어 있는지를 판단하고 불린값을 리턴하는 메서드이다.
+
+```javascript
+// <body>가 <html> 내에 있는지 알아보기
+
+if(document.querySelector("html").contains(document.querySelector("body"))){
+  console.log("true");
+}
+```
+
+## 두 노드 동일한지 판단하기
+
+두 노드가 동일하기 위한 조건은 다음과 같다.
+
+- nodeName,localName,namespaceURI,prefix,nodeValue가 동일하다.
+둘다 null 이거나 동일한 길이나 동일한 문자를 가져야 한다.
+- childNodes와 NodeLists가 동일하다.
+- isEqualNode() 메서드를 사용해 비교해 true가 리턴된다.
+
