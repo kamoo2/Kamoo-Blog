@@ -5,13 +5,12 @@ import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 
 import { fontSans } from '@/app/lib/fonts';
+import { GA_TRACKING_ID } from '@/app/lib/gtag';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import KbarContainer from '@/components/KbarContainer';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import ThemeContainer from '@/components/ThemeContainer';
-import Script from 'next/script';
-import { GA_TRACKING_ID } from '@/app/lib/gtag';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 dayjs.locale('ko');
 export const metadata: Metadata = {
