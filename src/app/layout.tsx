@@ -9,6 +9,9 @@ import KbarContainer from '@/components/KbarContainer';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import ThemeContainer from '@/components/ThemeContainer';
+import Script from 'next/script';
+import { GA_TRACKING_ID } from '@/app/lib/gtag';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 dayjs.locale('ko');
 export const metadata: Metadata = {
@@ -31,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <meta name="naver-site-verification" content="6f5aab5f6f773efd395ce937f872dfc578617d89" />
       </head>
+      <GoogleAnalytics GA_MEASUREMENT_ID={GA_TRACKING_ID} />
       <body className="no-scrollbar">
         <ThemeContainer>
           <KbarContainer>
