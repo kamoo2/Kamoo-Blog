@@ -29,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           name="google-site-verification"
           content="_rdNeAEdVwiFZJVhLeCqqV9SRacwSp2f_Q0uDS_8eBg"
         />
+        <meta name="naver-site-verification" content="6f5aab5f6f773efd395ce937f872dfc578617d89" />
       </head>
       <body className="no-scrollbar">
         <ThemeContainer>
