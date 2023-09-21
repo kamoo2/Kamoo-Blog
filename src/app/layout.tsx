@@ -21,10 +21,15 @@ export const metadata: Metadata = {
     icon: 'favicon.ico',
   },
 };
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={fontSans.className}>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="_rdNeAEdVwiFZJVhLeCqqV9SRacwSp2f_Q0uDS_8eBg"
+        />
+      </head>
       <body className="no-scrollbar">
         <ThemeContainer>
           <KbarContainer>
