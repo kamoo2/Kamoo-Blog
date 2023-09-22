@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 
 import { allBlogTagsWithCount, allSnippetTagsWithCount } from '@/app/lib/post';
-import { getAllMenus } from '@/app/service/posts';
 import MobileMenu from '@/components/MobileMenu';
 import ProgressBar from '@/components/ProgressBar';
 import QuickSearchButton from '@/components/QuickSearchButton';
@@ -12,8 +11,7 @@ function MobileMenuFallback() {
   return <></>;
 }
 
-export default async function Header() {
-  const menus = await getAllMenus();
+export default function Header() {
   return (
     <div className="sticky left-0 top-0 z-10">
       <header className="text-primary bg-primary border-primary border-b py-2">
@@ -23,7 +21,24 @@ export default async function Header() {
           </Link>
           <Suspense fallback={<MobileMenuFallback />}>
             <MobileMenu
-              menus={menus}
+              menus={[
+                {
+                  name: 'Blog',
+                  path: '/blog',
+                },
+                {
+                  name: 'Snippets',
+                  path: '/snippets',
+                },
+                {
+                  name: 'Archives',
+                  path: '/archives',
+                },
+                {
+                  name: 'Contact',
+                  path: '/contact',
+                },
+              ]}
               blogTagList={allBlogTagsWithCount}
               snippetTagList={allSnippetTagsWithCount}
             />
