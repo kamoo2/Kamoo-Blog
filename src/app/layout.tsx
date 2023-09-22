@@ -1,6 +1,7 @@
 import './globals.css';
 import 'dayjs/locale/ko';
 
+import { Analytics } from '@vercel/analytics/react';
 import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </KbarContainer>
         </ThemeContainer>
+        <Analytics />
       </body>
     </html>
   );
