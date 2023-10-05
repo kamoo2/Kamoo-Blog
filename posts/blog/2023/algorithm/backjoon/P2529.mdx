@@ -1,0 +1,82 @@
+---
+title: 백준 - 부등호 (JS)
+description: 백준의 백트레킹 문제인 부등호(실버 1) 입니다.
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-04 17:00:00
+---
+
+## Link
+https://www.acmicpc.net/problem/2529
+
+<hr/>
+
+## Problem
+
+> 0 ~ 10 까지의 숫자를 주어진 부등호에 맞게 넣고, 최대값과 최소값을 구하자!
+
+1. 주어진 부등호 순서열의 부등호 앞 뒤에 숫자를 넣는다. 단 주어진 부등호 관계를 만족시켜야 한다.
+2. 각 부등호의 앞뒤에 들어가는 숫자는 {0,1,2,3,4,5,6,7,8,9}중에서 선택해야 하며 선택된 숫자는 모두 달라야 한다.
+
+<hr/>
+
+## Solve
+
+- N+1인 경우에 부등호 관계를 만족시키는 경우 이므로 최대값과 최소값 비교
+- Math.max로 비교하면 0이 지워지므로 문자열로 만들고 맨처음 max는 min, 마지막 max는 max로 만들어지도록 구현
+
+<hr/>
+
+## Code
+
+```javascript
+let fs = require('fs');
+
+let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+let N = Number(input[0]);
+
+let selected = [];
+let operations = [];
+let visited = Array(N).fill(false);
+let max ='';
+let min ='';
+
+for(let a of input[1].split(' ')){
+    operations.push(a);
+}
+
+function dfs(depth){
+    if(depth === N+1){
+        // complete code
+
+        max = '';
+        for(let x of selected)max += x+'';
+        if(min === '') min = max;
+        return;
+    }
+
+    for(let i=0;i<10;i++){
+        if(visited[i])continue;
+        if(depth === 0){
+            visited[i]=true;
+            selected.push(i);
+        }else{
+            // 연산자에 맞는 경우에만 push
+            let possible = operations[depth-1] === '>' ? selected[depth-1] > i : selected[depth-1] < i;
+            if(!possible)continue;
+            visited[i]=true;
+            selected.push(i);
+        }
+        dfs(depth+1);
+        visited[i]=false;
+        selected.pop();
+    }
+}
+
+dfs(0);
+
+console.log(max + '\n' + min)
+```
+

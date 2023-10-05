@@ -1,0 +1,62 @@
+---
+title: 백준 - 도영이가 만든 맛있는 음식 (JS)
+description: 백준의 백트레킹 문제인 도영이가 만든 맛있는 음식 (실버 2) 입니다.
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-04 17:00:00
+---
+
+## Link
+https://www.acmicpc.net/problem/2961
+
+<hr/>
+
+## Problem
+
+> 신맛과 쓴맛의 최소값을 구하자!
+
+1. 요리에 들어가는 재료가 주어진다.
+2. 재료는 적어도 1개 이상 선택해야한다.
+3. 선택된 재료의 신맛은 곱하기로 쓴맛은 더하기로 계산한다.
+
+
+<hr/>
+
+## Solve
+
+- 재료를 적어도 한개 이상 선택해야 하므로 1개 뽑은 경우 , 2개 뽑은 경우, N개 뽑은 경우에서 최소값을 비교 갱신 해준다.
+- 신맛은 곱하기로 계산하므로 초기값을 1로, 쓴맛은 더하기로 계산하므로 초기값을 0으로 설정한다.
+- start가 0인 경우 즉 어떠한 재료도 선택되지 않은 경우를 제외해주지 않으면 최소값은 항상 1이 나오므로 제외
+
+<hr/>
+
+## Code
+
+```javascript
+let fs = require('fs');
+
+let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+let N = Number(input[0]);
+let foods = [];
+let min = Number.MAX_VALUE;
+
+for(let i=1;i<=N;i++){
+    foods.push(input[i].split(' ').map(Number));
+}
+
+function dfs(start,sin,ssn){
+    if(start > 0){
+        min = Math.min(min,Math.abs(sin-ssn));
+    }
+
+    for(let a=start;a<N;a++){
+        dfs(a+1,sin*foods[a][0],ssn+foods[a][1]);
+    }
+}
+
+dfs(0,1,0);
+console.log(min);
+```
+

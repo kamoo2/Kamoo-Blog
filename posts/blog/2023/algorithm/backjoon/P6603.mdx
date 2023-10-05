@@ -1,0 +1,77 @@
+---
+title: 백준 - 로또 (JS)
+description: 백준의 백트레킹 문제인 로또(실버 2) 입니다.
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-04 17:00:00
+---
+
+## Link
+https://www.acmicpc.net/problem/6603
+
+<hr/>
+
+## Problem
+
+> 주어진 수열에서 6개를 선택하는 경우의 수를 구하자. 단 중복 불가
+
+1. 입력의 첫번째 수는 수열의 개수, 후로는 수열이 입력 된다.
+2. 첫번째 수가 0인 경우 입력을 종료한다.
+
+<hr/>
+
+## Solve
+
+- 간단한 수열 중 중복 없이 6개를 뽑는 문제
+- 입력의 마지막 줄에 0이 주어지는 부분만 처리해주면 된다.
+
+<hr/>
+
+## Code
+
+```javascript
+let fs = require('fs');
+
+let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+let ans = '';
+let LIMIT = 6;
+let selected;
+let arr;
+
+for(let t=0;;t++){
+    let line = input[t].split(' ').map(Number);
+    let N = line[0];
+    if(N === 0)break;
+
+    arr = [];
+    selected = [];
+    for(let i=1;i<=N;i++){
+        arr.push(line[i]);
+    }
+
+    dfs(N,1,0);
+    ans+='\n';
+}
+
+function dfs(N,depth,start){
+    if(depth === LIMIT+1){
+        // complete code
+        for(let i=0;i<LIMIT;i++){
+            ans+= selected[i] + ' ';
+        }
+        ans+='\n';
+        return;
+    }
+
+    for(let a = start;a<N;a++){
+        selected.push(arr[a]);
+        dfs(N,depth+1,a+1);
+        selected.pop();
+    }
+}
+
+console.log(ans);
+```
+
