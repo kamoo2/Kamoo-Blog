@@ -25,7 +25,6 @@ export default function BlogPage(props: Props) {
     return ac;
   }, {});
 
-  console.log(tagPostList);
   const combinedPostWithKeys = Object.keys(tagPostList)
     .map<PostCombinedKey>((key) => ({
       key,
