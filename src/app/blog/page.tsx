@@ -25,6 +25,7 @@ export default function BlogPage(props: Props) {
     return ac;
   }, {});
 
+  console.log(tagPostList);
   const combinedPostWithKeys = Object.keys(tagPostList)
     .map<PostCombinedKey>((key) => ({
       key,
@@ -35,14 +36,7 @@ export default function BlogPage(props: Props) {
   const post = isAll
     ? {
         key: 'all',
-        postList: combinedPostWithKeys.reduce<ReducedPost[]>((ac, post) => {
-          post.postList.forEach((post) => {
-            if (!ac.includes(post)) {
-              ac.push(post);
-            }
-          });
-          return ac;
-        }, []),
+        postList: reducedAllBlogPosts,
       }
     : combinedPostWithKeys.filter((post) => {
         return selectedKey === post.key.toLowerCase();

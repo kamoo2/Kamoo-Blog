@@ -1,0 +1,46 @@
+---
+title: 프로그래머스 - 예상 대진표 (JS)
+description: 프로그래머스의 2017 팁스타운 카테고리의 예상 대진표(LV2) 문제입니다.
+tags:
+  - Algorithm
+  - Programmers
+createdAt: 2023-10-06 23:56:00
+---
+
+## Link
+https://school.programmers.co.kr/learn/courses/30/lessons/12985
+
+<hr/>
+
+## Problem
+
+> 1 ~ N개의 사람들의 대진표가 주어졌을 때 A와 B가 몇 번째 라운드에서 만나게 되는지 구하자 !
+
+1. (1,2) (3,4) (5,6) ... (N-1,N) 으로 그룹이 만들어진다.
+2. 각 승리한 사람을 다시 모아 그룹을 만든다.
+
+<hr/>
+
+## Code
+
+```javascript
+function solution(n,a,b)
+{
+    let ans = 0;
+    // 2로 계속 나누면서 몇번째 그룹에 속해있는지 체크
+    let nn = n;
+    let na = a;
+    let nb = b;
+    while(true){
+        nn /= 2;
+        ans++; // 라운드 증가
+        na = Math.ceil(na/2);
+        nb = Math.ceil(nb/2);
+
+        if(na === nb)break;
+    }
+
+    return ans;
+}
+```
+
