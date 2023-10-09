@@ -1,0 +1,43 @@
+---
+title: 프로그래머스 - N개의 최소공배수 (JS)
+description: 프로그래머스의 연습문제 카테고리의 N개의 최소공배수(LV2) 문제입니다.
+tags:
+  - Algorithm
+  - Programmers
+createdAt: 2023-10-10 02:40:00
+---
+
+## Link
+https://school.programmers.co.kr/learn/courses/30/lessons/12953
+
+<hr/>
+
+## Problem
+
+> N개의 수의 최소공배수를 구하자 !
+
+1. 두 수의 최소공배수란 입력된 두 수의 배수 중 공통이 되는 가장 작은 숫자를 의미합니다.
+2. N개의 수의 최소공배수는 N개의 수들의 배수 중 공통이 되는 가장 작은 숫자를 의미합니다.
+
+<hr/>
+
+## Solve
+
+유클리드 호제법을 활용하여 문제를 풀었습니다.
+https://kamoo.vercel.app/blog/2023/study/algorithm/euclidean_algorithm
+
+<hr/>
+
+## Code
+
+```javascript
+function GCD(a,b){
+    if(b===0)return a;
+    else return GCD(b,a%b);
+}
+
+function solution(arr) {
+    return arr.reduce((a,b)=> a*b/GCD(a,b),1);
+}
+```
+
