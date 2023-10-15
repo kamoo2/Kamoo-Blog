@@ -1,6 +1,7 @@
 ---
 title: 백준 - 모든순열 (JS)
 description: 백준의 백트레킹 문제인 모든순열(실버 3) 입니다.
+thumbnail: /images/posts/P1707/231015-171700.png
 tags:
   - Algorithm
   - BOJ
@@ -8,9 +9,10 @@ createdAt: 2023-10-02 02:31:00
 ---
 
 ## Link
+
 https://www.acmicpc.net/problem/10974
 
-<hr/>
+<hr />
 
 ## Problem
 
@@ -19,7 +21,7 @@ https://www.acmicpc.net/problem/10974
 `입력` 첫째 줄에 N이 주어진다.
 `출력` 첫째 줄부터 N!개의 줄에 걸쳐서 모든 순열을 사전순으로 출력한다.
 
-<hr/>
+<hr />
 
 ## Code
 
@@ -30,33 +32,32 @@ let input = fs.readFileSync('/dev/stdin').toString().split('\n');
 
 let N = Number(input[0]);
 
-let visited = Array(N+1).fill(false); // 정답 2차원 배열
+let visited = Array(N + 1).fill(false); // 정답 2차원 배열
 
 let selected = [];
 
-let ans = "";
-function dfs(k){ // n개의 숫자의 모든 순열을 만드는 함수
-    // 1 ~ N까지의 숫자
-    if(k === N+1){
-        // complete code
-        for(let x of selected) ans += x + " ";
-        ans+="\n";
-        return;
-    }
-    // 마지막 노드에 도착하지 못한 경우
-    for(let i=1;i<=N;i++){
-        if(visited[i])continue;
-        visited[i] = true;
-        selected.push(i);
-        dfs(k+1);
-        visited[i] = false;
-        selected.pop();
-    }
+let ans = '';
+function dfs(k) {
+  // n개의 숫자의 모든 순열을 만드는 함수
+  // 1 ~ N까지의 숫자
+  if (k === N + 1) {
+    // complete code
+    for (let x of selected) ans += x + ' ';
+    ans += '\n';
+    return;
+  }
+  // 마지막 노드에 도착하지 못한 경우
+  for (let i = 1; i <= N; i++) {
+    if (visited[i]) continue;
+    visited[i] = true;
+    selected.push(i);
+    dfs(k + 1);
+    visited[i] = false;
+    selected.pop();
+  }
 }
-
 
 dfs(1);
 
 console.log(ans);
 ```
-

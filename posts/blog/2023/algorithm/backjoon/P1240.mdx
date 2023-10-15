@@ -1,0 +1,77 @@
+---
+title: 백준 - 노드사이의 거리 (JS)
+description: 백준의 DFS 문제인 노드사이의 거리(골드 5) 입니다.
+thumbnail: /images/posts/P1707/231015-171700.png
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-08 23:00:01
+---
+
+## Link
+
+https://www.acmicpc.net/problem/1240
+
+<hr />
+
+## Problem
+
+> N개의 노드로 이루어진 트리에서 M개의 노드쌍에 대한 두 노드 사이의 거리를 구하자 !
+
+<hr />
+
+## Solve
+
+- 깊이우선탐색을 이용해 문제를 풀었다.
+- 입력값에 따라 그래프에 대한 정보를 인접리스트를 만들고 두 노드의 거리를 dfs를 이용해 구한다.
+- M개의 거리를 알고 싶은 노드 쌍을 [x,y]를 받는다면 x에서 갈 수 있는 모든 노드에 대한 dist(거리)를 distanced 배열에 저장한다.
+- dfs가 끝나면 distanced[노드 쌍의 y값]을 출력한다.
+
+<hr />
+
+## Code
+
+```javascript
+let fs = require('fs');
+
+let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+// 입력 값
+// N : 노드의 개수
+// M : 거리를 알고 싶은 노드 쌍 개수
+// 연결된 두 점과 거리
+// M개의 노드쌍
+
+let [N, M] = input[0].split(' ').map(Number);
+let graph = [];
+let visited;
+let distanced;
+for (let i = 1; i <= N; i++) graph[i] = [];
+
+for (let i = 1; i < N; i++) {
+  // x : 노드1 y : 노드2 d : 노드1과노드2의 거리
+  let [x, y, d] = input[i].split(' ').map(Number);
+  graph[x].push([y, d]);
+  graph[y].push([x, d]);
+}
+
+// 각 쿼리 마다 거리 계산
+for (let i = 0; i < M; i++) {
+  let [x, y] = input[N + i].split(' ').map(Number);
+  visited = new Array(N + 1).fill(0);
+  distanced = new Array(N + 1).fill(-1); // 시작 노드에서 모든 노드에 방문했을 때의 거리
+  dfs(x, 0);
+  console.log(distanced[y]);
+}
+
+function dfs(x, dist) {
+  visited[x] = 1; // 방문 체크
+  distanced[x] = dist; // 거리를 갱신
+  for (let node of graph[x]) {
+    let nx = node[0];
+    let cost = node[1];
+    if (visited[nx]) continue;
+    dfs(nx, dist + cost);
+  }
+}
+```

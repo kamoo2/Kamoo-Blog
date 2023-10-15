@@ -1,0 +1,66 @@
+---
+title: 백준 - 합 구하기 (JS)
+description: 백준의 합 구하기(실버 3) 문제 입니다.
+thumbnail: /images/posts/P1707/231015-171700.png
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-14 23:00:01
+---
+
+## Link
+
+https://www.acmicpc.net/problem/11441
+
+<hr />
+
+## Problem
+
+> N개의 수가 주어졌을 때, i번째의 수부터 j번째 수까지 합을 구하자.
+
+- 첫째 줄에 개수 N
+- 둘째 줄에 N개의 수가 주어진다.
+- 셋째 줄에 구간의 개수 M
+- 넷째 줄에 M개의 (i,j)가 주어진다.
+
+<hr />
+
+## Solve
+
+> 이중 for문을 이용해 풀면 시간 초과가 나기 때문에 누적합을 이용해 풀자.
+
+1. 누적합 P를 만든다.
+2. P[3] = Arr[1] + Arr[2] + Arr[3]
+3. 2번째에서 3번째 수까지의 합을 누적합 배열을 이용해 구한다면 다음과 같다.
+4. P[3] - P[1] = Arr[1] + Arr[2] + Arr[3] - Arr[1] = Arr[2] + Arr=[3]
+
+<hr />
+
+## Code
+
+```javascript
+const fs = require('fs');
+
+const input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+const N = Number(input[0]);
+
+const data = [0, ...input[1].split(' ').map(Number)];
+
+const M = Number(input[2]);
+
+const P = Array(N + 1).fill(0);
+
+for (let i = 1; i <= N; i++) {
+  P[i] = P[i - 1] + data[i];
+}
+
+let ans = '';
+for (let i = 3; i < M + 3; i++) {
+  const [a, b] = input[i].split(' ').map(Number);
+
+  ans += `${P[b] - P[a - 1]}\n`;
+}
+
+console.log(ans);
+```

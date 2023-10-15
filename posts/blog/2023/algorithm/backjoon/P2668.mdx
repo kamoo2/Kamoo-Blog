@@ -1,0 +1,74 @@
+---
+title: 백준 - 숫자고르기 (JS)
+description: 백준의 숫자고르기(골드 5) 문제 입니다.
+thumbnail: /images/posts/P1707/231015-171700.png
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-13 23:00:03
+---
+
+## Link
+
+https://www.acmicpc.net/problem/2668
+
+<hr />
+
+## Problem
+
+> 뽑은 숫자의 집합과 뽑은 숫자의 아래 줄의 숫자 집합이 일치하는 정수를 구하자.
+
+- 세로 두 줄, 가로로 N개의 칸으로 이루어진 표가 있다.
+- 첫째 줄의 각 칸에는 1,2,...,N이 차례대로 들어있고, 둘째 줄의 각 칸에는 1 ~ N의 정수 중 하나가 들어있다.
+- 첫째 줄의 숫자를 적절히 뽑았을 때의 정수 집합이, 뽑은 숫자의 아래 줄(둘째 줄)의 집합과 일치할 경우를 구하자
+
+<hr />
+
+## Solve
+
+> 두 집합이 일치한다는 말은 사이클을 이루는 경우를 의미한다.
+
+<hr />
+
+## Code
+
+```javascript
+let fs = require('fs');
+
+let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+const N = Number(input[0]);
+const map = new Array(N + 1);
+const visited = new Array(N + 1).fill(false);
+const finished = new Array(N + 1).fill(false);
+let ans = 0;
+const result = [];
+
+for (let i = 1; i <= N; i++) {
+  map[i] = Number(input[i]);
+}
+
+for (let i = 1; i <= N; i++) {
+  if (!visited[i]) dfs(i);
+}
+
+function dfs(node) {
+  visited[node] = true; // 방문 체크
+
+  const next = map[node]; // 다음 노드
+  if (!visited[next]) dfs(next); // 다음 노드에 방문하지 않았다면 dfs
+  else if (!finished[next]) {
+    // 방문했는데 완료되지 않은 노드 (사이클 완성)
+    for (let i = next; i !== node; i = map[i]) {
+      result.push(map[i]);
+      ans += 1;
+    }
+    result.push(map[node]);
+    ans += 1;
+  }
+  finished[node] = true;
+}
+
+console.log(ans);
+result.sort((a, b) => a - b).forEach((item) => console.log(item));
+```

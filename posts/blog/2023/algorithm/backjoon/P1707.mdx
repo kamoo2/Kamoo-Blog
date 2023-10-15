@@ -1,0 +1,92 @@
+---
+title: 백준 - 이분 그래프 (JS)
+description: 백준의 이분 그래프(골드 4) 문제 입니다.
+thumbnail: /images/posts/P1707/231015-171700.png
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-13 23:00:05
+---
+
+## Link
+
+https://www.acmicpc.net/problem/1707
+
+<hr />
+
+## Problem
+
+> 주어진 그래프가 이분그래프인지 아닌지를 판별해보자.
+
+- 그래프의 정점의 집합을 둘로 분할하여, 각 집합에 속한 정점끼리는 서로 인접하지 않도록 분할할 수 있을 때, 이러한 그래프를 이분 그래프라 부른다.
+
+<br />
+
+<img src="/images/posts/P1707/231015-172632.png" alt="231015-172632" />
+
+<hr />
+
+## Code
+
+```javascript
+const fs = require('fs');
+
+const input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+const T = Number(input[0]);
+
+let line = 1;
+
+for (let t = 0; t < T; t++) {
+  const [V, E] = input[line].split(' ').map(Number);
+
+  const graph = [];
+  for (let i = 1; i <= V; i++) graph[i] = [];
+
+  for (let i = 1; i <= E; i++) {
+    const [u, v] = input[line + i].split(' ').map(Number);
+
+    graph[u].push(v);
+    graph[v].push(u);
+  }
+
+  const visited = new Array(V + 1).fill(false);
+  const dist = new Array(V + 1).fill(-1);
+
+  for (let i = 1; i <= V; i++) {
+    if (visited[i]) continue;
+    bfs(i, graph, visited, dist);
+  }
+  line += E + 1;
+
+  if (isBinaryGraph(graph, dist)) console.log('YES');
+  else console.log('NO');
+}
+
+function bfs(i, graph, visited, dist) {
+  const queue = [];
+  queue.push(i);
+  visited[i] = true;
+  dist[i] = 0;
+
+  while (queue.length !== 0) {
+    const np = queue.shift();
+
+    for (let point of graph[np]) {
+      if (visited[point]) continue;
+      queue.push(point);
+      visited[point] = true;
+      dist[point] = (dist[np] + 1) % 2;
+    }
+  }
+}
+
+function isBinaryGraph(graph, dist) {
+  for (let i = 1; i < dist.length; i++) {
+    for (let x of graph[i]) {
+      if (dist[x] === dist[i]) return false;
+    }
+  }
+  return true;
+}
+```

@@ -75,7 +75,7 @@ const getTagsWithCount = (kind: 'all' | 'blog' | 'snippets'): TagWithCount[] => 
   return allTags;
 };
 
-export const allBlogTagsWithCount = getTagsWithCount('blog');
+export const allBlogTagsWithCount = getTagsWithCount('blog').sort();
 
 export const allSnippetTagsWithCount = getTagsWithCount('snippets');
 
