@@ -1,0 +1,79 @@
+---
+title: 백준 - 숨바꼭질 (JS)
+description: 백준의 숨바꼭질(실버 1) 문제 입니다.
+thumbnail: /images/posts/P1707/231015-171700.png
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-13 23:00:06
+---
+
+## Link
+
+https://www.acmicpc.net/problem/1697
+
+<hr />
+
+## Problem
+
+> 수빈이와 동생이 숨바꼭질을 할 때, 몇 초후에 수빈이는 동생을 찾을 수 있을까 ?
+
+- 수빈이와 동생이 현재 위치한 좌표 X가 주어진다.
+- 수빈이가 1초동안 할 수 있는 행동은 총 3가지 이다.
+- 앞으로 한칸(+1) 걷기.
+- 뒤로 한칸(-1) 걷기.
+- (2 \* 현재위치)로 순간이동 하기.
+- 이때 수빈이가 동생을 찾을 수 있는 `가장 빠른 시간`이 몇 초 후인지 구하자.
+
+<hr />
+
+## Solve
+
+1. 가장 빠른 시간이라는 키워드가 주어지면 너비 우선 탐색을 이용해 dist 배열을 만들어 해결한다.
+2. 수빈이의 위치에서 시작해 1초후에 갈 수 있는 좌표 3가지 경우로 이동하면서 해당 위치에 도착했을 때의 시간을 dist 배열에 저장한다.
+3. 수빈이의 현재위치(curIdx)와 동생의 위치(M)가 일치하는 경우 dist[curIdx]를 return한다.
+
+<hr />
+
+## Code
+
+```javascript
+let fs = require('fs');
+
+let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+const MAX = 100001;
+const [N, M] = input[0].split(' ').map(Number);
+const visited = new Array(MAX).fill(false);
+const dist = new Array(MAX).fill(0);
+// N : 수빈이 위치
+// M : 동생 위치
+
+function bfs() {
+  // 너비 우선 탐색
+  const Q = [];
+  Q.push(N); // 현재 위치 저장
+  visited[N] = true;
+  dist[N] = 0;
+
+  while (Q.length !== 0) {
+    // Q가 빌 때까지 반복
+    let curIdx = Q.shift();
+    if (curIdx === M) {
+      return dist[curIdx];
+    }
+    for (let nextIdx of [curIdx - 1, curIdx + 1, curIdx * 2]) {
+      // 공간을 벗어난 경우 무시
+      if (nextIdx < 0 || nextIdx >= MAX) continue;
+      // 아직 방문하지 않은 곳
+      if (!visited[nextIdx]) {
+        Q.push(nextIdx);
+        visited[nextIdx] = true;
+        dist[nextIdx] = dist[curIdx] + 1;
+      }
+    }
+  }
+}
+
+console.log(bfs());
+```

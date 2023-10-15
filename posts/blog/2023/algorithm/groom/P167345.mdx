@@ -1,0 +1,88 @@
+---
+title: Groom - 단풍나무 (JS)
+description: Groom Level의 단풍나무 (난이도 3)문제 입니다.
+thumbnail: /images/posts/P167345/231015-172128.png
+tags:
+  - Algorithm
+  - Groom
+createdAt: 2023-10-13 22:00:00
+---
+
+## Link
+
+https://level.goorm.io/exam/167345/단풍나무/quiz/1
+
+<hr />
+
+## Problem
+
+> 구름공원의 단풍나무를 모두 물들이기 위해 몇일이 걸리는지 구하자!
+
+- N x N의 구름공원에 단풍나무가 심어져 있다.
+- 구름공원(S)의 (i,j)에는 물들지 않은 단풍나무의 개수가 주어진다. 0이라면 모두 물들었음을 의미한다.
+- S(i,j)는 매일 밤마다 상하좌우로 인접한 구역 중 그날 아침 기준으로 단풍나무가 모두 물들어 있는 수만큼 줄어든다.
+- 이때 며칠 후에 모든 단풍다무가 물들지 구해보자.
+
+<hr />
+
+## Solve
+
+1. 맵을 저장하면서 물들지 않은 단풍나무 수를 total에 누적시킨다.
+2. total이 0보다 작거나 같을 때까지 전체 맵을 돌면서 S(i,j)가 0이 아니면 상하좌우를 방문해 0인 개수 cnt를 구하고 그만큼 S(i,j)값을 감소시키는 로직을 반복한다.
+
+## Code
+
+```javascript
+const fs = require('fs');
+
+const input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+const N = Number(input[0]);
+
+let map = [];
+let copy = [];
+const dy = [1, 0, -1, 0];
+const dx = [0, 1, 0, -1];
+
+let total = 0;
+
+for (let i = 1; i <= N; i++) {
+  const line = input[i].split(' ').map(Number);
+  total += line.reduce((cur, acc) => (acc += cur), 0);
+  map.push(line.map((item) => item));
+  copy.push(line.map((item) => item));
+}
+let ans = 0;
+while (total > 0) {
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < N; j++) {
+      if (map[i][j] === 0) continue;
+
+      let cnt = 0;
+
+      for (let k = 0; k < 4; k++) {
+        const ny = i + dy[k];
+        const nx = j + dx[k];
+
+        if (ny < 0 || nx < 0 || ny >= N || nx >= N) continue;
+        if (map[ny][nx] === 0) cnt++;
+      }
+
+      if (map[i][j] === cnt) {
+        total -= cnt;
+        copy[i][j] = 0;
+      } else if (map[i][j] < cnt) {
+        total -= map[i][j];
+        copy[i][j] = 0;
+      } else {
+        total -= cnt;
+        copy[i][j] -= cnt;
+      }
+    }
+  }
+  map = copy.map((item) => [...item]);
+  ans++;
+}
+
+console.log(ans);
+```

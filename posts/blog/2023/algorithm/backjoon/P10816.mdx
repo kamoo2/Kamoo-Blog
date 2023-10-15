@@ -1,0 +1,88 @@
+---
+title: 백준 - 숫자 카드2 (JS)
+description: 백준의 숫자 카드2(실버 4) 문제 입니다.
+thumbnail: /images/posts/P1707/231015-171700.png
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-14 23:00:00
+---
+
+## Link
+
+https://www.acmicpc.net/problem/10816
+
+<hr />
+
+## Problem
+
+> M개의 숫자가 적힌 배열을 받았을 때 해당 수가 적혀있는 숫자 카드를 상근이는 몇 개 가지고 있을까 ?
+
+- 첫째 줄에 상근이가 가지고 있는 숫자 카드의 개수 N개가 주어진다.
+- 둘째 줄에 숫자 카드에 적혀있는 정수가 주어진다.
+- 셋째 줄에 M이 주어진다.
+- 넷째 줄에 상근이가 몇 개 가지고 있는 숫자 카드인지 구해야 할 M개의 정수가 주어진다.
+
+<hr />
+
+## Solve
+
+1. 이분탐색을 활용하기 위해 상근이의 숫자 카드 배열 data를 오름차순 정렬한다.
+2. 찾아야하는 정수가 존재하는 맨 왼쪽 인덱스와 맨 오른쪽 인덱스를 구한다.
+3. 두 인덱스의 차이가 해당 정수의 개수가 된다.
+
+<hr />
+
+## Code
+
+```javascript
+const fs = require('fs');
+
+const input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+const N = Number(input[0]);
+
+const data = input[1]
+  .split(' ')
+  .map(Number)
+  .sort((a, b) => a - b);
+
+const M = Number(input[2]);
+
+const arr = input[3].split(' ').map(Number);
+
+let result = [];
+for (let x of arr) {
+  const lb = lowerBound(0, N - 1, x);
+  const ub = upperBound(0, N - 1, x);
+  result.push(ub - lb);
+}
+
+function lowerBound(L, R, X) {
+  let ans = 0;
+  while (L <= R) {
+    let mid = parseInt((L + R) / 2);
+
+    if (data[mid] >= X) {
+      R = mid - 1;
+      ans = mid;
+    } else L = mid + 1;
+  }
+  return R;
+}
+
+function upperBound(L, R, X) {
+  let ans = 0;
+  while (L <= R) {
+    let mid = parseInt((L + R) / 2);
+
+    if (data[mid] > X) {
+      R = mid - 1;
+      ans = mid;
+    } else L = mid + 1;
+  }
+  return R;
+}
+
+console.log(result.join(' '));
+```

@@ -1,0 +1,84 @@
+---
+title: 백준 - 나이트의 이동 (JS)
+description: 백준의 BFS 문제인 나이트의 이동(실버 1) 입니다.
+thumbnail: /images/posts/P1707/231015-171700.png
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-13 23:00:02
+---
+
+## Link
+
+https://www.acmicpc.net/problem/7562
+
+<hr />
+
+## Problem
+
+> 체스판 위에 한 나이트가 있을 때 주어진 칸으로 이동하기 위해 몇번 움직여야 하는지 구하자!
+
+- 현재 나이트가 위치한 좌표가 주어진다.
+- 나이트는 한 번의 이동을 했을 때 총 8개의 좌표로 이동 가능하다.
+- 해당 좌표에 도착하기 위해 나이트가 최소 몇번만에 이동할 수 있는지 계산
+
+<hr />
+
+## Solve
+
+> 최소 몇번에 도착하는지를 구하는 문제이기 때문에 bfs를 이용할 수 있다.
+
+1. 시작 좌표에서 각 좌표에 도착할 때의 이동횟수를 dist 배열에 저장한다.
+2. bfs의 특성 상 도착할 때의 값이 최소값이 된다.
+
+<hr />
+
+## Code
+
+```javascript
+const fs = require('fs');
+
+const input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+const T = Number(input[0]);
+
+let line = 1;
+const dy = [-2, -1, 1, 2, -2, -1, 1, 2];
+const dx = [1, 2, 2, 1, -1, -2, -2, -1];
+
+for (let t = 0; t < T; t++) {
+  const N = Number(input[line]);
+  const [sy, sx] = input[line + 1].split(' ').map(Number);
+  const [ey, ex] = input[line + 2].split(' ').map(Number);
+
+  const visited = new Array(N).fill(0).map((_) => new Array(N).fill(false));
+  const dist = new Array(N).fill(0).map((_) => new Array(N).fill(0));
+
+  bfs(sy, sx, ey, ex, N, visited, dist);
+
+  console.log(dist[ey][ex]);
+  line += 3;
+}
+
+function bfs(sy, sx, ey, ex, N, visited, dist) {
+  const queue = [];
+  queue.push([sy, sx]);
+  dist[sy][sx] = 0;
+  visited[sy][sx] = true;
+
+  while (queue.length !== 0) {
+    const [y, x] = queue.shift();
+
+    for (let k = 0; k < 8; k++) {
+      const ny = y + dy[k];
+      const nx = x + dx[k];
+
+      if (ny < 0 || nx < 0 || ny >= N || nx >= N) continue;
+      if (visited[ny][nx]) continue;
+      queue.push([ny, nx]);
+      visited[ny][nx] = true;
+      dist[ny][nx] = dist[y][x] + 1;
+    }
+  }
+}
+```

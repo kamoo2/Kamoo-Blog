@@ -1,0 +1,71 @@
+---
+title: 백준 - 바이러스 (JS)
+description: 백준의 DFS 문제인 바이러스(실버 3) 입니다.
+thumbnail: /images/posts/P1707/231015-171700.png
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-08 23:00:02
+---
+
+## Link
+
+https://www.acmicpc.net/problem/2606
+
+<hr />
+
+## Problem
+
+> 네트워크를 통해 전파되는 신종 바이러스에 의해 감염되는 컴퓨터 수를 출력하자!
+
+1. 한 컴퓨터가 바이러스에 걸리면 그 컴퓨터와 네트워크 상에서 연결되어 있는 모든 컴퓨터는 바이러스에 감염된다.
+2. 컴퓨터의 수(정점) 서로 연결된 컴퓨터에 대한 정보(간선)이 주어진다.
+3. 1번 컴퓨터가 감염됬을 때, 감염되는 총 컴퓨터 수를 구하자!
+
+<hr />
+
+## Solve
+
+- 깊이우선탐색을 이용해 문제를 풀었다.
+- 입력 받은 정점과 간선 정보를 이용해 인접리스트를 만든다.
+- dfs(1)을 실행시켜 1번 정점에서 갈 수 있는 모든 정점에 방문할 때마다 ans++ 처리한다.
+
+<hr />
+
+## Code
+
+```javascript
+let fs = require('fs');
+
+let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+let N = Number(input[0]);
+let E = Number(input[1]);
+
+let graph = [];
+let visited = Array(N + 1).fill(false);
+let ans = 0;
+
+for (let i = 0; i <= N; i++) {
+  graph.push([]);
+}
+
+for (let i = 0; i < E; i++) {
+  let [x, y] = input[i + 2].split(' ').map(Number);
+  graph[x].push(y);
+  graph[y].push(x);
+}
+
+function dfs(startIdx) {
+  visited[startIdx] = true;
+
+  for (let x of graph[startIdx]) {
+    if (visited[x]) continue;
+    ans++;
+    dfs(x);
+  }
+}
+
+dfs(1);
+console.log(ans);
+```

@@ -1,0 +1,91 @@
+---
+title: 백준 - 단지번호붙이기 (JS)
+description: 백준의 단지번호붙이기(실버 1) 문제 입니다.
+thumbnail: /images/posts/P1707/231015-171700.png
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-10-13 23:00:04
+---
+
+## Link
+
+https://www.acmicpc.net/problem/2667
+
+<hr />
+
+## Problem
+
+> 지도가 주어졌을 때, 인접한 집들이 이루는 범위를 단지라고 할때 총 단지의 개수와 각 단지를 이루는 집의 개수를 출력하자.
+
+- 정사각형 모양의 지도가 있다. 1은 집이 있는 곳을, 0은 집이 없는 곳을 의미한다.
+- 연결된 집의 모임을 단지로 정의한다. 연결되었다는 것은 어떤 집의 상하좌우에 다른 집이 존재하는 것을 의미한다.
+- 단지 수와 각 단지에 속하는 집의 수를 오름차순 정렬하여 출력하자.
+
+<hr />
+
+## Solve
+
+1. 지도를 돌면서 집이 존재하고(1인 경우) 방문하지 않은 집이라면 탐색을 시작한다.
+2. 상하좌우를 이동하면서 방문체크한다.
+3. 갈 수 있는 모든 집을 방문 했다면 단지가 만들어진 것이기 때문에 group_cnt++ 해준다.
+4. 그리고 각 단지에 존재하는 집의 수를 배열에 push하고 이를 오름차순 정렬한 다음 출력시킨다.
+
+<hr />
+
+## Code
+
+```javascript
+let fs = require('fs');
+
+let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+let N = Number(input[0]);
+
+let graph = [];
+let group_cnt = 0;
+let ans = 0;
+let ansArr = [];
+let visited = [];
+let dy = [1, 0, -1, 0];
+let dx = [0, 1, 0, -1];
+
+// 맵 그래프 생성
+for (let i = 1; i <= N; i++) {
+  let line = input[i].split('').map(Number);
+  graph.push(line);
+}
+
+for (let i = 0; i < N; i++) {
+  visited[i] = new Array(N).fill(false);
+}
+
+for (let i = 0; i < N; i++) {
+  for (let j = 0; j < N; j++) {
+    if (graph[i][j] === 1 && !visited[i][j]) {
+      ans = 0;
+      dfs(i, j);
+      group_cnt++;
+      ansArr.push(ans);
+    }
+  }
+}
+
+function dfs(y, x) {
+  ans++;
+  visited[y][x] = true;
+  for (let k = 0; k < 4; k++) {
+    let ny = y + dy[k];
+    let nx = x + dx[k];
+    if (ny < 0 || nx < 0 || ny >= N || nx >= N) continue;
+    if (graph[ny][nx] === 0) continue;
+    if (visited[ny][nx]) continue;
+    dfs(ny, nx);
+  }
+}
+
+console.log(group_cnt);
+for (let x of ansArr.sort((a, b) => a - b)) {
+  console.log(x);
+}
+```

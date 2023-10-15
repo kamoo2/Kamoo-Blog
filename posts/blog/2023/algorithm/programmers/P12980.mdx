@@ -1,6 +1,7 @@
 ---
 title: 프로그래머스 - 점프와 순간 이동 (JS)
 description: 프로그래머스의 Summer/WinterCoding(~2018) 카테고리의 점프와 순간 이동(LV2) 문제입니다.
+thumbnail: /images/posts/P12953/231015-172042.png
 tags:
   - Algorithm
   - Programmers
@@ -8,9 +9,10 @@ createdAt: 2023-10-02 02:31:00
 ---
 
 ## Link
+
 https://school.programmers.co.kr/learn/courses/30/lessons/12980
 
-<hr/>
+<hr />
 
 ## Problem
 
@@ -19,7 +21,7 @@ https://school.programmers.co.kr/learn/courses/30/lessons/12980
 1. 아이언슈트는 K거리 만큼 점프할 수 있다! (건전지 사용량 K)
 2. 아이언슈트는 현재 위치의 두배인 위치로 순간이동이 가능하다! (건전지 사용량 0)
 
-<hr/>
+<hr />
 
 ## Solve
 
@@ -29,24 +31,25 @@ https://school.programmers.co.kr/learn/courses/30/lessons/12980
 
 이때 나오는 홀수의 개수가 전기사용량이 되는 것을 확인할 수 있었고, 이는 10진수를 2진수로 바꿨을 때 1의 개수와 같아, 10진수를 2진수로 바꾼 후에 문자열을 배열로 변환한 다음 돌면서 1의 개수를 세는 방식으로 풀었다.
 
-
 ### 10진수를 2진수로 바꾸는 방법
+
 `number.toString(2)`
 
-<hr/>
+<hr />
 
 ## Code
 
 ```javascript
-function solution(n){
+function solution(n) {
   let ans = 0;
 
   // 10진수를 2진수로 변경
-  n.toString(2).split('').forEach(item => {
-    if(item === '1') ans++;
-  });
+  n.toString(2)
+    .split('')
+    .forEach((item) => {
+      if (item === '1') ans++;
+    });
 
   return ans;
 }
 ```
-
