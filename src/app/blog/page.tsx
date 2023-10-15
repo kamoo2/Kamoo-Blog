@@ -40,7 +40,6 @@ export default function BlogPage(props: Props) {
     : combinedPostWithKeys.filter((post) => {
         return selectedKey === post.key.toLowerCase();
       })[0];
-
   return (
     <div className="flex pb-3 pt-8">
       <CategoryBox

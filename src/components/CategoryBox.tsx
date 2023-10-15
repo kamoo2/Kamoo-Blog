@@ -17,6 +17,15 @@ export default function CategoryBox({
   selectedKey: string | undefined | string[];
 }) {
   const selectedTag = selectedKey === undefined ? 'all' : selectedKey;
+
+  tags.sort((category1, category2) => {
+    const cCount1 = category1.count;
+    const cCount2 = category2.count;
+
+    if (cCount1 > cCount2) return -1;
+    else if (cCount1 < cCount2) return 1;
+    else return 0;
+  });
   return (
     <div>
       <div className={`flex max-h-fit w-72 flex-col rounded-lg ${className}`}>
