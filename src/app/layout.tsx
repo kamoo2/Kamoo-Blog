@@ -15,11 +15,8 @@ import ThemeContainer from '@/components/ThemeContainer';
 
 dayjs.locale('ko');
 export const metadata: Metadata = {
-  title: {
-    default: '카무의 블로그',
-    template: '카무의 블로그 | %s',
-  },
-  description: '프론트엔드 개발자 카무의 개발 블로그',
+  title: 'kamoo blog',
+  description: '지식 공유로 함께 성장해나가는 프론트엔드 개발자 카무입니다.',
   icons: {
     icon: 'favicon.ico',
   },
