@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { allTagsWithCount, reducedAllBlogPosts } from '@/app/lib/post';
 import { ReducedPost } from '@/app/lib/types';
 import CategoryBox from '@/components/CategoryBox';
@@ -11,6 +13,11 @@ type Props = {
 type PostCombinedKey = {
   key: string;
   postList: ReducedPost[];
+};
+
+export const metadata: Metadata = {
+  title: 'Blog | kamoo',
+  description: '지식 공유를 위한 블로그 페이지 입니다.',
 };
 
 export default function BlogPage(props: Props) {
@@ -40,6 +47,7 @@ export default function BlogPage(props: Props) {
     : combinedPostWithKeys.filter((post) => {
         return selectedKey === post.key.toLowerCase();
       })[0];
+
   return (
     <div className="flex pb-3 pt-8">
       <CategoryBox
