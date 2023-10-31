@@ -1,0 +1,209 @@
+---
+title: Priority Queue 🔥
+description: 우선순위 큐에 대해서 알아보고 Javascript를 이용해 직접 구현해보자
+tags:
+  - Algorithm
+createdAt: 2023-10-31 20:20:00
+---
+
+## Priority Queue
+Priority Queue는 데이터를 우선순위에 따라 정렬된 상태로 저장하는 자료구조 입니다.
+
+일반 큐나 스택과는 달리, 데이터의 추가나 삭제가 아니라 `우선순위`를 기준으로 데이터를 반환합니다.
+
+주로 최단 경로를 구하는 다익스트라 알고리즘 문제를 풀 때 사용합니다.
+
+<hr/>
+
+### 구현 방법
+Priority Queue는 `2가지 방법`으로 구현 할 수 있습니다.
+
+`첫 번째` 배열
+배열로 만들 수 있지만 시간복잡도가 O(n)으로 효율성이 떨어집니다.
+
+`두 번째` Heap
+추가와 삭제가 O(log n) 이므로 효율성이 좋아 주로 `Heap`으로 구현됩니다.
+
+우선순위 큐에서 삽입과 삭제는 완전 이진 트리인 `Heap`에서의 삽입, 삭제와 동일한 동작 원리를 가집니다.
+더 자세히 알아보고 싶다면 `Heap` 포스트를 보고 와주세요 😆
+
+<hr/>
+
+### Javascript로 구현해보기
+다익스트라 알고리즘에서 사용할 PriorityQueue를 만들어 봅시다.
+최단 경로를 구하는 알고리즘 이므로 `최소힙`으로 구현해야 합니다.
+
+> 먼저 PQ에 저장 될 데이터인 Node 클래스를 만들어 봅시다.
+
+```javascript
+class Node {
+  constructor(value,priority){
+    this.value = value;
+    this.priority = priority;
+  }
+}
+```
+
+> 다음은 Priority Queue 클래스를 만들기 전에 필요한 필드와 메서드를 정리해봅시다.
+
+#### 필드
+- heap : Node 인스턴스 객체들을 저장할 공간
+
+#### 메서드
+- getLeftChildIndex(parentIndex) : 부모 인덱스로 왼쪽 자식의 인덱스를 반환하는 메서드
+- getRightChildIndex(parentIndex) : 부모 인덱스로 오른쪽 자식의 인덱스를 반환하는 메서드
+- getParentIndex(childIndex) : 자식 인덱스로 부모 인덱스를 반환하는 메서드
+- swap(idx1,idx2) : heap에서 idx1과 idx2에 있는 데이터를 교환하는 메서드
+- enqueue(value,priority) : heap에 Node를 삽입하는 메서드
+- dequeue() : 0번째 index의 노드를 반환하는 메서드
+
+> 이제 Priority Queue 클래스를 구현해봅시다 🔥
+
+```javascript
+class PriorityQueue {
+  constructor() {
+    this.heap = [];
+  }
+
+  getLeftChildIndex = (parentIndex) => parentIndex * 2 + 1;
+
+  getRightChildIndex = (parentIndex) => parentIndex * 2 + 2;
+
+  getParentIndex = (childIndex) => Math.floor((childIndex-1) /2);
+
+  swap = (idx1,idx2) => {
+    [this.heap[idx1],this.heap[idx2]] = [this.heap[idx2],this.heap[idx1]];
+  }
+
+  enqueue = (value,priority) => {
+    const node = new Node(value,priority);
+    this.heap.push(node);
+
+    let index = this.heap.length -1;
+
+    // 최소힙 정렬
+    while(index > 0){
+      const parentIndex = getParentIndex(index);
+      if(this.heap[parentIndex].priority < this.heap[index].priority) break; // 최소힙 정렬 완료
+      this.swap(parentIndex,index);
+      index = parentIndex;
+    }
+  }
+
+  dequeue = () => {
+    if(this.heap.length === 0) return null;
+
+    let min = this.heap[0];
+    let end = this.heap.pop();
+
+    if(this.heap.length > 0){
+      // 최소힙 정렬
+      this.heap[0] = end;
+
+      let index = 0;
+
+      while(true){
+        const leftChildIndex = this.getLeftChildIndex(index);
+        const rightChildIndex = this.getRightChildIndex(index);
+        let swapIdx = null;
+
+        if(leftChildIndex < this.heap.length &&
+            this.heap[leftChildIndex].priority < this.heap[index].priority){
+          swapIdx = leftChildIndex;
+        }
+
+        if(rightChildIndex < this.heap.length &&
+            this.heap[rightChildIndex].priority < (swapIdx === null ? this.heap[index].priority : this.heap[leftChildIndex].priority)){
+            swapIdx = rightChildIndex;
+        }
+
+        if(swapIdx === null) break;
+
+        this.swap(index,swapIdx);
+        index = swapIdx;
+      }
+    }
+    return min;
+  }
+}
+```
+
+<hr/>
+
+### Priority Queue 클래스 Refactoring
+
+만들고 나니 아쉬운 점이 있어서 리팩토링 해보려고 합니다.
+enqueue와 dequeue 메서드는 단지 heap에 데이터를 넣고 빼는게 주 목적이기 때문에 최소힙에 맞게 재정렬하는 로직을 따로 빼도록 하겠습니다.
+외부에서는 `enqueue` `dequeue` `heap`에만 접근 가능하도록 나머지 메서드에는 `#`을 붙여 `private`로 변경하려고 했으나, 백준에서는 `#`을 사용할 수 없기 때문에 하지 않았습니다!
+
+```javascript
+class PriorityQueue {
+  constructor(){
+    this.heap = [];
+  }
+
+  getLeftChildIndex = (parentIndex) => parentIndex * 2 + 1;
+
+  getRightChildIndex = (parentIndex) => parentIndex * 2 + 2;
+
+  getParentIndex = (childIndex) => Math.floor((childIndex-1) /2);
+
+  swap = (idx1,idx2) => {
+    [this.heap[idx1],this.heap[idx2]] = [this.heap[idx2],this.heap[idx1]];
+  }
+
+  heapifyUp = () => {
+    let index = this.heap.length -1;
+    while(index > 0){
+      let parentIndex = this.getParentIndex(index);
+      if(this.heap[index].priority > this.heap[parentIndex].priority)break;
+      this.swap(index,parentIndex);
+      index = parentIndex;
+    }
+  }
+
+  heapifyDown = () => {
+    let index = 0;
+    while(true){
+      const leftChildIndex = this.getLeftChildIndex(index);
+      const rightChildIndex = this.getRightChildIndex(index);
+      let swapIdx = null;
+
+      // 왼쪽 자식 노드와 비교
+      if(leftChildIndex < this.heap.length &&
+          this.heap[leftChildIndex].priority < this.heap[index].priority){
+        swapIdx = leftChildIndex;
+      }
+
+      // 오른쪽 자식 노드와 비교
+      if(rightChildIndex < this.heap.length &&
+          this.heap[rightChildIndex].priority < (swapIdx === null ? this.heap[index].priority : this.heap[leftChildIndex].priority)){
+        swapIdx = rightChildIndex;
+      }
+
+      if(swapIdx === null) break;
+
+      this.swap(index,swapIdx);
+      index = swapIdx;
+    }
+  }
+
+  enqueue = (value, priority) => {
+    const node = new Node(value,priority);
+    this.heap.push(node);
+    heapifyUp();
+  }
+
+  dequeue = () => {
+    if(this.heap.length === 0)return null;
+    const min = this.heap[0];
+    const end = this.heap.pop();
+
+    if(this.heap.length > 0){
+      this.heap[0] = end;
+      this.heapifyDown();
+    }
+    return min;
+  }
+}
+```
