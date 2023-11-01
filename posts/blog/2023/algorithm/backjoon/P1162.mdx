@@ -1,0 +1,172 @@
+---
+title: 백준 - 도로포장 (JS)
+description: 백준의 도로포장(골드 1) 문제 입니다.
+thumbnail: /images/posts/P1707/231015-171700.png
+tags:
+  - Algorithm
+  - BOJ
+createdAt: 2023-11-01 15:30:00
+---
+
+## Link
+
+https://www.acmicpc.net/problem/1162
+
+<hr />
+
+## Problem
+
+> 서울에서 포천으로 출근시 M개의 도로 중 K개를 포장하여 가는 시간을 단축하고자 한다.
+> N개의 도시가 주어지고 도로 사이의 시간이 주어졌을 때 최소 시간이 걸리도록하는 K개 이하의 도로를 포장해야한다.
+> 포장하면 해당 도로는 걸리는 시간이 0이 된다. 최소 시간을 구해보자.
+
+- 한 도시에서 모든 도시에 도착했을 때의 최소 시간을 구하기 위해 다익스트라 알고리즘을 사용하자.
+- 단, 최소 시간만 가지는 1차원 배열이 아닌 최소 시간과 포장 횟수를 가지는 2차원 배열을 만들어야 한다.
+
+<hr />
+
+## Solve
+
+`시간 복잡도` : O(ElogV)
+
+1. PriorityQueue 클래스를 만든다. 이때 저장될 데이터는 [idx,cost,paved]
+2. 다익스트라 알고리즘을 이용해 포장하는 경우와 포장하지 않는 경우의 최소 시간을 구한다.
+3. 만들어진 dist 2차원 배열을 이용해 도착 도시의 최소 시간을 구한다.
+
+<hr />
+
+## Code
+
+```javascript
+const fs = require("fs");
+const input = fs.readFileSync("/dev/stdin").toString().split("\n");
+class PriorityQueue {
+  constructor() {
+    this.heap = [];
+  }
+
+  getParentIndex = (childIndex) => {
+    return Math.floor((childIndex - 1) / 2);
+  };
+
+  getLeftChildIndex = (parentIndex) => {
+    return parentIndex * 2 + 1;
+  };
+
+  getRightChildIndex = (parentIndex) => {
+    return parentIndex * 2 + 2;
+  };
+
+  swap = (idx1, idx2) => {
+    [this.heap[idx1], this.heap[idx2]] = [this.heap[idx2], this.heap[idx1]];
+  };
+
+  isEmpty = () => this.heap.length === 0;
+
+  heapifyUp = () => {
+    let index = this.heap.length - 1;
+    while (index > 0) {
+      let parentIndex = this.getParentIndex(index);
+      if (this.heap[index][1] > this.heap[parentIndex][1]) break;
+      this.swap(index, parentIndex);
+      index = parentIndex;
+    }
+  };
+
+  heapifyDown = () => {
+    let index = 0;
+    while (true) {
+      const leftChildIndex = this.getLeftChildIndex(index);
+      const rightChildIndex = this.getRightChildIndex(index);
+      let swapIdx = null;
+
+      // 왼쪽 자식 노드와 비교
+      if (
+        leftChildIndex < this.heap.length &&
+        this.heap[leftChildIndex][1] < this.heap[index][1]
+      ) {
+        swapIdx = leftChildIndex;
+      }
+
+      // 오른쪽 자식 노드와 비교
+      if (
+        rightChildIndex < this.heap.length &&
+        this.heap[rightChildIndex][1] <
+          (swapIdx === null
+            ? this.heap[index][1]
+            : this.heap[leftChildIndex][1])
+      ) {
+        swapIdx = rightChildIndex;
+      }
+
+      if (swapIdx === null) break;
+
+      this.swap(index, swapIdx);
+      index = swapIdx;
+    }
+  };
+
+  enqueue = (node) => {
+    this.heap.push(node);
+    this.heapifyUp();
+  };
+
+  dequeue = () => {
+    if (this.heap.length === 0) return null;
+    const min = this.heap[0];
+    const end = this.heap.pop();
+
+    if (this.heap.length > 0) {
+      this.heap[0] = end;
+      this.heapifyDown();
+    }
+    return min;
+  };
+}
+
+function dijkstra(start) {
+  const pq = new PriorityQueue();
+
+  pq.enqueue([start, 0, 0]);
+  dist[start][0] = 0;
+
+  while (!pq.isEmpty()) {
+    let [idx, cost, paved] = pq.dequeue();
+    if (dist[idx][paved] < cost) continue;
+    for (let [toV, toC] of graph[idx]) {
+      // 1. 포장 안하고 가는 경우
+      let nCost = cost + toC;
+      if (nCost < dist[toV][paved]) {
+        dist[toV][paved] = nCost;
+        pq.enqueue([toV, nCost, paved]);
+      }
+
+      // 2. 포장 하고 가는 경우
+      if (paved < K && cost < dist[toV][paved + 1]) {
+        dist[toV][paved + 1] = cost;
+        pq.enqueue([toV, cost, paved + 1]);
+      }
+    }
+  }
+}
+
+const [N, M, K] = input[0].split(" ").map(Number);
+
+const INF = 1e17;
+const graph = [];
+for (let i = 0; i < N + 1; i++) graph.push([]);
+for (let i = 1; i <= M; i++) {
+  const [a, b, c] = input[i].split(" ").map(Number);
+  graph[a].push([b, c]); // 양방향 간선
+  graph[b].push([a, c]);
+}
+
+const dist = Array.from(Array(N + 1).fill(INF), () =>
+  new Array(K + 1).fill(INF),
+);
+
+const [start, destination] = [1, N];
+dijkstra(start);
+console.log(Math.min(...dist[destination]));
+
+```
