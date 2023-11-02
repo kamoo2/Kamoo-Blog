@@ -1,4 +1,4 @@
-import { Post, ReducedPost, TagWithCount } from '@/app/lib/types';
+import { Post, ReducedPost, TagWithCount } from '@/lib/types';
 import { allPosts } from '@/contentlayer/generated';
 
 export const reducePost = ({ body: _, _raw, _id, ...post }: Post): ReducedPost => post;
@@ -6,7 +6,7 @@ export const reducePost = ({ body: _, _raw, _id, ...post }: Post): ReducedPost =
 export const allBlogPosts: Post[] = allPosts
   .filter(
     (post) =>
-      post._raw.sourceFilePath.includes('blog') && !post._raw.sourceFilePath.includes('/index.mdx'),
+      post._raw.sourceFilePath.includes('blog') && !post._raw.sourceFilePath.includes('/index.mdx')
   )
   .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 

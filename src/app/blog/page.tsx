@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
-import { allTagsWithCount, reducedAllBlogPosts } from '@/app/lib/post';
-import { ReducedPost } from '@/app/lib/types';
+import { allTagsWithCount, reducedAllBlogPosts } from '@/lib/post';
+import { ReducedPost } from '@/lib/types';
 import CategoryBox from '@/components/CategoryBox';
 import PostList from '@/components/PostList';
 

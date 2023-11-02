@@ -1,12 +1,12 @@
-import './globals.css';
+import '../styles/globals.css';
 import 'dayjs/locale/ko';
 
 import { Analytics } from '@vercel/analytics/react';
 import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 
-import { fontSans } from '@/app/lib/fonts';
-import { GA_TRACKING_ID } from '@/app/lib/gtag';
+import { fontSans } from '@/lib/fonts';
+import { GA_TRACKING_ID } from '@/lib/gtag';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import KbarContainer from '@/components/KbarContainer';
 import Footer from '@/components/layout/Footer';

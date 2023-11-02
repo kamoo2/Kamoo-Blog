@@ -4,7 +4,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { useEffect } from 'react';
 
-import { pageview } from '@/app/lib/gtag';
+import { pageview } from '@/lib/gtag';
 
 export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_ID: string }) {
   const pathname = usePathname();

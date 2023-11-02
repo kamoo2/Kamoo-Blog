@@ -1,7 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
 
-import { fontCabinSketch } from '@/app/lib/fonts';
+import { fontCabinSketch } from '@/lib/fonts';
 
 export default function PrepareNotice() {
   const pathname = usePathname();

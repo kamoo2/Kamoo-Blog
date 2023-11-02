@@ -1,4 +1,4 @@
-import { ListOfHeading } from '@/app/lib/types';
+import { ListOfHeading } from '@/lib/types';
 
 export const parseToc = (content: string) => {
   return content

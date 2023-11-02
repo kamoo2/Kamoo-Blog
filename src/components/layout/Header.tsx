@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
 
-import { allBlogTagsWithCount, allSnippetTagsWithCount } from '@/app/lib/post';
+import { allBlogTagsWithCount, allSnippetTagsWithCount } from '@/lib/post';
 import MobileMenu from '@/components/MobileMenu';
 import ProgressBar from '@/components/ProgressBar';
 import QuickSearchButton from '@/components/QuickSearchButton';

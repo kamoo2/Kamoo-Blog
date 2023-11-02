@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { AiOutlineCalendar, AiOutlineClockCircle } from 'react-icons/ai';
 
-import { ListOfHeading, Post } from '@/app/lib/types';
 import IconText from '@/components/common/IconText';
 import Title from '@/components/common/Title';
 import Giscus from '@/components/Giscus';
 import HeadingToc from '@/components/HeadingToc';
 import PostFooter, { PostFooterProps } from '@/components/layout/PostFooter';
+import { ListOfHeading, Post } from '@/lib/types';
 
 export type PostLayoutProps = PostFooterProps & {
   post: Post;
