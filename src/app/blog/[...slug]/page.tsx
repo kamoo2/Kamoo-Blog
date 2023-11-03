@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { PostFooterProps } from '@/components/layout/PostFooter';
+import PostLayout from '@/components/layout/PostLayout';
 import { parseToc } from '@/lib/mdx';
 import { allBlogPosts } from '@/lib/post';
 import { Post } from '@/lib/types';
-import { PostFooterProps } from '@/components/layout/PostFooter';
-import PostLayout from '@/components/layout/PostLayout';
 
 type FindPostReturnType = {
   post: Post | undefined;

@@ -10,8 +10,8 @@ import {
 } from 'kbar';
 import { ReactNode } from 'react';
 
-import { fontMono } from '@/lib/fonts';
 import useKbarAction from '@/hooks/useKbarAction';
+import { fontMono } from '@/lib/fonts';
 
 export default function KbarContainer({ children }: { children: ReactNode }) {
   const actions = useKbarAction();
