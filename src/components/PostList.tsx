@@ -13,7 +13,7 @@ export default function PostList({ posts }: { posts: ReducedPost[] }) {
   const FIRST_PAGE = 1;
   const { page, setPage, handlePageUp, handlePageDown, pageList, compressPageList } = usePagination(
     FIRST_PAGE,
-    LAST_PAGE,
+    LAST_PAGE
   );
 
   const compressdPageList = compressPageList(pageList);

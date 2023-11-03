@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
-import { allTagsWithCount, reducedAllBlogPosts } from '@/lib/post';
-import { ReducedPost } from '@/lib/types';
 import CategoryBox from '@/components/CategoryBox';
 import PostList from '@/components/PostList';
+import { allTagsWithCount, reducedAllBlogPosts } from '@/lib/post';
+import { ReducedPost } from '@/lib/types';
 
 type Props = {
   params: {};

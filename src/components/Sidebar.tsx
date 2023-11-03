@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import { Menu, TagWithCount } from '@/lib/types';
 import IconText from '@/components/common/IconText';
+import { Menu, TagWithCount } from '@/lib/types';
 
 type SidebarProps = {
   isOpen: boolean;

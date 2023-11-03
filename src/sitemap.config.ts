@@ -1,4 +1,5 @@
 import fs from 'fs';
+
 import { allBlogPosts } from '@/lib/post';
 
 async function createSiteMap() {
@@ -11,7 +12,7 @@ async function createSiteMap() {
   ${posts
     .map(
       (post) =>
-        `<url><loc>${siteUrl}${post.slug}</loc><changefreq>daily</changefreq><priority>0.7</priority></url>`,
+        `<url><loc>${siteUrl}${post.slug}</loc><changefreq>daily</changefreq><priority>0.7</priority></url>`
     )
     .join('\n')}
   </urlset>`;
