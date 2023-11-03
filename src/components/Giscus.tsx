@@ -49,7 +49,7 @@ export default function Giscus() {
     const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
     iframe?.contentWindow?.postMessage(
       { giscus: { setConfig: { term: pathname } } },
-      'https://giscus.app',
+      'https://giscus.app'
     );
   }, [pathname]);
 
