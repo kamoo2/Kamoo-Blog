@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { HiMiniMoon, HiMiniSun } from 'react-icons/hi2';
 
 import IconButton from '@/components/common/IconButton';
-import useSwitchTheme from '@/components/useSwitchTheme';
+import useSwitchTheme from '@/hooks/useSwitchTheme';
 
 export default function ThemeToggleButton() {
   const { theme, toggleTheme } = useSwitchTheme();

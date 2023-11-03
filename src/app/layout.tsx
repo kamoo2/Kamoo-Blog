@@ -1,17 +1,15 @@
-import './globals.css';
+import '../styles/globals.css';
 import 'dayjs/locale/ko';
 
 import { Analytics } from '@vercel/analytics/react';
 import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 
-import { fontSans } from '@/app/lib/fonts';
-import { GA_TRACKING_ID } from '@/app/lib/gtag';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
 import KbarContainer from '@/components/KbarContainer';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import ThemeContainer from '@/components/ThemeContainer';
+import { fontSans } from '@/lib/fonts';
 
 dayjs.locale('ko');
 export const metadata: Metadata = {
@@ -20,18 +18,13 @@ export const metadata: Metadata = {
   icons: {
     icon: 'favicon.ico',
   },
+  verification: {
+    google: '_rdNeAEdVwiFZJVhLeCqqV9SRacwSp2f_Q0uDS_8eBg',
+  },
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={fontSans.className}>
-      <head>
-        <meta
-          name="google-site-verification"
-          content="_rdNeAEdVwiFZJVhLeCqqV9SRacwSp2f_Q0uDS_8eBg"
-        />
-        <meta name="naver-site-verification" content="6f5aab5f6f773efd395ce937f872dfc578617d89" />
-      </head>
-      <GoogleAnalytics GA_MEASUREMENT_ID={GA_TRACKING_ID} />
       <body className="no-scrollbar">
         <ThemeContainer>
           <KbarContainer>

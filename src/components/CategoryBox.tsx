@@ -3,7 +3,7 @@ import React from 'react';
 import { FaRegFolder } from 'react-icons/fa';
 import { FaRegFolderOpen } from 'react-icons/fa6';
 
-import { TagWithCount } from '@/app/lib/types';
+import { TagWithCount } from '@/lib/types';
 import IconText from '@/components/common/IconText';
 import CategoryIcon from '@/components/icons/CategoryIcon';
 

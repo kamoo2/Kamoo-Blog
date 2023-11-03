@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
-import { Menu } from '@/app/lib/types';
+import { Menu } from '@/lib/types';
 
 export function getAllMenus(): Promise<Menu[]> {
   const filePath = path.join(process.cwd(), 'data', 'menus.json');

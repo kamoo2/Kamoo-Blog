@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { FaAngleRight } from 'react-icons/fa6';
 
-import { ListOfHeading } from '@/app/lib/types';
-import useScroll from '@/app/lib/useScroll';
+import { ListOfHeading } from '@/lib/types';
+import useScroll from '@/hooks/useScroll';
 import IconText from '@/components/common/IconText';
 
 export default function HeadingToc({ headingList }: { headingList: ListOfHeading }) {

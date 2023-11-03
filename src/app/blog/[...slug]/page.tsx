@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { parseToc } from '@/app/lib/mdx';
-import { allBlogPosts } from '@/app/lib/post';
-import { Post } from '@/app/lib/types';
+import { parseToc } from '@/lib/mdx';
+import { allBlogPosts } from '@/lib/post';
+import { Post } from '@/lib/types';
 import { PostFooterProps } from '@/components/layout/PostFooter';
 import PostLayout from '@/components/layout/PostLayout';
 

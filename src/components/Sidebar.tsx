@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Menu, TagWithCount } from '@/app/lib/types';
+import { Menu, TagWithCount } from '@/lib/types';
 import IconText from '@/components/common/IconText';
 
 type SidebarProps = {

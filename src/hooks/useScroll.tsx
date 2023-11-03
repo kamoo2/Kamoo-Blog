@@ -1,6 +1,7 @@
+'use client';
 import { useEffect, useState } from 'react';
 
-import { ListOfHeading } from '@/app/lib/types';
+import { ListOfHeading } from '@/lib/types';
 
 type Heading = {
   id: string;
@@ -11,12 +12,11 @@ type Heading = {
 export default function useScroll(headingList: ListOfHeading) {
   const [currentHeading, setCurrentHeading] = useState<string | undefined>();
 
-  // headingList가 바뀌면 즉 Post가 바뀌면 재 실행
   useEffect(() => {
     if (headingList.length === 0) return;
 
     let headings: Heading[];
-    const style = window.getComputedStyle(document.documentElement); // 내가 사용하고 있는 모든 CSS style 선언자
+    const style = window.getComputedStyle(document.documentElement);
     const scrollMt =
       parseFloat(style.getPropertyValue('--scroll-mt').match(/[\d.]+/)?.[0] ?? '0') *
       parseFloat(style.fontSize.match(/[\d.]+/)?.[0] ?? '16');
@@ -24,8 +24,8 @@ export default function useScroll(headingList: ListOfHeading) {
     const onResize = () => {
       headings = Array.from(
         document.querySelectorAll<HTMLElement>(
-          '.prose h2:not(#heading-list),.prose h3:not(#heading-list)',
-        ),
+          '.prose h2:not(#heading-list),.prose h3:not(#heading-list)'
+        )
       ).map((element) => ({ id: element.id, minTop: element.offsetTop }));
 
       for (let i = 0; i < headings.length; i++) {

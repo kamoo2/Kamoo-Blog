@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Post } from '@/app/lib/types';
+import { Post } from '@/lib/types';
 
 export type PostFooterProps = {
   prevPost: Post | null;
