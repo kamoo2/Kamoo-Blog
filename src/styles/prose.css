@@ -11,6 +11,10 @@
   @apply text-primary;
 }
 
+.prose h2 {
+  @apply border-b-[0.3px] border-gray-300 pb-2
+}
+
 .prose h2,
 .prose h3 {
   @apply -mt-[60px] pt-[60px] !important;
