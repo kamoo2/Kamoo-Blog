@@ -1,82 +1,85 @@
 import { allPosts } from '@/contentlayer/generated';
 import { Post, ReducedPost, TagWithCount } from '@/lib/types';
 
-export const reducePost = ({ body: _, _raw, _id, ...post }: Post): ReducedPost => post;
+class PostService {
+  private countTagManager = new CounterTagManager();
+  private extractEssentialPostData = ({ body: _, _raw, _id, ...post }: Post): ReducedPost => post;
 
-export const allBlogPosts: Post[] = allPosts
-  .filter(
-    (post) =>
-      post._raw.sourceFilePath.includes('blog') && !post._raw.sourceFilePath.includes('/index.mdx')
-  )
-  .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  protected transformToReducePosts = (posts: Post[]) => posts.map(this.extractEssentialPostData);
 
-export const reducedAllBlogPosts = allBlogPosts.map(reducePost);
+  protected createTagCountArray = (posts: Post[]) => {
+    return this.countTagManager.createTagCountList(posts);
+  };
+}
 
-export const allSnippets: Post[] = allPosts
-  .filter((post) => post._raw.sourceFilePath.includes('snippets'))
-  .map((snippet) => ({ ...snippet, snippetName: snippet.slug.split('/').at(2) ?? null }))
-  .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+class BlogService extends PostService {
+  postList: Post[];
+  tagCountList: TagWithCount[];
+  reducedPostList: ReducedPost[];
+  constructor() {
+    super();
+    this.postList = allPosts
+      .filter((post: Post) => post._raw.sourceFilePath.includes('blog'))
+      .sort(
+        (postA, postB) => new Date(postB.createdAt).getTime() - new Date(postA.createdAt).getTime()
+      );
 
-export const reducedAllSnippets = allSnippets.map(reducePost);
-
-const getTagsWithCount = (kind: 'all' | 'blog' | 'snippets'): TagWithCount[] => {
-  const tagCounts: Record<string, number> = {};
-  let allTags: TagWithCount[] = [];
-
-  if (kind === 'blog') {
-    allBlogPosts.forEach((post) => {
-      post.tags.forEach((tag) => {
-        if (!tagCounts[tag]) {
-          tagCounts[tag] = 0;
-        }
-        tagCounts[tag]++;
-      });
-    });
-
-    allTags = Object.keys(tagCounts).map((tag) => ({
-      name: tag,
-      count: tagCounts[tag],
-    }));
-
-    allTags.unshift({ name: 'All', count: allBlogPosts.length });
-  } else if (kind === 'snippets') {
-    allSnippets.forEach((post) => {
-      post.tags.forEach((tag) => {
-        if (!tagCounts[tag]) {
-          tagCounts[tag] = 0;
-        }
-        tagCounts[tag]++;
-      });
-    });
-
-    allTags = Object.keys(tagCounts).map((tag) => ({
-      name: tag,
-      count: tagCounts[tag],
-    }));
-
-    allTags.unshift({ name: 'All', count: allSnippets.length });
-  } else {
-    Array.from([...allSnippets, ...allBlogPosts]).forEach((post) => {
-      post.tags.forEach((tag) => {
-        if (!tagCounts[tag]) {
-          tagCounts[tag] = 0;
-        }
-        tagCounts[tag]++;
-      });
-    });
-
-    allTags = Object.keys(tagCounts).map((tag) => ({
-      name: tag,
-      count: tagCounts[tag],
-    }));
-
-    allTags.unshift({ name: 'All', count: allSnippets.length + allBlogPosts.length });
+    this.tagCountList = this.createTagCountArray(this.postList);
+    this.reducedPostList = this.transformToReducePosts(this.postList);
   }
-  return allTags;
-};
+}
 
-export const allBlogTagsWithCount = getTagsWithCount('blog').sort();
+class SnippetService extends PostService {
+  postList: Post[];
+  tagCountList: TagWithCount[];
+  reducedPostList: ReducedPost[];
+  constructor() {
+    super();
+    this.postList = allPosts
+      .filter((post) => post._raw.sourceFilePath.includes('snippets'))
+      .map((snippet) => ({ ...snippet, snippetName: snippet.slug.split('/').at(2) ?? null }))
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-export const allSnippetTagsWithCount = getTagsWithCount('snippets');
+    this.tagCountList = this.createTagCountArray(this.postList);
+    this.reducedPostList = this.transformToReducePosts(this.postList);
+  }
+}
 
-export const allTagsWithCount = getTagsWithCount('all');
+class CounterTagManager {
+  private result: TagWithCount[];
+  private tagCounts: Record<string, number>;
+  constructor() {
+    this.result = [];
+    this.tagCounts = {};
+  }
+  private reset = () => {
+    this.result = [];
+    this.tagCounts = {};
+  };
+
+  private createProcess = (postList: Post[]) => {
+    postList.forEach((post) => {
+      post.tags.forEach((tag) => {
+        if (!this.tagCounts[tag]) {
+          this.tagCounts[tag] = 0;
+        }
+        this.tagCounts[tag]++;
+      });
+    });
+    this.result = Object.keys(this.tagCounts).map((tag) => ({
+      name: tag,
+      count: this.tagCounts[tag],
+    }));
+
+    this.result.unshift({ name: 'All', count: postList.length });
+  };
+
+  createTagCountList = (postList: Post[]) => {
+    this.reset();
+    this.createProcess(postList);
+    return this.result;
+  };
+}
+
+export const blogService = new BlogService();
+export const snippetService = new SnippetService();

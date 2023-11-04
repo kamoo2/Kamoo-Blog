@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { PostFooterProps } from '@/components/layout/PostFooter';
 import PostLayout from '@/components/layout/PostLayout';
 import { parseToc } from '@/lib/mdx';
-import { allBlogPosts } from '@/lib/post';
+import { blogService } from '@/lib/post';
 import { Post } from '@/lib/types';
 
 type FindPostReturnType = {
@@ -12,8 +12,8 @@ type FindPostReturnType = {
   index: number;
 };
 const findPostBySlug = (slug: string): FindPostReturnType => {
-  const post = allBlogPosts.find((post) => post.slug === slug);
-  const index = allBlogPosts.findIndex((post) => post.slug === slug);
+  const post = blogService.postList.find((post) => post.slug === slug);
+  const index = blogService.postList.findIndex((post) => post.slug === slug);
 
   return { post, index };
 };
@@ -27,8 +27,8 @@ export default function PostPage({ params: { slug: slugs } }: { params: { slug: 
   }
 
   const postFooterProps: PostFooterProps = {
-    prevPost: allBlogPosts.at(postIndex + 1) ?? null,
-    nextPost: postIndex === 0 ? null : allBlogPosts.at(postIndex - 1) ?? null,
+    prevPost: blogService.postList.at(postIndex + 1) ?? null,
+    nextPost: postIndex === 0 ? null : blogService.postList.at(postIndex - 1) ?? null,
   };
 
   const props = { post, ...postFooterProps, headingList: parseToc(post.body.raw) };
@@ -46,7 +46,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
 };
 
 export function generateStaticParams() {
-  return allBlogPosts.map((post) => ({
+  return blogService.postList.map((post) => ({
     slug: post.slug.split('/').slice(2),
   }));
 }

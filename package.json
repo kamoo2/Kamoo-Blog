@@ -52,6 +52,7 @@
     "rehype-prism": "^2.2.2",
     "rehype-slug": "^5.1.0",
     "remark-breaks": "^3.0.3",
-    "remark-gfm": "^3.0.1"
+    "remark-gfm": "^3.0.1",
+    "ts-node": "^10.9.1"
   }
 }

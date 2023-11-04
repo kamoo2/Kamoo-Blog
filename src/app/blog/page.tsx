@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import CategoryBox from '@/components/CategoryBox';
 import PostList from '@/components/PostList';
-import { allTagsWithCount, reducedAllBlogPosts } from '@/lib/post';
+import { blogService } from '@/lib/post';
 import { ReducedPost } from '@/lib/types';
 
 type Props = {
@@ -24,13 +24,16 @@ export default function BlogPage(props: Props) {
   const selectedKey = props.searchParams['key'];
   const isAll = !selectedKey || selectedKey === 'all';
 
-  const tagPostList = reducedAllBlogPosts.reduce<{ [key: string]: ReducedPost[] }>((ac, post) => {
-    post.tags.forEach((tag) => {
-      if (!ac[tag]) ac[tag] = [];
-      ac[tag].push(post);
-    });
-    return ac;
-  }, {});
+  const tagPostList = blogService.reducedPostList.reduce<{ [key: string]: ReducedPost[] }>(
+    (ac, post) => {
+      post.tags.forEach((tag) => {
+        if (!ac[tag]) ac[tag] = [];
+        ac[tag].push(post);
+      });
+      return ac;
+    },
+    {}
+  );
 
   const combinedPostWithKeys = Object.keys(tagPostList)
     .map<PostCombinedKey>((key) => ({
@@ -42,7 +45,7 @@ export default function BlogPage(props: Props) {
   const post = isAll
     ? {
         key: 'all',
-        postList: reducedAllBlogPosts,
+        postList: blogService.reducedPostList,
       }
     : combinedPostWithKeys.filter((post) => {
         return selectedKey === post.key.toLowerCase();
@@ -52,7 +55,7 @@ export default function BlogPage(props: Props) {
     <div className="flex pb-3 pt-8">
       <CategoryBox
         selectedKey={selectedKey}
-        tags={allTagsWithCount}
+        tags={blogService.tagCountList}
         className="hidden min-w-fit text-[#28442E] dark:text-neutral-50 lg:block"
       />
       <PostList posts={post.postList} />
