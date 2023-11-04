@@ -5,7 +5,7 @@ import MobileMenu from '@/components/MobileMenu';
 import ProgressBar from '@/components/ProgressBar';
 import QuickSearchButton from '@/components/QuickSearchButton';
 import ThemeToggleButton from '@/components/ThemeToggleButton';
-import { allBlogTagsWithCount, allSnippetTagsWithCount } from '@/lib/post';
+import { blogService, snippetService } from '@/lib/post';
 
 function MobileMenuFallback() {
   return <></>;
@@ -39,8 +39,8 @@ export default function Header() {
                   path: '/contact',
                 },
               ]}
-              blogTagList={allBlogTagsWithCount}
-              snippetTagList={allSnippetTagsWithCount}
+              blogTagList={blogService.tagCountList}
+              snippetTagList={snippetService.tagCountList}
             />
           </Suspense>
           <nav className="absolute left-1/2 hidden -translate-x-1/2 text-sm font-semibold lg:block">
