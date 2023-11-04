@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { SiGithub, SiGmail, SiNotion } from 'react-icons/si';
 
 import CircleIcon from '@/components/common/CircleIcon';
+import SiteConfig from '@/site.config';
 
 export default function Hero() {
   return (
@@ -27,21 +28,17 @@ export default function Hero() {
           >
             CONTACT ME
           </Link>
-          <Link
-            href="https://www.notion.so/kamoo2/b03b2c0edb424bd580f937d294b29f07?pvs=4"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href={SiteConfig.link.notion} target="_blank" rel="noopener noreferrer">
             <CircleIcon className="border border-neutral-900 p-2.5 text-sm text-neutral-900 hover:translate-y-0.5 hover:scale-105 hover:bg-neutral-900 hover:text-neutral-50 dark:border-neutral-50 dark:text-neutral-50 lg:text-lg">
               <SiNotion />
             </CircleIcon>
           </Link>
-          <Link href="https://github.com/kamoo2" target="_blank" rel="noopener noreferrer">
+          <Link href={SiteConfig.link.github} target="_blank" rel="noopener noreferrer">
             <CircleIcon className="border border-neutral-900 p-2.5 text-sm text-neutral-900 hover:translate-y-0.5 hover:scale-105 hover:bg-neutral-900 hover:text-neutral-50 dark:border-neutral-50 dark:text-neutral-50 lg:text-lg">
               <SiGithub />
             </CircleIcon>
           </Link>
-          <Link href="" target="_blank" rel="noopener noreferrer">
+          <Link href={SiteConfig.link.email} target="_black" rel="noopener noreferrer">
             <CircleIcon className="border border-neutral-900 p-2.5 text-sm text-neutral-900 hover:translate-y-0.5 hover:scale-105 hover:bg-neutral-900 hover:text-neutral-50 dark:border-neutral-50 dark:text-neutral-50 lg:text-lg">
               <SiGmail />
             </CircleIcon>

@@ -10,16 +10,20 @@ import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import ThemeContainer from '@/components/ThemeContainer';
 import { fontSans } from '@/lib/fonts';
+import SiteConfig from '@/site.config';
 
 dayjs.locale('ko');
 export const metadata: Metadata = {
-  title: 'kamoo blog',
+  title: {
+    default: SiteConfig.title,
+    template: `${SiteConfig.title} | %s`,
+  },
   description: '지식 공유로 함께 성장해나가는 프론트엔드 개발자 카무입니다.',
   icons: {
     icon: 'favicon.ico',
   },
   verification: {
-    google: '_rdNeAEdVwiFZJVhLeCqqV9SRacwSp2f_Q0uDS_8eBg',
+    google: SiteConfig.google,
   },
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {

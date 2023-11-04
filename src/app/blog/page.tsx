@@ -16,7 +16,7 @@ type PostCombinedKey = {
 };
 
 export const metadata: Metadata = {
-  title: 'Blog | kamoo',
+  title: 'Blog',
   description: '지식 공유를 위한 블로그 페이지 입니다.',
 };
 

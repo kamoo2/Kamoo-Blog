@@ -6,6 +6,7 @@ import ProgressBar from '@/components/ProgressBar';
 import QuickSearchButton from '@/components/QuickSearchButton';
 import ThemeToggleButton from '@/components/ThemeToggleButton';
 import { blogService, snippetService } from '@/lib/post';
+import SiteConfig from '@/site.config';
 
 function MobileMenuFallback() {
   return <></>;
@@ -17,28 +18,11 @@ export default function Header() {
       <header className="text-primary bg-primary border-primary border-b py-2">
         <div className="mx-auto flex w-full max-w-3xl items-center justify-between px-6 md:max-w-6xl lg:px-0">
           <Link className="hidden font-semibold lg:block" href="/">
-            KAMOO
+            KAMOONY
           </Link>
           <Suspense fallback={<MobileMenuFallback />}>
             <MobileMenu
-              menus={[
-                {
-                  name: 'Blog',
-                  path: '/blog',
-                },
-                {
-                  name: 'Snippets',
-                  path: '/snippets',
-                },
-                {
-                  name: 'Archives',
-                  path: '/archives',
-                },
-                {
-                  name: 'Contact',
-                  path: '/contact',
-                },
-              ]}
+              menus={SiteConfig.nav}
               blogTagList={blogService.tagCountList}
               snippetTagList={snippetService.tagCountList}
             />

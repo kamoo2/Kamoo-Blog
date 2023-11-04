@@ -29,7 +29,7 @@ export default function Sidebar({
       }`}
     >
       <Link href="/" className="mb-4 text-center text-3xl">
-        Kamoo
+        KAMOONY
       </Link>
       {pathname.includes('/blog') || pathname.includes('/snippets') ? (
         <div className={`flex w-72 grow flex-col rounded-lg`}>
