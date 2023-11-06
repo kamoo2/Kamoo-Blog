@@ -1,9 +1,6 @@
 'use client';
 import { useKBar } from 'kbar';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { LuSearch } from 'react-icons/lu';
-
-import IconButton from '@/components/common/IconButton';
 
 export default function QuickSearchButton() {
   const { query } = useKBar();
@@ -18,7 +15,6 @@ export default function QuickSearchButton() {
         <span className="mr-12 pl-2 md:inline">Quick Search...</span>
         <div className="ml-auto flex-none text-xs font-semibold">⌘ K</div>
       </button>
-      <IconButton Icon={LuSearch} className="h-8 w-8 text-2xl text-neutral-600 md:hidden" />
     </div>
   );
 }
