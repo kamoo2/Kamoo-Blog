@@ -22,7 +22,7 @@ export default function Giscus() {
 
     scriptElem.setAttribute('data-repo', 'kamoo2/kamoo-blog');
     scriptElem.setAttribute('data-repo-id', 'R_kgDOKHRiKw');
-    scriptElem.setAttribute('data-category', 'Comments');
+    scriptElem.setAttribute('data-category', 'General');
     scriptElem.setAttribute('data-category-id', 'DIC_kwDOKHRiK84CZEMr');
     scriptElem.setAttribute('data-mapping', 'pathname');
     scriptElem.setAttribute('data-strict', '0');
@@ -31,7 +31,6 @@ export default function Giscus() {
     scriptElem.setAttribute('data-input-position', 'bottom');
     scriptElem.setAttribute('data-theme', theme);
     scriptElem.setAttribute('data-lang', 'en');
-    scriptElem.setAttribute('data-loading', 'lazy');
 
     ref.current.appendChild(scriptElem);
     setMounted(true);
