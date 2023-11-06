@@ -57,7 +57,7 @@ export default function MobileMenu({ menus, blogTagList, snippetTagList }: Mobil
     };
   }, [isOpen]);
   return (
-    <div className="lg:hidden">
+    <div className="z-10 lg:hidden">
       <IconButton className="text-2xl" Icon={RxHamburgerMenu} onClick={toggleSidebar} />
       {isOpen && <SidebarOverlay isOpen={isOpen} />}
       <Sidebar
