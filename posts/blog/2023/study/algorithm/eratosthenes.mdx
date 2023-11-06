@@ -1,0 +1,78 @@
+---
+title: 에라토스테네스의 체 🔥
+description: 소수를 찾는 가장 빠르고 효율적인 알고리즘인 에라토스테네스의 체의 원리를 이해하고 자바스크립트 코드로 작성해보자.
+tags:
+  - Algorithm
+createdAt: 2023-11-04 20:20:00
+---
+
+## for문을 이용한 소수 판별
+N이 소수인지 아닌지를 판별하기 위해서는 2 ~ N-1까지의 수를 N과 나누면서 나머지가 0이 아닌 수의 빈도수를 체크한다.
+
+```javascript
+function isPrime(N){
+  // 1은 소수가 아니다.
+  if(N === 1) return false;
+
+  for(let i = 2;i<N;i++){
+    // 1과 자기자신을 제외한 수로 나누어 떨어진다면 소수가 아니다.
+    if(N % i === 0) return false;
+  }
+  return true;
+}
+
+isPrime(3); // true
+isPrime(4); // false
+```
+
+### 문제점
+만약 여러개의 N을 받고 소수를 판별한다면 어떻게 될까 ?
+물론 10개의 N을 수행한다면 무리없이 동작할 것이다.
+그러나 백준의 1929번 소수 구하기 문제 처럼 N과 M사이의 수 중 소수를 찾아 출력하는 경우에 M이 1,000,000이라면 ?
+많은 시간이 소요되어 시간초과가 날 가능성이 있다.
+`에라토스테네스의 체 알고리즘`를 활용하면 이 문제점을 해결할 수 있다.
+
+## 에라토스테네스의 체
+이 알고리즘의 핵심은 "소수의 배수는 소수가 아니라는 것"
+
+### 알고리즘 원리
+
+1. 2부터 시작하여, 처음 선택된 수의 배수를 모두 지운다.
+2. 남아 있는 수 중에서 아직 지워지지 않은 다음 수를 찾는다. 그 수 역시 소수
+3. 이를 반복하여 더 이상 선택할 수 있는 수가 없을 때까지 진행한다.
+
+### 알고리즘 구현 (Javascript)
+
+```javascript
+function eratosthenes(limit){
+  if (limit <= 1) return [];
+
+  // 초기화: 모든 수를 소수로 간주
+  const primeList = new Array(limit+1).fill(true);
+  primeList[0] = primeList[1] = false;
+
+  for(let i= 2; i <= limit; i++){
+    // 소수가 아니라면
+    if(!primeList[i])continue;
+
+    // 소수라면 현재 값의 배수는 소수가 아니다
+    for(let j = i * i; j <= limit; j+= i){
+      primeList[j] = false;
+    }
+  }
+  return primeList;
+}
+
+/**
+* 출력
+* 2
+* 3
+* 5
+* 7
+*/
+
+const primeList = eratosthenes(10);
+for(let i = 1; i <= 10; i++){
+  if(primeList[i]) console.log(i);
+}
+```

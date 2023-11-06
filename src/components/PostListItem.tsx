@@ -26,7 +26,7 @@ export default function PostListItem({
         priority
       />
       <div className="px-4 py-3">
-        <h1 className="truncate text-xl font-semibold">{title}</h1>
+        <p className="truncate text-xl font-medium">{title}</p>
         <div className="text-sub mt-1.5 flex items-center gap-2 text-sm font-thin">
           <span className="underline">{tag}</span>
           <IconText
