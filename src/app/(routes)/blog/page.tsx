@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import CategoryBox from '@/components/CategoryBox';
 import PostList from '@/components/PostList';
 import { blogService } from '@/lib/post';
-import { ReducedPost } from '@/lib/types';
+import { ReducedPost } from '@/types/Post';
 
 type Props = {
   params: {};

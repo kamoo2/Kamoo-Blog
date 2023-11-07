@@ -5,10 +5,11 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 
 import IconButton from '@/components/common/IconButton';
 import Sidebar from '@/components/Sidebar';
-import { Menu, TagWithCount } from '@/lib/types';
+import { Nav } from '@/types/Nav';
+import { TagWithCount } from '@/types/Post';
 
 type MobileMenuProps = {
-  menus: Menu[];
+  menus: Nav[];
   blogTagList: TagWithCount[];
   snippetTagList: TagWithCount[];
 };

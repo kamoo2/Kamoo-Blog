@@ -1,4 +1,19 @@
-const SiteConfig = {
+import { Nav } from '@/types/Nav';
+
+type SiteConfigType = {
+  url: string;
+  title: string;
+  copyright: string;
+  google: string;
+  nav: Nav[];
+  link: {
+    github: string;
+    notion: string;
+    email: string;
+  };
+};
+
+const SiteConfig: SiteConfigType = {
   url: 'https://www.kamoony.com',
   title: 'Kamoony',
   copyright: `© ${new Date().getFullYear()} Kamoony blog by SeokHwanMoon. All rights reserved.`,

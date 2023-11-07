@@ -5,7 +5,7 @@ import { FaRegFolderOpen } from 'react-icons/fa6';
 
 import IconText from '@/components/common/IconText';
 import CategoryIcon from '@/components/icons/CategoryIcon';
-import { TagWithCount } from '@/lib/types';
+import { TagWithCount } from '@/types/Post';
 
 export default function CategoryBox({
   tags,

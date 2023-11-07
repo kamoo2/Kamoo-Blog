@@ -1,14 +1,15 @@
 import Link from 'next/link';
 
 import IconText from '@/components/common/IconText';
-import { Menu, TagWithCount } from '@/lib/types';
+import { Nav } from '@/types/Nav';
+import { TagWithCount } from '@/types/Post';
 
 type SidebarProps = {
   isOpen: boolean;
   sidebarRef: React.ForwardedRef<HTMLDivElement>;
   tagList: TagWithCount[];
   pathname: string;
-  menus: Menu[];
+  menus: Nav[];
   keyName: string | null;
 };
 

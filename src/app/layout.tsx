@@ -8,7 +8,8 @@ import type { Metadata } from 'next';
 import KbarContainer from '@/components/KbarContainer';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
-import ThemeContainer from '@/components/ThemeContainer';
+import Main from '@/components/layout/Main';
+import ThemeContainer from '@/components/layout/ThemeContainer';
 import { fontSans } from '@/lib/fonts';
 import SiteConfig from '@/site.config';
 
@@ -34,9 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <KbarContainer>
             <div className="bg-primary mx-auto flex min-h-screen flex-col">
               <Header />
-              <main className="mx-auto w-full max-w-3xl grow px-7 pb-9 md:max-w-6xl lg:px-0">
-                {children}
-              </main>
+              <Main>{children}</Main>
               <Footer />
             </div>
           </KbarContainer>

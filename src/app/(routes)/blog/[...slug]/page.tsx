@@ -5,7 +5,7 @@ import { PostFooterProps } from '@/components/layout/PostFooter';
 import PostLayout from '@/components/layout/PostLayout';
 import { parseToc } from '@/lib/mdx';
 import { blogService } from '@/lib/post';
-import { Post } from '@/lib/types';
+import { Post } from '@/types/Post';
 
 type FindPostReturnType = {
   post: Post | undefined;

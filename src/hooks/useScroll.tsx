@@ -1,21 +1,21 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-import { ListOfHeading } from '@/lib/types';
+import { Heading } from '@/types/Heading';
 
-type Heading = {
+type H2 = {
   id: string;
   minTop: number;
   maxTop?: number;
 };
 
-export default function useScroll(headingList: ListOfHeading) {
+export default function useScroll(headingList: Heading[]) {
   const [currentHeading, setCurrentHeading] = useState<string | undefined>();
 
   useEffect(() => {
     if (headingList.length === 0) return;
 
-    let headings: Heading[];
+    let headings: H2[];
     const style = window.getComputedStyle(document.documentElement);
     const scrollMt =
       parseFloat(style.getPropertyValue('--scroll-mt').match(/[\d.]+/)?.[0] ?? '0') *

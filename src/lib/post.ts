@@ -1,5 +1,5 @@
 import { allPosts } from '@/contentlayer/generated';
-import { Post, ReducedPost, TagWithCount } from '@/lib/types';
+import { Post, ReducedPost, TagWithCount } from '@/types/Post';
 
 class PostService {
   private countTagManager = new CounterTagManager();

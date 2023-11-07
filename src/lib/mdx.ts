@@ -1,10 +1,10 @@
-import { ListOfHeading } from '@/lib/types';
+import { Heading } from '@/types/Heading';
 
 export const parseToc = (content: string) => {
   return content
     .split('\n')
     .filter((line) => line.match(/(^#{2,3})\s/))
-    .reduce<ListOfHeading>((ac, heading) => {
+    .reduce<Heading[]>((ac, heading) => {
       const nac = [...ac];
       const removeMDX = heading
         .replace(/^#*\s/, '')
