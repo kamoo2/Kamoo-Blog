@@ -1,5 +1,4 @@
-## 카무의 개발 블로그 
-<hr/>
+# 카무의 개발 블로그 
 [KAMOONY 블로그 방문하기](https://www.kamoony.com)
 
 > 개인의 개성이 담겨져 있는 나만의 개발 블로그입니다.
@@ -8,8 +7,8 @@
 > 
 >들어와서 보시고 댓글로 피드백도 남겨주시면 감사하겠습니다 😆
 
-### Run Locally
-<hr/>
+## Run Locally
+
 Clone the project
 
 `git clone https://github.com/kamoo2/kamoo-blog.git`
@@ -22,9 +21,7 @@ Run the project
 
 `pnpm run dev`
 
-### Root Layout,Page 추상화 레벨 맞추는 리팩토링 작업 완료 (2023-11-08)
-
-<hr/>
+## Root Layout,Page 추상화 레벨 맞추는 리팩토링 작업 완료 (2023-11-08)
 
 [commit](https://github.com/kamoo2/kamoo-blog/commit/4db6fbb47f00b3fc30e0940470f91ffd4c1f9e85)
 
