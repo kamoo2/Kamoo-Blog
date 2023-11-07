@@ -4,9 +4,9 @@ import { FaAngleRight } from 'react-icons/fa6';
 
 import IconText from '@/components/common/IconText';
 import useScroll from '@/hooks/useScroll';
-import { ListOfHeading } from '@/lib/types';
+import { Heading } from '@/types/Heading';
 
-export default function HeadingToc({ headingList }: { headingList: ListOfHeading }) {
+export default function HeadingToc({ headingList }: { headingList: Heading[] }) {
   const { currentHeading } = useScroll(headingList);
 
   const isSubActive = (flag: string) => {
