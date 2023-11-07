@@ -9,11 +9,12 @@ import Title from '@/components/common/Title';
 import Giscus from '@/components/Giscus';
 import HeadingToc from '@/components/HeadingToc';
 import PostFooter, { PostFooterProps } from '@/components/layout/PostFooter';
-import { ListOfHeading, Post } from '@/lib/types';
+import { Heading } from '@/types/Heading';
+import { Post } from '@/types/Post';
 
 export type PostLayoutProps = PostFooterProps & {
   post: Post;
-  headingList: ListOfHeading;
+  headingList: Heading[];
 };
 
 export default function PostLayout({ post, nextPost, prevPost, headingList }: PostLayoutProps) {

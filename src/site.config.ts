@@ -1,9 +1,6 @@
-type Nav = {
-  name: string;
-  path: string;
-};
+import { Nav } from '@/types/Nav';
 
-export type SiteConfigType = {
+type SiteConfigType = {
   url: string;
   title: string;
   copyright: string;

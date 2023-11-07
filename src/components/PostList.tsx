@@ -5,7 +5,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import IconButton from '@/components/common/IconButton';
 import PostListItem from '@/components/PostListItem';
 import usePagination from '@/hooks/usePagination';
-import { ReducedPost } from '@/lib/types';
+import { ReducedPost } from '@/types/Post';
 
 export default function PostList({ posts }: { posts: ReducedPost[] }) {
   const PAGE_LIMIT = 8;

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { AiOutlineCalendar } from 'react-icons/ai';
 
 import IconText from '@/components/common/IconText';
-import { ReducedPost } from '@/lib/types';
+import { ReducedPost } from '@/types/Post';
 
 export default function PostListItem({
   post: { title, thumbnail, description, createdAt, tags, slug },
