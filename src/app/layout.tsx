@@ -8,10 +8,10 @@ import type { Metadata } from 'next';
 import KbarContainer from '@/components/KbarContainer';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
+import Main from '@/components/layout/Main';
 import ThemeContainer from '@/components/layout/ThemeContainer';
 import { fontSans } from '@/lib/fonts';
 import SiteConfig from '@/site.config';
-import Main from '@/components/layout/Main';
 
 dayjs.locale('ko');
 export const metadata: Metadata = {
